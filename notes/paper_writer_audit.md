@@ -84,3 +84,17 @@ hidden; the code-checked claims are unaffected.
 - The third (constraint-set) variance component is studied as a design/target decomposition
   (Table 4, Section 3.3), not as a resampling layer in the experiments; the paper now says
   exactly this in the abstract, contributions, method and conclusion.
+
+## Round 21 updates (supersede F2/F3)
+
+The pre-submission review (see `notes/pre_submission_review.md`) recomputed the two quantities behind
+F2 and F3 from Table 4 of the manuscript and found that the replacement wording was still wrong.
+
+- F3: the violation factor of the condition $m \gg T v^2/\sigma^2_\Delta$ is
+  $(T v^2/\sigma^2_\Delta)/m = 21.5$ (Adult), $78.7$ (ACSIncome) and $4.5$ (COMPAS), i.e. factors of
+  $4.5$ to $79$, not "two to three orders of magnitude". The earlier note used the inverse ratio
+  $(m/T)/(v^2/\sigma^2_\Delta)$ and named it wrongly. The manuscript now reads "violate by factors of
+  $4.5$ to $79$ (Table~\ref{tab:budget})".
+- F2: the ratio $4.6$ for Adult is correct under the Table 4 protocol (0.0259/0.0056). The note in
+  `notes/extension_results.md` that quotes 3.9/7.1/1.8 refers to the E3 protocol with its own
+  se values (0.0260/0.0067 etc.); both are internally consistent, and the manuscript cites Table 4.

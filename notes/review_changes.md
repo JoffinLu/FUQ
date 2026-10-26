@@ -82,3 +82,40 @@ PNG preview).
   `supplement.pdf` 6 pages, reviewer copy 16 pages, combined PDF 22 pages; submission
   package 1.04 MB / 24 entries; release package 166 files / 1.99 MB; `check_numbers.py`
   123/0; `check_package.py` 13/13 PASS.
+
+## Round 21 - pre-submission review (`pre-submission-reviewer` + `nature-reviewer`)
+
+A five-lens pre-submission audit (three role-separated referee lenses plus a synthesis pass, recorded
+in `notes/pre_submission_review.md`) found two blocking problems and a set of reporting defects. All
+29 edits were applied to `manuscript/main.tex`; the full traceability table is in that record.
+
+- CRITICAL (sample-size allocation): the printed formula had `sqrt(c_T/c_m)` under the root, which
+  would make the optimal training budget increase with the training cost. Both displays (Section 5 and
+  Appendix A.6) now use `sqrt(c_m/c_T)` for `T` and `sqrt(c_T/c_m)` for `m`, matching the Lagrangian.
+- CRITICAL (three-source overclaim): the abstract, contribution 2, Method, Discussion and Conclusion
+  said the bootstrap resamples all three sources, while every coverage experiment fixes `D'` and
+  resamples two. The text now presents the two-source construction as the method and the
+  constraint-set layer as an option for a random audit design.
+- MAJOR (claim-to-table conflict): "two to three orders of magnitude" replaced by "factors of 4.5 to
+  79" computed from Table 4. This supersedes the Round 17 entry above, which quoted an inverted ratio.
+- MAJOR (unreported protocol constant): the evaluation resample count was never reported and reused
+  the symbol `R` (the DM penalty). It is now named `Q`, reported as 400 for the synthetic studies and
+  300 for the real audits, and added to the notation table and the relevant table captions.
+- MAJOR (theory statements): Theorem 1 is now stated as a joint limit `T, m -> infinity` with
+  `m/T -> lambda`, and Appendix A.2 replaces the invalid first-order Taylor expansion of the empirical
+  process with a Hadamard-differentiability plus Donsker argument; A.1 renames `phi_theta` to `h_theta`
+  to avoid the feature-map symbol.
+- MAJOR (experiment reporting): "constant step size" corrected to "step-size schedule" (the schedule
+  decays); the Figure 4 caption no longer claims that each single-source interval fails everywhere and
+  names the settings (training-only undercovers in every setting, evaluation-only undercovers on
+  synthetic DM at `m = 100`, 0.81); the Table 3 caption explains that its `phi` is the population
+  value, so it differs from the held-out estimate in Table 2; Figure 3 caption "width" corrected to
+  "half-width".
+- MINOR: sample-size, reproduction, ablation and limitations paragraphs split; data availability now
+  says the complete reproduction report comes with the code and is available on request during review;
+  Conclusion retains only the sequential-audit direction; remaining notation and wording fixes.
+
+Rebuild and verification: `main.pdf` 17 pages, `main_test.pdf` 18 pages (2 appendix overfull,
+unchanged), `supplement.pdf` 6 pages, reviewer copy 17 pages, anonymous 16 pages, combined PDF 23
+pages; `check_numbers.py` 123/0; `check_package.py` 13/13 PASS; submission zip 1.04 MB / 24 entries
+with self-contained compiles of all three sources; release package 166 files / 1.99 MB.

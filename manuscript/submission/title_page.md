@@ -31,7 +31,8 @@ Guilin 541004, China. E-mail: joffin@163.com. ORCID: <https://orcid.org/0009-000
 
 As in `main_test.tex` — 223 words. It states: (i) the training-noise-only interval of Roy and
 Mohapatra (2026); (ii) the exact rate at which its coverage degrades in the ratio of training to
-evaluation error; (iii) the three-source decomposition (training, evaluation, constraint set);
+evaluation error; (iii) the decomposition of the reported gap into training and evaluation sampling components, with a
+design-sensitivity layer for a random constraint set;
 (iv) the joint bootstrap that restores nominal coverage; (v) three real datasets where training noise
 is a small fraction of the total uncertainty.
 

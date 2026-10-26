@@ -5,14 +5,14 @@
 - `main_test.tex` / `main_test.pdf`：**TEST 投稿版**，官方 Springer Nature LaTeX 模板
   （`sn-jnl.cls` v2.1，类选项 `pdflatex,sn-basic`，作者-年份引用 `sn-basic.bst`），**18 页**，
   7 表 4 图，附录 A 证明 + 附录 B 复现细节；2 处 overfull（附录公式，16.9pt/34.2pt，可接受）。
-- `main.tex` / `main.pdf`：通用 `article` 内容版（16 页），与 TEST 版正文一致；便于未安装
+- `main.tex` / `main.pdf`：通用 `article` 内容版（17 页），与 TEST 版正文一致；便于未安装
   Springer 模板时审阅。
 - `supplement.tex` / `supplement.pdf`：补充材料（6 页，表 S1–S9；由 `make_supplement.py` 从
   `results/tables` 自动生成，不手填数字）。
 - `sn-jnl.cls`、`sn-basic.bst`：官方模板文件（v2.1，2022/2023 官方发行版）。
 - `refs.bib`：19 条参考文献（全部被引用；OpenAlex 逐条核对，`refs_checked.json`）。
-- `main_review.pdf`：审稿用带行号版（16 页）；`main_anonymous.pdf`：双盲版（16 页，作者块
-  “Anonymous Authors”）；`fuq-fairness_full.pdf`：正文+补充材料合并版（22 页）。
+- `main_review.pdf`：审稿用带行号版（17 页）；`main_anonymous.pdf`：双盲版（16 页，作者块
+  “Anonymous Authors”）；`fuq-fairness_full.pdf`：正文+补充材料合并版（23 页）。
 - `submission/`：目标期刊匹配（`target_journals.md`，TEST 首选/COAP/DMKD 备选）、cover letter、
   title page、检查清单、TEST 格式笔记（`test_format_notes.md`）、投稿包 zip。
 
@@ -24,12 +24,12 @@ $tec = "..\tools\tectonic\tectonic.exe"
 
 python code/build_test_tex.py          # main.tex -> main_test.tex（自动提取摘要/正文/声明）
 & $tec -X compile manuscript/main_test.tex --keep-logs   # TEST 版 PDF（18 页）
-& $tec -X compile manuscript/main.tex --keep-logs        # 通用版 PDF（16 页）
+& $tec -X compile manuscript/main.tex --keep-logs        # 通用版 PDF（17 页）
 python manuscript/make_supplement.py                     # 补充材料 tex
 & $tec -X compile manuscript/supplement.tex --keep-logs   # 6 页
 python manuscript/make_review_copy.py                    # 行号版
 python manuscript/make_anonymous.py                      # 双盲版
-python manuscript/make_combined.py                       # 合并版 22 页
+python manuscript/make_combined.py                       # 合并版 23 页
 python manuscript/build_submission.py --version v2.0     # 投稿包（约 1.04 MB / 24 entries，自包含编译校验）
 python code/make_release.py                              # 发布包（GitHub/Zenodo）
 ```
@@ -58,7 +58,7 @@ python manuscript/check_refs.py       # OpenAlex 核对（19 条）
 
 ## 发布包（GitHub / Zenodo）
 
-`release/fuq-fairness-v1.0-source.zip`：**166 文件 / 1.99 MB**，含 code、notes、results、
+`release/fuq-fairness-v1.0-source.zip`：**167 文件 / 2.00 MB**，含 code、notes、results、
 manuscript、submission、PROJECT_OVERVIEW、README/LICENSE/CITATION；端到端 light 复现已验证。
 
 ## 本地 git 仓库

@@ -19,10 +19,12 @@ in Fairness Uncertainty Quantification"** for consideration as an original resea
 evaluated on finite held-out samples, so reported demographic-parity or equalised-odds gaps are
 random. A recent line of work quantifies this randomness with an online multiplier bootstrap. We show
 that such intervals cover only the *training* component: the error of a reported gap decomposes into
-training, evaluation and constraint-set sampling components, which are asymptotically independent. We
-derive the limiting distribution and the exact coverage loss of the existing interval as a function of
-the ratio between training iterations and evaluation size, and we propose a joint bootstrap that
-resamples all three sources and is asymptotically valid. A variance budget on Adult, ACSIncome and
+training and evaluation sampling components, which are asymptotically independent under a fixed audit
+design; a third, design component arises when the constraint set that defines the target is itself a
+random draw. We derive the limiting distribution and the closed-form asymptotic coverage of the
+existing interval as a function of the ratio between training iterations and evaluation size, and we
+propose a joint bootstrap that resamples the two estimation sources, with an optional resampling layer
+over the constraint set, and prove its asymptotic validity for a fixed audit design. A variance budget on Adult, ACSIncome and
 COMPAS shows that training noise contributes only 0.8%–8.3% of the total uncertainty, whereas
 evaluation sampling (37%–78%) and constraint-set sampling (18%–55%) dominate. At the audit budgets
 used in practice the minimum certifiable gap exceeds the reported gap in two of the three datasets,
@@ -32,8 +34,8 @@ published step size does not reach the reported convergence regime, and the synt
 close to degenerate, an issue that matters when the generator is used to demonstrate fairness
 mechanisms.
 
-**Why this journal.** The contribution is methodological statistics: a three-source variance
-decomposition with a limiting distribution, an exact coverage-loss formula, a joint resampling
+**Why this journal.** The contribution is methodological statistics: a two-source variance
+decomposition with a design-sensitivity layer with a limiting distribution, an exact coverage-loss formula, a joint resampling
 estimator with an asymptotic validity result and a sample-size allocation rule, supported by a
 reproducible simulation study and three real audit datasets. This mix of methodology, theory and
 applications is the profile of *TEST*, and the paper is written to be accessible to statisticians
