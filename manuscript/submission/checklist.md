@@ -46,7 +46,7 @@
 
 ## 提交系统
 
-- [x] 投稿包 zip v2.0 构建完成（`submission/fuq-fairness_submission_v2.0.zip`，24 entries，约 1.04 MB）
+- [x] 投稿包 zip v2.0 构建完成（`submission/fuq-fairness_submission_v2.0.zip`，24 entries，约 1.09 MB）
 - [ ] Springer 投稿门户注册/登录并逐项确认（Editorial Manager / Springer Nature 投稿系统）
 - [ ] 上传：main_test.pdf（正文）、supplement.pdf（补充材料）、cover letter、title page
 - [ ] 可编辑源文件上传（main_test.tex + refs.bib + sn-jnl.cls + sn-basic.bst + figures/）
