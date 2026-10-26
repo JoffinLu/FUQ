@@ -30,10 +30,30 @@ Devil's Advocate，角色分离、先独立判断后综合）、`academic-paper`
 - 页数：`main.pdf` 16 页；`main_test.pdf` **18 页**（+1 页，内容增长）；`supplement.pdf` 6 页。
 - 编译：main exit 0（0 overfull/0 undefined）；main_test exit 0（附录 2 处 overfull 16.9pt/34.2pt，可接受）；supplement exit 0（仅 1 处 3.17pt overfull）。
 - `check_package.py`：**13/13 PASS**（main 16、main_test 18、supplement 6、7 表 4 图、123 数字、18 refs、S1–S9、submission 24 entries、release 163 文件、reviewer 16 页、combined 22 页）。
-- 投稿包 `fuq-fairness_submission_v2.0.zip` 重建（710 KB / 24 entries，自包含三份 PDF 均编译 exit 0）；发布包重建（163 文件 / 1.55 MB）。
+- 投稿包 `fuq-fairness_submission_v2.0.zip` 重建（727 KB / 24 entries，自包含三份 PDF 均编译 exit 0）；发布包重建（165 文件 / 1.57 MB）。
 
 ## 已知残留（不阻塞投稿）
 
 1. TEST 官方模板下附录 2 个公式 overfull（16.9pt / 34.2pt），属 sn-jnl 版心较窄所致，可接受。
 2. 补充材料 1 处 3.17pt overfull（S7 核验表表头），视觉不可见。
 3. 正式投稿前需在 ScholarOne 门户复核页数与官方分区表；审稿人邮箱、仓库 URL/Zenodo DOI 仍待补。
+
+## Round 18 — paper-writer audit (`notes/paper_writer_audit.md`)
+
+Second pass under the `paper-writer` skill, focused on evidence traceability and writing
+discipline. 20 changes to `main.tex` and one bibliography entry (`vdvwellner1996`, book,
+DOI verified via Crossref):
+
+- CRITICAL: abstract/contribution 2/conclusion now describe a two-source construction for a
+  fixed audit design, with the constraint-set layer as an optional extension; the
+  experiments are labelled consistently (previously "all three sources" was claimed).
+- MAJOR: evaluation/training noise ratio corrected 3.9 -> 4.6 (Table 4); "orders of
+  magnitude" -> "two to three orders" ((m/T)/(v^2/sigma_D^2) = 0.0004-0.004); Theorem 2's
+  `S -> infinity` condition stated; "exact coverage" -> "closed-form asymptotic coverage".
+- MAJOR/MINOR: quantified the synthetic-generator degeneracy (corr(z, y) = 0.828,
+  attribute-only label accuracy 0.909; recorded in `notes/repro_report.md`), corrected the
+  Figure 2 mechanism claim, removed a non-existent DM sensitivity analysis, corrected the
+  data-availability pointer, and made the AI-use statement truthful.
+- Verification: `check_numbers.py` 123/0; `check_refs.py` 19 entries (16 exact, 2 near
+  with documented reasons, 1 by-design missing with note); `main.pdf` 16 pages;
+  `main_test.pdf` 18 pages.

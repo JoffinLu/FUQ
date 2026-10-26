@@ -1,10 +1,10 @@
-"""Cross-check that the package documents agree with the actual artifacts.
+﻿"""Cross-check that the package documents agree with the actual artifacts.
 
 Checks (all must pass):
   * main.pdf has 16 pages, main_test.pdf has 18 pages, supplement.pdf has 6 pages;
   * main.tex contains 7 tables and 4 figures;
   * check_numbers.py verifies 123 numbers with none missing;
-  * refs_checked.json covers 18 bibliography entries with no missing DOI;
+  * refs_checked.json covers 19 bibliography entries with no missing DOI;
   * submission zip v2.0 exists with 24 entries and contains the three PDFs;
   * release zip exists and contains MANIFEST.tsv with 164 files;
   * reviewer copy (16 pages) and combined PDF (22 pages) exist.
@@ -45,7 +45,7 @@ def main() -> int:
 
     checked = json.loads((HERE / "refs_checked.json").read_text(encoding="utf-8"))
     entries = checked if isinstance(checked, list) else checked.get("entries", [])
-    checks.append(("refs checked entries", len(entries) == 18, str(len(entries))))
+    checks.append(("refs checked entries", len(entries) == 19, str(len(entries))))
     # roy2026uq is the UAI/PMLR version, not indexed in OpenAlex; its DOI/arXiv
     # record was verified by hand against the paper PDF (see manuscript/README.md).
     manual_ok = {"roy2026uq"}
@@ -75,7 +75,7 @@ def main() -> int:
         names = zipfile.ZipFile(release).namelist()
         manifest = [n for n in names if n == "MANIFEST.tsv"]
         n_files = len([n for n in names if not n.endswith("/")]) - 1
-        checks.append(("release zip", bool(manifest) and n_files == 164, f"{n_files} files"))
+        checks.append(("release zip", bool(manifest) and n_files == 165, f"{n_files} files"))
 
     review = HERE / "main_review.pdf"
     if not review.exists():

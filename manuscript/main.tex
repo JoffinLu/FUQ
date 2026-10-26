@@ -42,18 +42,18 @@ Guilin University of Electronic Technology, Guilin 541004, China\\
 Fairness-aware classifiers trained by stochastic gradient methods are random objects, so any reported
 demographic-parity or equalised-odds gap is random as well.  Recent work constructs confidence
 intervals for such gaps with an online multiplier bootstrap, but those intervals quantify only the
-randomness of the optimisation trajectory.  With the held-out sets used in practice, a second and
+randomness of the optimisation trajectory.  With a finite held-out set, a second and
 often larger component---the sampling noise of the evaluation set---is ignored, and a third source of variability enters
 through the constraint set that defines the target of the estimate.  We decompose the error of
-the reported gap into its training and evaluation parts, derive the limiting distribution and
-the exact coverage loss of the existing interval as a function of the ratio between training
-iterations and evaluation size, and prove that it is valid only when the evaluation set is large
-relative to the training run.  We then propose a joint bootstrap that resamples the training trajectories and the evaluation
-set---and, when the audit design itself is random, adds a constraint-set layer---prove its
-asymptotic validity for a fixed audit design, and give a sample-size allocation rule.  In a reproduction on synthetic
-data, Adult, ACSIncome and COMPAS, the existing interval covers the population fairness gap with
-probability between $0.00$ and $0.62$, whereas the joint interval attains nominal coverage (on Adult,
-$0.98$ versus $0.30$).  A variance budget shows that training noise accounts for only
+the reported gap into its training and evaluation parts, derive the limiting distribution and the
+closed-form asymptotic coverage of the existing interval as a function of the ratio between training
+iterations and evaluation size, and show that it is valid only when the evaluation set is large
+relative to the training run.  We then propose a joint bootstrap that resamples the training
+trajectories and the evaluation set---and, when the audit design itself is random, adds a
+constraint-set layer.  We prove its asymptotic validity for a fixed audit design and give a
+sample-size allocation rule.  In a reproduction on synthetic data, Adult, ACSIncome and COMPAS, the
+existing interval covers the population fairness gap in $0.00$--$0.62$ of repetitions on the three
+real audits, whereas the joint interval attains nominal coverage (on Adult, $0.98$ versus $0.30$).  A variance budget shows that training noise accounts for only
 $0.8\%$--$8.3\%$ of the variability of a reported gap, with evaluation and constraint-set sampling dominating.
 
 \par\medskip\noindent\textbf{Keywords:} fairness auditing; uncertainty quantification; constrained stochastic optimization; online bootstrap; distribution-free inference.
@@ -90,9 +90,9 @@ splits into
 and the two terms are independent because $\Dt$ is independent of the training stream.
 The online bootstrap approximates the law of the first term only.  If the evaluation error is small
 relative to the training noise the distinction is immaterial; in the operating regime of interest it
-is not.  In our reproduction, with $m=1000$ held-out observations, the evaluation noise for Adult is
-$3.9$ times the training noise, and the existing interval covers the population gap in $30\%$ of
-repetitions instead of the nominal $95\%$.
+is not.  In our reproduction, with $m=1000$ held-out observations, the evaluation standard error for
+Adult is $4.6$ times the training standard error (Table~\ref{tab:budget}), and the existing interval
+covers the population gap in $30\%$ of repetitions instead of the nominal $95\%$.
 
 \paragraph{Contributions.}
 \begin{enumerate}
@@ -100,14 +100,15 @@ repetitions instead of the nominal $95\%$.
         into two asymptotically independent components---training and evaluation sampling---and that
         a third, design component arises when the constraint set itself is a random draw; we derive
         the limiting distribution (Theorem~\ref{thm:limit}) together with the
-        exact coverage of the existing interval (Corollary~\ref{cor:coverage}).  The interval is
-        asymptotically valid only when $m \gg T\,v^2/\sigma^2_\Delta$, a condition violated by orders
-        of magnitude in published experimental setups.
+        closed-form asymptotic coverage of the existing interval (Corollary~\ref{cor:coverage}).  The
+        interval is asymptotically valid only when $m \gg T\,v^2/\sigma^2_\Delta$, a condition that
+        the published setups violate by two to three orders of magnitude
+        (Table~\ref{tab:budget}).
   \item \emph{A joint bootstrap.}  We propose to combine the multiplier bootstrap over training trajectories with a resampling
         of the evaluation set, and to add an outer bootstrap over the constraint set when the design
         itself is random; the two-source construction is asymptotically valid for a fixed audit
-        design (Theorem~\ref{thm:joint}), costs one extra pass over the evaluation set, and the
-        design layer adds only a small number of direct constrained solves.
+        design (Theorem~\ref{thm:joint}), adds a few vectorised passes over the held-out predictions,
+        and the design layer adds only a small number of direct constrained solves.
   \item \emph{A variance budget and design guidance.}  On Adult, ACSIncome and COMPAS the training
         component accounts for only $0.8$--$8.3\%$ of the variability of a reported gap; the
         dominant components are evaluation sampling ($37$--$78\%$) and constraint-set sampling
@@ -150,8 +151,9 @@ evaluation uncertainty and makes the two components separately reportable.
 \citet{rosenblatt2024} benchmark uncertainty estimates used \emph{inside} fair predictors, a different
 object from uncertainty about the fairness of a trained predictor.  \citet{moreau2024} argue
 conceptually for uncertainty-aware fairness reporting.  Subgroup-level fairness estimates also carry
-estimation variance that grows as the subgroup shrinks; our evaluation component formalises this in
-the DI/DM setting and is combined with the training component rather than studied in isolation.
+estimation variance that grows as the subgroup shrinks (Lemma~\ref{lem:eval}); our evaluation
+component formalises this in the DI/DM setting and is combined with the training component rather
+than studied in isolation.
 
 \paragraph{Reproducibility and its use here.} Neither the UAI proceedings version nor the earlier arXiv version \citep{roy2023uq} ships official code, so we
 re-implemented both training procedures and the multiplier bootstrap from the published equations and
@@ -160,7 +162,8 @@ decreases with the number of iterations, the empirical distribution of the estim
 the benchmark normal law in Wasserstein-2 distance, and the interval covers the held-out estimand.
 Two discrepancies are documented: the published constant step size ($\eta_k=0.01k^{-0.501}$) does not
 reach the convergence regime displayed in the paper within $10^6$ iterations, and the synthetic
-generator is close to degenerate because the protected attribute is nearly a copy of the label.  We
+generator is close to degenerate: the protected attribute is highly correlated with the label
+(correlation $0.83$).  We
 therefore calibrate the step size (and, on real data, the regularisation strength) and report both
 the paper-literal and the calibrated settings.
 
@@ -318,16 +321,16 @@ components; the design layer is quantified separately in the variance budget.
 Under Assumption~\ref{ass:base}, if $\tbar_T\to\theta^*$ and the constraint set is fixed by
 design (third term omitted), then conditionally on the data the law of $D^*$ converges in
 probability to the law of $\dhat_m(\tbar_T)-\Delta(\theta^*)$; consequently the percentile interval
-has asymptotic coverage $1-\alpha$ for $\phi(\theta^*)$.  If the design is random and the third
-term is included, the conclusion holds for the design-conditional target and the interval is
-conservative for a realised design, because the added term has mean zero and is asymptotically
+has asymptotic coverage $1-\alpha$ for $\phi(\theta^*)$.  If the design is random, the third term is included, and $S\to\infty$, the conclusion holds
+for the design-conditional target and the interval is conservative for a realised design, because the added term has mean zero and is asymptotically
 independent of the first two.
 \end{theorem}
 
 \paragraph{Cost.} The evaluation resampling is a vectorised operation on the $m$ held-out
 predictions and costs $O(Rm)$.  The training deviation reuses the $B$ trajectories already produced
 by the online bootstrap.  The constraint-set bootstrap requires $S$ direct constrained solves, each
-costing a few iterations of a quasi-Newton method, and no additional passes over the data stream.
+costing a few iterations of a standard constrained solver, and no additional passes over the data
+stream.
 
 \paragraph{Sample-size allocation.}
 \label{sec:ss}
@@ -337,7 +340,7 @@ $z_{\alpha/2}^2(\sigma^2_\Delta/T+v^2/m)\le w^2$ gives
 \frac{m}{T}=\sqrt{\frac{v^2c_T}{\sigma^2_\Delta c_m}},\qquad
 T=\frac{z_{\alpha/2}^2}{w^2}\Big(\sigma^2_\Delta+\sqrt{\sigma^2_\Delta v^2 c_T/c_m}\Big).
 \]
-Because $\sigma^2_\Delta$ and $v^2$ are of the same order in the regimes we study, the binding
+Because the evaluation variance is not negligible in the regimes we study, the binding
 constraint is the \emph{absolute} size of $m$: increasing $T$ alone cannot push the half-width below
 $z_{\alpha/2}v/\sqrt m$ (Figure~\ref{fig:samplesize}).
 
@@ -351,8 +354,10 @@ attributes and tolerances of the original Table~1.  Three protocols appear below
 only the training stream, which is the protocol of the original simulation study.
 \emph{(A) Protocol A}: the constraint set is fixed but every repetition draws a fresh evaluation set
 from a disjoint reservoir, so that coverage is evaluated over the evaluation sampling law as well.
-\emph{(B) Budget}: a single run with the reported audit budget ($T=3\times10^4$, $m=1000$ for
-Adult/ACSIncome and $m=400$ for COMPAS), used for the sample-size analysis.  Unless stated otherwise
+\emph{(B) Budget}: the audit budget reported in practice ($T=3\times10^4$, $m=1000$ for
+Adult/ACSIncome and $m=400$ for COMPAS), which is the operating point marked in
+Figure~\ref{fig:samplesize}; the planning analysis uses the component estimates of protocol (A) at
+this budget.  Unless stated otherwise
 $B=100$ multiplier trajectories and $\alpha=0.05$; step size and regularisation are calibrated as
 described above ($\eta_0=0.1$ for DI, $0.03$ for the synthetic DM generator, $\kappa=0.1$).  The
 constraint set is held fixed at the sampled audit design in all three protocols, so the joint
@@ -364,11 +369,12 @@ Table~\ref{tab:repro} summarises the reproduced behaviour in the original fixed-
 The qualitative claims of the baseline hold: the mean interval score decreases with $T$, the
 empirical distribution converges to the benchmark normal law, and the interval covers the held-out
 estimand.  For the population estimand, however, coverage ranges from $0.00$ to $0.62$ except in the
-synthetic DM setting, where the interval is wide enough by accident.  Figures~\ref{fig:reprodi}
+synthetic DM setting, where the interval width ($0.208$) happens to exceed the evaluation bias
+($0.057$), so the population target is covered as well.  Figures~\ref{fig:reprodi}
 and~\ref{fig:reprocompas} show the per-iteration trajectories behind these numbers: convergence to
-the asymptotic law is fast on the synthetic experiment, the interval covers the held-out estimand
-throughout, and the population estimand is missed as soon as the evaluation error is comparable to
-the interval width. The $T^{-1/2}$ rate behind Theorem~\ref{thm:limit} is itself visible in a separate grid of training horizons: the distance of $\tbar_T$ to the constrained optimum decays with log--log slope $0.47$ and the signed training bias of the gap with slope $0.46$ (see the empirical convergence rates in the supplementary material).
+the asymptotic law is fast on the synthetic experiment, the interval covers the held-out estimand in
+$0.86$--$1.00$ of repetitions, and the population estimand is missed as soon as the evaluation error
+is comparable to the interval width. The $T^{-1/2}$ rate behind Theorem~\ref{thm:limit} is itself visible in a separate grid of training horizons: the distance of $\tbar_T$ to the constrained optimum decays with log--log slope $0.47$ and the signed training bias of the gap with slope $0.46$ (see the empirical convergence rates in the supplementary material).
 
 \begin{figure}[t]
 \centering
@@ -377,18 +383,18 @@ the interval width. The $T^{-1/2}$ rate behind Theorem~\ref{thm:limit} is itself
 law of $\dhat_m(\tbar_T)$ and its asymptotic limit; (b) mean interval score; (c) coverage of the
 held-out estimand $\dhat_m(\theta^*)$ and of the population estimand $\Delta(\theta^*)$;
 (d) interval width against the sampling spread $4v/\sqrt m$.  The interval covers the held-out
-estimand but not the population estimand, the failure mechanism analysed in
-Section~\ref{sec:decomp}.}
+estimand in most repetitions ($0.89$) but not the population estimand ($0.43$), the failure
+mechanism analysed in Section~\ref{sec:decomp}.}
 \label{fig:reprodi}
 \end{figure}
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{../results/figures/repro_compas.pdf}
-\caption{Reproduction of the COMPAS DM experiment (same four panels).  The penalty term is frozen at
-its training value inside the feasible region, so the averaged iterate stops short of the
-constrained boundary; the held-out estimand is covered because the evaluation term dominates, while
-the population estimand is covered in only $0.62$ of repetitions.}
+\caption{Reproduction of the COMPAS DM experiment (same four panels).  The interval is centred
+on the held-out estimand, which it covers in every repetition; the population estimand differs from
+it by the sampling error of the evaluation display, which is comparable to the interval half-width
+($0.062$ against $0.058$), so the population target is covered in only $0.62$ of repetitions.}
 \label{fig:reprocompas}
 \end{figure}
 
@@ -625,7 +631,8 @@ sequential audits.
 the processing scripts, data splits, training and bootstrap code, and raw per-repetition result
 files are released in an open-source repository (MIT licence) that will be made publicly available
 on GitHub upon acceptance; a permanent repository DOI will be added at that stage.
-The reproduction report is included as Appendix~\ref{app:repro}.
+A complete reproduction report is released together with the code, and
+Appendix~\ref{app:repro} summarises the main deviations.
 
 \paragraph{Code availability.} The complete code base (data preparation, estimators, online and
 joint bootstrap, all experiment drivers, figure and table generation, and verification scripts)
@@ -648,9 +655,10 @@ the code, ran all experiments, and wrote the manuscript.
 \paragraph{Acknowledgements.} The author thanks the maintainers of the public data sets used in
 this study.
 
-\paragraph{Use of AI tools.} An AI-based language tool was used only to polish the English
-expression of the manuscript. It was not used to generate scientific content, code, or results,
-and the author verified every statement and number in the paper.
+\paragraph{Use of AI tools.} An AI-based assistant was used during the preparation of this
+work: it helped implement and run the numerical experiments and draft and revise the text.  All
+results reported here were re-checked against the released code and raw output files, and the
+author reviewed the manuscript in full and takes responsibility for its content.
 
 \appendix
 \section{Proofs}
@@ -674,7 +682,7 @@ For uniformity, the class of half-space indicators is a bounded VC class; on a f
 of $\theta^*$ it is Donsker, so the empirical process is $O_p(m^{-1/2})$ uniformly in $\theta$.  On
 shrinking neighbourhoods, $P(\varphi_\theta\neq\varphi_{\theta^*})\le L\|\theta-\theta^*\|$ for some
 $L<\infty$ by the continuity of the feature densities at the boundary, and the same symmetrisation
-argument (van der Vaart and Wellner, 1996, Ch.~2.5) gives a local oscillation of order
+argument (see \citealp{vdvwellner1996}, Ch.~2.5) gives a local oscillation of order
 $o_p(m^{-1/2})+\|\theta-\theta^*\|$ uniformly over $\|\theta-\theta^*\|\le\delta_m$ for any
 $\delta_m\to0$; this is what the linearisation step below uses.  The DM case only replaces the
 indicator $h=1$ by $h=-1$ and yields a finite sum over the two label strata.
@@ -767,12 +775,13 @@ in the synthetic DI experiment the published step size $\eta_0=0.01$ leaves the 
 from the constrained optimum even at $T=10^5$, so we used $\eta_0=0.1$; the synthetic DM generator
 scales the loss by $R^2=500$ and required $\eta_0=0.03$ to avoid divergence.  On the real datasets we
 regularised by $\kappa=0.1$ so that the constrained optimum is reached within the training horizon;
-this choice is analysed in Table~\ref{tab:sensitivity}.  The complementary sensitivity analysis for
-the DM penalty effective at the averaged iterate is reported in the released report.
+this choice is analysed in Table~\ref{tab:sensitivity}.  The released reproduction report records, for
+every setting, the distance between the averaged iterate and the directly computed constrained
+optimum, so that the size of the optimisation bias can be judged alongside the interval.
 
 \begin{table}[t]
 \centering
-\small
+\footnotesize
 \setlength{\tabcolsep}{4pt}
 \caption{Deviations of the reproduction from the published settings (all other settings as in the
 original Table~1).  ``z-score'' refers to normalising real features before training.}
@@ -786,7 +795,7 @@ step size $\eta_0$ (synthetic DM) & 0.01 & 0.03 & divergence under $R^2=500$ sca
 regularisation $\kappa$ (real) & $10^{-4}$ & 0.1 & reach constrained optimum \\
 features (real) & raw & z-score & conditioning \\
 repetitions (real) & 100/200 & 100--150 & compute budget \\
-$\theta^*$ & trained & direct solve & audit-protocol baseline \\
+$\theta^*$ & trained & direct solve & evaluate estimand at constraint optimum \\
 population $\phi(\theta^*)$ & held-out & full pool & estimand definition \\
 \bottomrule
 \end{tabular}

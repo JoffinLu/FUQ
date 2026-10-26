@@ -1,4 +1,4 @@
-﻿# 复现报告（定稿 v3，最终）
+# 复现报告（定稿 v3，最终）
 
 更新：2026-10-26
 目标论文：Roy & Mohapatra, *Fairness Uncertainty Quantification: A Constrained Stochastic
@@ -37,6 +37,8 @@ Optimization Perspective*, **UAI 2026** (PMLR 337:5845–5865)。
 - ⚠️ **合成 DGP 退化**：按论文公式，z 几乎等于标签 y，约束方向 x̃ 与判别方向仅差约 4°，
   ε=0.002 的约束把分类器压到 accuracy≈0.62 的近无信息方向（DI≈0.07）。
   论文 Figure 1 报的 mean DI 0.025 与此量级一致，但"accuracy 匹配 benchmark"存疑。
+  定量证据（`code/core/dgp.py`，`dgp_di(200000, seed=20261026)`）：corr(z,y)=0.828，
+  只用 z 预测 y 的准确率 0.909——受保护属性几乎就是标签的确定性函数。
 
 图：`results/figures/repro_{synth_di,adult,acsincome,compas}.{png,pdf}`
 表：`results/tables/repro_summary.csv`

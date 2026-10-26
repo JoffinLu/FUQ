@@ -10,7 +10,7 @@
 - `supplement.tex` / `supplement.pdf`：补充材料（6 页，表 S1–S9；由 `make_supplement.py` 从
   `results/tables` 自动生成，不手填数字）。
 - `sn-jnl.cls`、`sn-basic.bst`：官方模板文件（v2.1，2022/2023 官方发行版）。
-- `refs.bib`：18 条参考文献（全部被引用；OpenAlex 逐条核对，`refs_checked.json`）。
+- `refs.bib`：19 条参考文献（全部被引用；OpenAlex 逐条核对，`refs_checked.json`）。
 - `main_review.pdf`：审稿用带行号版（16 页）；`main_anonymous.pdf`：双盲版（16 页，作者块
   “Anonymous Authors”）；`fuq-fairness_full.pdf`：正文+补充材料合并版（22 页）。
 - `submission/`：目标期刊匹配（`target_journals.md`，TEST 首选/COAP/DMKD 备选）、cover letter、
@@ -30,7 +30,7 @@ python manuscript/make_supplement.py                     # 补充材料 tex
 python manuscript/make_review_copy.py                    # 行号版
 python manuscript/make_anonymous.py                      # 双盲版
 python manuscript/make_combined.py                       # 合并版 22 页
-python manuscript/build_submission.py --version v2.0     # 投稿包（710 KB / 24 entries，自包含编译校验）
+python manuscript/build_submission.py --version v2.0     # 投稿包（727 KB / 24 entries，自包含编译校验）
 python code/make_release.py                              # 发布包（GitHub/Zenodo）
 ```
 
@@ -40,25 +40,25 @@ python code/make_release.py                              # 发布包（GitHub/Ze
 python manuscript/check_numbers.py    # 123 个数字串，missing 0
 python manuscript/check_package.py    # 13 项包一致性（页数/表数/数字/refs/zip/发布包）
 # 新增/修改参考文献后：
-python manuscript/check_refs.py       # OpenAlex 核对（18 条）
+python manuscript/check_refs.py       # OpenAlex 核对（19 条）
 ```
 
 ## 数字与格式
 
 - `check_numbers.py`：**123** 个关键数字串与 `results/tables/*` 自动比对，missing 0。
-- 参考文献 18 条，DOI 全部核对（14 exact / 3 near 已修正 / roy2026uq 用 arXiv 2023 版核对）。
+- 参考文献 19 条，DOI 全部核对（16 exact；2 near：zhu2021 标题 100% 匹配但作者字段跨行、vdvwellner1996 为专著且 Crossref 记录省略副标题，两者 DOI/作者/年份均核实；roy2026uq 未被 OpenAlex 收录，按出版 PDF 与 arXiv 2023 版核对并在 `refs_checked.json` 中带 note）。
 - 补充材料表号独立 S1–S9（`make_supplement.py` 中 `\thetable` 重定义；正文与补充材料可共存）。
 
 ## 投稿包（v2.0）
 
-`submission/fuq-fairness_submission_v2.0.zip`：**710 KB，24 entries**，含 TEST 版与通用版正文、
-两版 PDF、补充材料与 PDF、官方模板类文件、4 张矢量图、18 条 refs、全部投稿文档；
+`submission/fuq-fairness_submission_v2.0.zip`：**727 KB，24 entries**，含 TEST 版与通用版正文、
+两版 PDF、补充材料与 PDF、官方模板类文件、4 张矢量图、19 条 refs、全部投稿文档；
 解压后 `cd manuscript && tectonic main.tex` / `main_test.tex` / `supplement.tex` 均编译通过
 （`build_submission.py` 自动做自包含编译校验）。
 
 ## 发布包（GitHub / Zenodo）
 
-`release/fuq-fairness-v1.0-source.zip`：**164 文件 / 1.55 MB**，含 code、notes、results、
+`release/fuq-fairness-v1.0-source.zip`：**165 文件 / 1.57 MB**，含 code、notes、results、
 manuscript、submission、PROJECT_OVERVIEW、README/LICENSE/CITATION；端到端 light 复现已验证。
 
 ## 本地 git 仓库
