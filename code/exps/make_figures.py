@@ -26,6 +26,7 @@ sys.path.insert(0, str(CODE_DIR))
 ROOT = CODE_DIR.parent
 sys.path.insert(0, str(ROOT / "code"))
 from core.fairuq import mis, w2_empirical_vs_normal  # noqa: E402
+import viz_style as vs  # noqa: E402
 
 RAW = ROOT / "results" / "raw"
 TAB = ROOT / "results" / "tables"
@@ -75,7 +76,10 @@ def make_figure(tag, rep_csv, meta_json, kind, label, alpha=0.05):
     summ, phi_hold, phi_pop = panel_data(df, meta, tag, alpha)
     T = int(df["k"].max())
 
-    fig, axes = plt.subplots(2, 2, figsize=(10.5, 7.6))
+    vs.apply_style()
+    fig, axes = plt.subplots(2, 2, figsize=(vs.TEXT_WIDTH_IN, 4.55), sharex=True)
+    fig.subplots_adjust(left=0.095, right=0.985, top=0.955, bottom=0.115,
+                        wspace=0.30, hspace=0.30)
     ks = summ["k"].values
 
     # (a) W2 to theoretical normal
@@ -85,44 +89,51 @@ def make_figure(tag, rep_csv, meta_json, kind, label, alpha=0.05):
         phis = df[df.k == k]["phi_main"].values
         w2.append(w2_empirical_vs_normal(phis, phi_pop, np.sqrt(max(sigma2 / k, 1e-15))))
     ax = axes[0, 0]
-    ax.plot(ks, w2, "o-", ms=3, lw=1.2, color="#1f77b4")
+    ax.plot(ks, w2, "o-", ms=vs.plt.rcParams["lines.markersize"], lw=1.2, color=vs.OURS)
     ax.set_xscale("log"); ax.set_yscale("log")
-    ax.set_xlabel("iterations k"); ax.set_ylabel(r"$W_2(\hat P_k,\ \mathcal{N}(\phi^*,\sigma^2/k))$")
-    ax.set_title("(a) convergence to asymptotic law"); ax.grid(alpha=.3, which="both")
+    vs.log_axis(ax)
+    ax.set_ylabel(r"$W_2$ to asymptotic law")
+    vs.panel_label(ax, "a")
 
     # (b) MIS
     ax = axes[0, 1]
-    ax.plot(ks, summ["mis"], "s-", ms=3, lw=1.2, color="#d62728")
+    ax.plot(ks, summ["mis"], "s-", ms=vs.plt.rcParams["lines.markersize"], lw=1.2, color=vs.HELD)
     ax.set_xscale("log"); ax.set_yscale("log")
-    ax.set_xlabel("iterations k"); ax.set_ylabel("MIS (lower is better)")
-    ax.set_title("(b) mean interval score"); ax.grid(alpha=.3, which="both")
+    vs.log_axis(ax)
+    ax.set_ylabel("mean interval score")
+    vs.panel_label(ax, "b")
 
     # (c) coverage, two targets
     ax = axes[1, 0]
-    ax.plot(ks, summ["cov_hold"], "o-", ms=3, lw=1.2, label="held-out estimand $\\hat\\phi(\\theta^*)$")
-    ax.plot(ks, summ["cov_pop"], "s--", ms=3, lw=1.2, label="population $\\phi(\\theta^*)$")
-    ax.axhline(1 - alpha, color="k", ls=":", lw=1, label="nominal $1-\\alpha$")
-    ax.set_xscale("log"); ax.set_xlabel("iterations k"); ax.set_ylabel("coverage")
-    ax.set_ylim(-0.02, 1.02); ax.legend(fontsize=8, loc="lower left")
-    ax.set_title("(c) empirical coverage"); ax.grid(alpha=.3)
+    ax.plot(ks, summ["cov_hold"], "o-", ms=vs.plt.rcParams["lines.markersize"], lw=1.2,
+            color=vs.HELD, label="held-out estimand $\\hat\\phi(\\theta^*)$")
+    ax.plot(ks, summ["cov_pop"], "s--", ms=vs.plt.rcParams["lines.markersize"], lw=1.2,
+            color=vs.POP, label="population $\\phi(\\theta^*)$")
+    ax.axhline(1 - alpha, color=vs.REF, ls=(0, (1, 1.6)), lw=1.0, label="nominal $1-\\alpha$")
+    ax.set_xscale("log"); ax.set_xlabel("iterations $k$"); ax.set_ylabel("coverage")
+    ax.set_ylim(-0.03, 1.05)
+    ax.legend(loc="lower center", labelspacing=0.25, handletextpad=0.5)
+    vs.panel_label(ax, "c")
 
     # (d) width vs spread of phi across reps
     ax = axes[1, 1]
-    ax.plot(ks, summ["width"], "o-", ms=3, lw=1.2, label="mean CI width")
-    ax.plot(ks, 4 * summ["phi_sd"], "s--", ms=3, lw=1.2, label="4 x sd of $\\phi(\\bar\\theta_k)$")
-    ax.set_xscale("log"); ax.set_yscale("log")
-    ax.set_xlabel("iterations k"); ax.set_ylabel("width")
-    ax.legend(fontsize=8); ax.set_title("(d) interval width vs sampling spread"); ax.grid(alpha=.3, which="both")
+    ax.plot(ks, summ["width"], "o-", ms=vs.plt.rcParams["lines.markersize"], lw=1.2,
+            color=vs.OURS, label="mean interval width")
+    ax.plot(ks, 4 * summ["phi_sd"], "s--", ms=vs.plt.rcParams["lines.markersize"], lw=1.2,
+            color=vs.EVAL, label="4 x sd of $\\phi(\\bar\\theta_k)$")
+    ax.set_xscale("log")
+    ax.set_xlabel("iterations $k$"); ax.set_ylabel("width")
+    hi = max(float(summ["width"].max()), float((4 * summ["phi_sd"]).max())) * 1.08
+    ax.set_ylim(0.0, hi)
+    ax.legend(loc="upper right", labelspacing=0.25, handletextpad=0.5)
+    vs.panel_label(ax, "d")
 
-    fig.suptitle(f"Reproduction — {label}  (T={T}, B={meta.get('cfg', {}).get('B', meta.get('args', {}).get('B'))}, "
-                 f"reps={int(df['rep'].max()) + 1})", fontsize=11)
-    fig.tight_layout(rect=(0, 0, 1, 0.96))
+    for ax in axes[0]:
+        ax.tick_params(labelbottom=False)
     FIG.mkdir(parents=True, exist_ok=True)
-    out = FIG / f"repro_{tag}.png"
-    fig.savefig(out, dpi=300)
-    fig.savefig(FIG / f"repro_{tag}.pdf")
-    plt.close(fig)
-    print(f"[fig] {out}")
+    vs.finish(fig, FIG / f"repro_{tag}.pdf", FIG / f"repro_{tag}.png",
+              align=True, align_json=FIG / f"repro_{tag}.alignment.json")
+    print(f"[fig] {FIG / ('repro_' + tag + '.pdf')}")
 
     last = summ.iloc[-1]
     return {"experiment": label, "T": T, "reps": int(df["rep"].max()) + 1,

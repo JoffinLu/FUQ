@@ -370,22 +370,23 @@ trajectories behind these numbers.  Convergence to the asymptotic law is fast on
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{../results/figures/repro_synth_di.pdf}
-\caption{Reproduction of the synthetic DI experiment: (a) Wasserstein distance between the empirical
+\caption{The existing interval tracks the training noise but not the evaluation target.
+Reproduction of the synthetic DI experiment: (a) Wasserstein distance between the empirical
 law of $\dhat_m(\tbar_T)$ and its asymptotic limit; (b) mean interval score; (c) coverage of the
 held-out estimand $\dhat_m(\theta^*)$ and of the population estimand $\Delta(\theta^*)$;
 (d) interval width against the sampling spread $4v/\sqrt m$.  The interval covers the held-out
-estimand in most repetitions ($0.89$) but not the population estimand ($0.43$), the failure
-mechanism analysed in Section~\ref{sec:decomp}.}
+estimand in most repetitions ($0.89$) but the population estimand in only $0.43$.}
 \label{fig:reprodi}
 \end{figure}
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{../results/figures/repro_compas.pdf}
-\caption{Reproduction of the COMPAS DM experiment (same four panels).  The interval is centred
-on the held-out estimand, which it covers in every repetition; the population estimand differs from
-it by the sampling error of the evaluation sample, which is comparable to the interval half-width
-($0.062$ against $0.058$), so the population target is covered in only $0.62$ of repetitions.}
+\caption{Evaluation sampling error alone can erase coverage.  Same four panels for the COMPAS DM
+experiment.  The interval is centred on the held-out estimand, which it covers in every repetition;
+the population estimand differs from it by the sampling error of the evaluation sample, which is
+comparable to the interval half-width ($0.062$ against $0.058$), so the population target is covered
+in only $0.62$ of repetitions.}
 \label{fig:reprocompas}
 \end{figure}
 
@@ -482,9 +483,10 @@ width below the floor $z_{\alpha/2}v/\sqrt m$; only more evaluation data can.
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{../results/figures/sample_size.pdf}
-\caption{Feasible $(T,m)$ region for target $95\%$ half-widths (curves), with the audit budget
-($\star$) and the reported population gap annotated in each panel.  Points below the curve for a
-target width cannot certify that width.}
+\caption{More evaluation data, not more training, buys a narrower interval.  Feasible $(T,m)$
+region for target $95\%$ half-widths (curves); the star marks the audit budget ($T=3\times10^4$,
+with $m=1000$ for Adult and ACSIncome and $m=400$ for COMPAS).  Points below the curve for a target
+width cannot certify that width.}
 \label{fig:samplesize}
 \end{figure}
 
@@ -566,13 +568,14 @@ COMPAS (DM)    & 400  & 0.62 & 0.97 & 1.00 & 0.096 & 0.154 & 0.173 \\
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{../results/figures/ablation_coverage.pdf}
-\caption{Source ablation under protocol (A) with nominal coverage $0.95$: intervals that resample only
-the training trajectories, only the evaluation set, or both.  (a)~Coverage of the population gap;
-only the joint interval is at or near nominal level in every setting, while each single-source
-interval fails in the regime where the source it ignores dominates (training for the synthetic
-generators at $m=100$, evaluation for the real audits).  (b)~The corresponding interval widths:
-valid inference costs little beyond resampling the evaluation set, since the evaluation-only and
-joint intervals nearly coincide on Adult and ACSIncome.}
+\caption{Resampling both sources is the only variant that stays near nominal coverage in every
+setting.  Source ablation under protocol (A) with nominal coverage $0.95$: intervals that resample
+only the training trajectories, only the evaluation set, or both.  (a)~Coverage of the population
+gap; each single-source interval fails where the source it ignores dominates (training for the
+synthetic generators at $m=100$, evaluation for the real audits), while the joint interval is at or
+near nominal level throughout.  (b)~The corresponding interval widths: valid inference costs little
+beyond resampling the evaluation set, since the evaluation-only and joint intervals nearly coincide
+on Adult and ACSIncome.}
 \label{fig:ablation}
 \end{figure}
 

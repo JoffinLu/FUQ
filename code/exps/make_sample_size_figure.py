@@ -13,6 +13,7 @@ Outputs:
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 
 import matplotlib
@@ -20,8 +21,12 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from matplotlib.lines import Line2D
 
 ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT / "code"))
+import viz_style as vs  # noqa: E402
+
 TAB = ROOT / "results" / "tables"
 FIG = ROOT / "results" / "figures"
 ZT = 1.959963984540054
@@ -53,31 +58,41 @@ def main():
     df.to_csv(TAB / "min_detectable_gap.csv", index=False)
     print(df.to_string(index=False))
 
-    fig, axes = plt.subplots(1, 3, figsize=(13, 4.1))
-    for ax, s in zip(axes, SETS):
+    vs.apply_style()
+    fig, axes = plt.subplots(1, 3, figsize=(vs.TEXT_WIDTH_IN, 2.95))
+    fig.subplots_adjust(left=0.085, right=0.99, top=0.86, bottom=0.245, wspace=0.24)
+    curve_styles = [(0.02, vs.OURS, "-"), (0.05, vs.EVAL, "--"), (0.10, vs.BASE, ":")]
+    for i, (ax, s) in enumerate(zip(axes, SETS)):
         e = est[s]
         sigma, v = e["sigma"], e["v"]
         T = np.logspace(3, 6.5, 300)
-        for w, style in [(0.02, "-"), (0.05, "--"), (0.10, ":")]:
+        for w, color, style in curve_styles:
             inside = sigma ** 2 / T < (w / ZT) ** 2
             m_need = np.where(inside,
                               v ** 2 / np.maximum((w / ZT) ** 2 - sigma ** 2 / T, 1e-12),
                               np.nan)
-            ax.plot(T, m_need, style, lw=1.4, label=f"half-width {w:.2f}")
-        ax.scatter([e["T"]], [e["m"]], marker="*", s=180, color="#d62728", zorder=5,
-                   label="audit budget")
-        ax.axhline(e["m"], color="gray", lw=0.8, ls="-.")
+            ax.plot(T, m_need, style, lw=1.3, color=color)
+        ax.scatter([e["T"]], [e["m"]], marker="*", s=90, color=vs.POP, zorder=5)
         ax.set_xscale("log"); ax.set_yscale("log")
-        ax.set_xlabel("training iterations T"); ax.set_ylabel("evaluation size m")
-        ax.set_title(f"{LABELS[s]}  (reported gap {e['phi']:.3f});\n"
-                     f"best half-width at budget {e['half_width']:.3f}")
-        ax.legend(fontsize=7); ax.grid(alpha=.3, which="both")
-    fig.tight_layout()
+        ax.set_xlabel("training iterations $T$")
+        if i == 0:
+            ax.set_ylabel("evaluation size $m$")
+        ax.grid(True, which="major")
+        ax.set_title(LABELS[s], fontsize=8, fontweight="bold", pad=4)
+        vs.panel_label(ax, "abc"[i], y=1.02)
+
+    handles = [
+        Line2D([], [], color=vs.OURS, ls="-", lw=1.3, label="half-width 0.02"),
+        Line2D([], [], color=vs.EVAL, ls="--", lw=1.3, label="half-width 0.05"),
+        Line2D([], [], color=vs.BASE, ls=":", lw=1.3, label="half-width 0.10"),
+        Line2D([], [], color=vs.POP, marker="*", ls="none", ms=8, label="audit budget"),
+    ]
+    fig.legend(handles=handles, loc="lower center", ncol=4, bbox_to_anchor=(0.5, 0.005),
+               handletextpad=0.4, columnspacing=1.6)
     FIG.mkdir(parents=True, exist_ok=True)
-    for ext in ("png", "pdf"):
-        fig.savefig(FIG / f"sample_size.{ext}", dpi=300)
-    plt.close(fig)
-    print(f"[fig] {FIG / 'sample_size.png'}")
+    vs.finish(fig, FIG / "sample_size.pdf", FIG / "sample_size.png",
+              align=True, align_json=FIG / "sample_size.alignment.json")
+    print(f"[fig] {FIG / 'sample_size.pdf'}")
 
 
 if __name__ == "__main__":
