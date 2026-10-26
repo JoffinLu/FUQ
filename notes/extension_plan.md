@@ -56,7 +56,7 @@ Classifiers: Separating Training, Evaluation and Constraint-Set Noise*
 
 ## 4. 目标期刊
 
-- 首选 *JCGS*（原 JAS 因中科院 4 区改投；口径=中科院三区，2026-10-27）（Q3，应用统计，方法+实证并重）
+- 首选 *TEST*（Springer；中科院 2025 三区；2026-10-27 定刊；此前曾考虑 JAS/JCGS）（Q2，统计方法学，方法+实证并重）
 - 备选 *Knowledge and Information Systems*（Q3，ML 应用）、*Computational Statistics*、
   *Statistics and Computing*（Q2 边缘，若理论加强）
 - 投稿门槛：英文稿件 20–25 页，含定理/证明、模拟、三个真实数据集、可复现代码。

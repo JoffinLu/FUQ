@@ -1,6 +1,6 @@
 """Build a reviewer-facing copy of the manuscript with continuous line numbers.
 
-The target journal (JCGS) is single-anonymised; reviewers benefit from line numbers
+The target journal (TEST) is single-anonymised; reviewers benefit from line numbers
 for their reports.  This script only injects the ``lineno``
 package into a copy of ``main.tex`` and compiles it with the bundled Tectonic, so the
 submitted source (``main.tex``) stays untouched.
