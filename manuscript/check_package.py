@@ -75,7 +75,7 @@ def main() -> int:
         names = zipfile.ZipFile(release).namelist()
         manifest = [n for n in names if n == "MANIFEST.tsv"]
         n_files = len([n for n in names if not n.endswith("/")]) - 1
-        checks.append(("release zip", bool(manifest) and n_files == 165, f"{n_files} files"))
+        checks.append(("release zip", bool(manifest) and n_files == 166, f"{n_files} files"))
 
     review = HERE / "main_review.pdf"
     if not review.exists():

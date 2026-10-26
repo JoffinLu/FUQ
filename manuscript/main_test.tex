@@ -37,22 +37,22 @@
 
 \affil*[1]{\orgdiv{School of Mathematics and Computational Science}, \orgname{Guilin University of Electronic Technology}, \orgaddress{\city{Guilin}, \postcode{541004}, \country{China}}}
 
-\abstract{Fairness-aware classifiers trained by stochastic gradient methods are random objects, so any reported
-demographic-parity or equalised-odds gap is random as well.  Recent work constructs confidence
-intervals for such gaps with an online multiplier bootstrap, but those intervals quantify only the
-randomness of the optimisation trajectory.  With a finite held-out set, a second and
-often larger component---the sampling noise of the evaluation set---is ignored, and a third source of variability enters
-through the constraint set that defines the target of the estimate.  We decompose the error of
-the reported gap into its training and evaluation parts, derive the limiting distribution and the
-closed-form asymptotic coverage of the existing interval as a function of the ratio between training
-iterations and evaluation size, and show that it is valid only when the evaluation set is large
-relative to the training run.  We then propose a joint bootstrap that resamples the training
-trajectories and the evaluation set---and, when the audit design itself is random, adds a
-constraint-set layer.  We prove its asymptotic validity for a fixed audit design and give a
-sample-size allocation rule.  In a reproduction on synthetic data, Adult, ACSIncome and COMPAS, the
-existing interval covers the population fairness gap in $0.00$--$0.62$ of repetitions on the three
-real audits, whereas the joint interval attains nominal coverage (on Adult, $0.98$ versus $0.30$).  A variance budget shows that training noise accounts for only
-$0.8\%$--$8.3\%$ of the variability of a reported gap, with evaluation and constraint-set sampling dominating.
+\abstract{Fairness-aware classifiers trained by stochastic gradient methods are themselves random, and so is any
+demographic-parity or equalised-odds gap computed from them.  Recent work builds confidence intervals
+for such gaps with an online multiplier bootstrap, but those intervals track only the random variation
+of the optimisation trajectory.  With a finite held-out set, a second component, the sampling noise of
+the evaluation sample, is ignored, and it is often the larger of the two; a third source enters when
+the constraint set that defines the target is itself drawn at random.  We decompose the error of a
+reported gap into a training part and an evaluation part, derive the limiting distribution of the sum,
+and give the closed-form asymptotic coverage of the existing interval as a function of the ratio of
+training iterations to evaluation size; the interval is valid only when the evaluation set is large
+relative to the training run.  We then propose a joint bootstrap that resamples both the training
+trajectories and the evaluation set, adding a constraint-set layer when the audit design is random,
+prove its asymptotic validity for a fixed design, and give a sample-size allocation rule.  In a
+reproduction on synthetic data, Adult, ACSIncome and COMPAS, the existing interval covers the population
+fairness gap in $0.00$--$0.62$ of repetitions on the three real audits, against near-nominal coverage
+for the joint interval on Adult ($0.98$ versus $0.30$).  A variance budget attributes only
+$0.8\%$--$8.3\%$ of the variability of a reported gap to training noise.
 
 \par\medskip\noindent\textbf{Keywords:} fairness auditing; uncertainty quantification; constrained stochastic optimization; online bootstrap; distribution-free inference.}
 
@@ -67,17 +67,17 @@ Machine-learning models used in high-stakes decisions are increasingly required 
 diagnostics such as the demographic-parity (DP) gap or the equalised-odds (EO) gap between protected
 groups \citep{hardt2016,corbett2017}.  In practice these diagnostics are computed from a finite
 held-out sample for a classifier whose parameters were themselves produced by a stochastic
-optimisation algorithm.  Both steps introduce randomness, and a point estimate of a fairness gap
-without a measure of uncertainty is therefore of limited use for auditing.
+optimisation algorithm.  Both steps inject randomness, and a point estimate without an accompanying uncertainty statement is
+of limited use for an audit.
 
 \citet{roy2026uq} take up this problem for fairness-aware linear classifiers trained online by
 stochastic dual averaging (for DP) or penalised SGD (for EO-type criteria).  Viewing training as
 constrained stochastic optimisation, they establish asymptotic normality of the averaged iterate, and
 because the asymptotic covariance depends on the unknown optimum they propose an online multiplier
-bootstrap operating on a single data stream.  The resulting interval is appealing: it is
-computationally cheap, parallelisable, and requires no repeated training.
+bootstrap operating on a single data stream.  Computing the interval is cheap: the trajectories can be run in parallel and no retraining is
+required.
 
-This paper starts from a simple observation about what such an interval actually covers.  Write
+Our starting point is the estimand such an interval actually covers.  Write
 $\theta^*$ for the population optimum of the fairness-aware objective, $\tbar_T$ for the averaged
 online iterate after $T$ steps, and $\dhat_m$ for the empirical fairness gap computed on an
 independent held-out set $\Dt$ of size $m$.  The reported number is $\dhat_m(\tbar_T)$, while the
@@ -89,32 +89,30 @@ splits into
 +\underbrace{\dhat_m(\tbar_T)-\Delta(\tbar_T)}_{\text{evaluation}} ,
 \]
 and the two terms are independent because $\Dt$ is independent of the training stream.
-The online bootstrap approximates the law of the first term only.  If the evaluation error is small
-relative to the training noise the distinction is immaterial; in the operating regime of interest it
-is not.  In our reproduction, with $m=1000$ held-out observations, the evaluation standard error for
-Adult is $4.6$ times the training standard error (Table~\ref{tab:budget}), and the existing interval
-covers the population gap in $30\%$ of repetitions instead of the nominal $95\%$.
+The online bootstrap approximates the law of the first term only.  If the evaluation error is small relative to the training noise, the distinction does not matter.  In
+the operating regimes we study it does.  In our reproduction with $m=1000$ held-out observations the evaluation standard error for Adult is
+$4.6$ times the training standard error (Table~\ref{tab:budget}); the existing interval covers the
+population gap in $30\%$ of repetitions, not the nominal $95\%$.
 
 \bmhead{Contributions.}
 
 \begin{enumerate}
-  \item \emph{Decomposition and a diagnostic.}  We show that the error of the reported gap relative to a fixed audit design decomposes
-        into two asymptotically independent components---training and evaluation sampling---and that
-        a third, design component arises when the constraint set itself is a random draw; we derive
-        the limiting distribution (Theorem~\ref{thm:limit}) together with the
+  \item \emph{Decomposition and a diagnostic.}  We show that the error of the reported gap relative to
+        a fixed audit design decomposes into two asymptotically independent components, training and
+        evaluation sampling, and into a third, design component that arises when the constraint set is
+        itself a random draw.  We derive the limiting distribution (Theorem~\ref{thm:limit}) and the
         closed-form asymptotic coverage of the existing interval (Corollary~\ref{cor:coverage}).  The
-        interval is asymptotically valid only when $m \gg T\,v^2/\sigma^2_\Delta$, a condition that
-        the published setups violate by two to three orders of magnitude
-        (Table~\ref{tab:budget}).
-  \item \emph{A joint bootstrap.}  We propose to combine the multiplier bootstrap over training trajectories with a resampling
-        of the evaluation set, and to add an outer bootstrap over the constraint set when the design
-        itself is random; the two-source construction is asymptotically valid for a fixed audit
-        design (Theorem~\ref{thm:joint}), adds a few vectorised passes over the held-out predictions,
-        and the design layer adds only a small number of direct constrained solves.
+        interval is asymptotically valid only when $m \gg T\,v^2/\sigma^2_\Delta$, a condition that the
+        published setups violate by two to three orders of magnitude (Table~\ref{tab:budget}).
+  \item \emph{A joint bootstrap.}  We combine the multiplier bootstrap over training trajectories with
+        resampling of the evaluation set, and add an outer bootstrap over the constraint set when the
+        design is random.  The two-source construction is asymptotically valid for a fixed audit design
+        (Theorem~\ref{thm:joint}).  It costs a few vectorised passes over the held-out predictions, and the
+        design layer adds a small number of direct constrained solves.
   \item \emph{A variance budget and design guidance.}  On Adult, ACSIncome and COMPAS the training
         component accounts for only $0.8$--$8.3\%$ of the variability of a reported gap; the
         dominant components are evaluation sampling ($37$--$78\%$) and constraint-set sampling
-        ($18$--$55\%$).  We translate this into a rule for allocating audit effort between training
+        ($18$--$55\%$).  This yields a rule for allocating audit effort between training
         iterations, labelled evaluation data and the choice of constraint set.
   \item \emph{A reproducible study.}  We re-implement the baseline from the published equations
         (no official code was released), reproduce its qualitative claims on five data settings, and
@@ -123,10 +121,10 @@ covers the population gap in $30\%$ of repetitions instead of the nominal $95\%$
         degenerate.  All code, data splits and raw results are released.
 \end{enumerate}
 
-The remainder of the paper is organised as follows.  Section~\ref{sec:related} reviews related work,
-Section~\ref{sec:setup} fixes notation, Section~\ref{sec:decomp} states the decomposition,
-Section~\ref{sec:method} describes the joint bootstrap, Section~\ref{sec:exp} reports experiments and
-Section~\ref{sec:discussion} discusses limitations and practical implications.
+Section~\ref{sec:related} reviews related work.  Sections~\ref{sec:setup} and~\ref{sec:decomp} fix
+notation and state the decomposition, Section~\ref{sec:method} describes the joint bootstrap,
+Section~\ref{sec:exp} reports the experiments, and Section~\ref{sec:discussion} discusses limitations
+and practical consequences.
 
 \section{Related work}
 \label{sec:related}
@@ -136,11 +134,10 @@ Section~\ref{sec:discussion} discusses limitations and practical implications.
 Asymptotic normality of averaged stochastic approximation goes back to
 \citet{polyak1992}; constrained variants are analysed by \citet{duchi2016}.  Online bootstrap and
 batch-means procedures for unconstrained SGD are developed by \citet{fang2018,chen2016,zhu2021} and
-extended to policy evaluation \citep{ramprasad2023}.  These methods target the model parameter; for
-fairness we need the law of a non-smooth functional of it, which is why \citet{roy2026uq} combine a
-functional delta-method argument with the multiplier bootstrap.  Our work does not modify the training-side theory; it adds the evaluation component on top of it
-and treats the constraint-set (design) component separately, as variability of the target rather
-than of the estimate.
+extended to policy evaluation \citep{ramprasad2023}.  These methods target the model parameter, whereas a fairness gap is a non-smooth functional of it, so
+\citet{roy2026uq} combine a functional delta-method argument with the multiplier bootstrap.  We leave
+the training-side theory in place and add the evaluation component; the constraint-set (design)
+component is treated separately, as variability of the target rather than of the estimate.
 
 \bmhead{Statistical inference for fairness.}
 
@@ -167,9 +164,9 @@ re-implemented both training procedures and the multiplier bootstrap from the pu
 report a full reproduction study.  The qualitative claims reproduce: the mean interval score
 decreases with the number of iterations, the empirical distribution of the estimated gap converges to
 the benchmark normal law in Wasserstein-2 distance, and the interval covers the held-out estimand.
-Two discrepancies are documented: the published constant step size ($\eta_k=0.01k^{-0.501}$) does not
-reach the convergence regime displayed in the paper within $10^6$ iterations, and the synthetic
-generator is close to degenerate: the protected attribute is highly correlated with the label
+Two discrepancies are documented.  The published constant step size ($\eta_k=0.01k^{-0.501}$) does
+not reach the convergence regime shown in the paper within $10^6$ iterations.  The synthetic generator
+is also close to degenerate, since the protected attribute is highly correlated with the label
 (correlation $0.83$).  We
 therefore calibrate the step size (and, on real data, the regularisation strength) and report both
 the paper-literal and the calibrated settings.
@@ -218,8 +215,7 @@ algorithm and its training-side guarantees.
 Notation is collected in Table~\ref{tab:notation}.  We distinguish the \emph{held-out estimand} $\dhat_m(\theta^*)$, i.e.\ the
 fairness of the optimal classifier evaluated on the very sample used by the auditor, from the
 \emph{population estimand} $\Delta(\theta^*)$, i.e.\ the fairness of the deployed classifier on the
-data distribution.  The distinction is vacuous only when $m\to\infty$; a confidence interval must
-name its target.
+data distribution.  The distinction disappears only as $m\to\infty$, so a confidence interval must name its target.
 
 \begin{table}[t]
 \centering
@@ -328,19 +324,17 @@ The proposed interval is
 $\big[\dhat_m(\tbar_T)+\hat q_{\alpha/2},\ \dhat_m(\tbar_T)+\hat q_{1-\alpha/2}\big]$
 for the quantiles of $D^*$, mapped to $|\Delta|$ by folding: if the resulting interval for the signed
 gap excludes zero we report the absolute values of its endpoints, otherwise we report
-$[0,\max(|l|,|u|)]$.  When the constraint set is regarded as fixed by design, the third term is
-omitted and the interval targets $\Delta(\theta^*)$ for the realised $\Dp$.  All experiments below
-use this fixed-design version, so the coverage validated there refers to the two inference-error
-components; the design layer is quantified separately in the variance budget.
+$[0,\max(|l|,|u|)]$.  When the constraint set is fixed by design the third term is omitted, and the interval targets
+$\Delta(\theta^*)$ for the realised $\Dp$.  All experiments below use this fixed-design version, so
+the coverage reported there concerns the two inference-error components; the design layer is
+quantified separately in the variance budget.
 
 \begin{theorem}[asymptotic validity]
 \label{thm:joint}
 Under Assumption~\ref{ass:base}, if $\tbar_T\to\theta^*$ and the constraint set is fixed by
 design (third term omitted), then conditionally on the data the law of $D^*$ converges in
 probability to the law of $\dhat_m(\tbar_T)-\Delta(\theta^*)$; consequently the percentile interval
-has asymptotic coverage $1-\alpha$ for $\phi(\theta^*)$.  If the design is random, the third term is included, and $S\to\infty$, the conclusion holds
-for the design-conditional target and the interval is conservative for a realised design, because the added term has mean zero and is asymptotically
-independent of the first two.
+has asymptotic coverage $1-\alpha$ for $\phi(\theta^*)$.  If the design is random and the third term is included, the conclusion holds for the design-conditional target as $S\to\infty$, and the interval is conservative for a realised design because the added term has mean zero and is asymptotically independent of the first two.
 \end{theorem}
 
 \bmhead{Cost.}
@@ -388,16 +382,13 @@ in the variance budget.
 
 \bmhead{Reproduction of the baseline.}
 
-Table~\ref{tab:repro} summarises the reproduced behaviour in the original fixed-held-out protocol.
-The qualitative claims of the baseline hold: the mean interval score decreases with $T$, the
-empirical distribution converges to the benchmark normal law, and the interval covers the held-out
-estimand.  For the population estimand, however, coverage ranges from $0.00$ to $0.62$ except in the
-synthetic DM setting, where the interval width ($0.208$) happens to exceed the evaluation bias
-($0.057$), so the population target is covered as well.  Figures~\ref{fig:reprodi}
-and~\ref{fig:reprocompas} show the per-iteration trajectories behind these numbers: convergence to
-the asymptotic law is fast on the synthetic experiment, the interval covers the held-out estimand in
-$0.86$--$1.00$ of repetitions, and the population estimand is missed as soon as the evaluation error
-is comparable to the interval width. The $T^{-1/2}$ rate behind Theorem~\ref{thm:limit} is itself visible in a separate grid of training horizons: the distance of $\tbar_T$ to the constrained optimum decays with log--log slope $0.47$ and the signed training bias of the gap with slope $0.46$ (see the empirical convergence rates in the supplementary material).
+Table~\ref{tab:repro} summarises the reproduced behaviour in the original fixed-held-out protocol.  The
+qualitative claims of the baseline hold: the mean interval score decreases with $T$, the empirical
+distribution converges to the benchmark normal law, and the interval covers the held-out estimand.  For
+the population estimand, coverage ranges from $0.00$ to $0.62$ except in the synthetic DM setting,
+where the interval width ($0.208$) exceeds the evaluation bias ($0.057$) and the population target is
+covered as well.  Figures~\ref{fig:reprodi} and~\ref{fig:reprocompas} show the per-iteration
+trajectories behind these numbers.  Convergence to the asymptotic law is fast on the synthetic experiment.  The interval covers the held-out estimand in $0.86$--$1.00$ of repetitions, and the population estimand is missed as soon as the evaluation error is comparable to the interval width.  A separate grid of training horizons makes the $T^{-1/2}$ rate behind Theorem~\ref{thm:limit} visible: the distance of $\tbar_T$ to the constrained optimum decays with log--log slope $0.47$, and the signed training bias of the gap decays with slope $0.46$ (empirical convergence rates in the supplementary material).
 
 \begin{figure}[t]
 \centering
@@ -416,7 +407,7 @@ mechanism analysed in Section~\ref{sec:decomp}.}
 \includegraphics[width=\textwidth]{../results/figures/repro_compas.pdf}
 \caption{Reproduction of the COMPAS DM experiment (same four panels).  The interval is centred
 on the held-out estimand, which it covers in every repetition; the population estimand differs from
-it by the sampling error of the evaluation display, which is comparable to the interval half-width
+it by the sampling error of the evaluation sample, which is comparable to the interval half-width
 ($0.062$ against $0.058$), so the population target is covered in only $0.62$ of repetitions.}
 \label{fig:reprocompas}
 \end{figure}
@@ -445,9 +436,9 @@ COMPAS (DM)    & 5e4 & 150 & 0.0133 & 1.00 & 0.62 & 0.115 \\
 \bmhead{Protocol-A coverage.}
 
 Table~\ref{tab:protocolA} varies the held-out size $m$ with a fresh evaluation set per repetition.
-The baseline coverage increases with $m$ exactly as predicted by Corollary~\ref{cor:coverage}, while
-the joint bootstrap stays at or above nominal coverage; its width converges to that of the baseline
-as $m$ grows, quantifying the price of valid inference.  The same pattern holds on the three real
+Baseline coverage increases with $m$ as Corollary~\ref{cor:coverage} predicts, while the joint
+bootstrap stays at or above nominal coverage.  Its width approaches that of the baseline as $m$ grows,
+so the width cost of valid inference is explicit.  The same pattern holds on the three real
 datasets, where the baseline interval attains $0.25$--$0.62$ coverage and the joint interval
 $0.98$--$1.00$.
 
@@ -478,11 +469,10 @@ COMPAS (DM)    & 400  & 0.62 & 1.00 & 0.096 & 0.173 & 2.08 \\
 Table~\ref{tab:budget} separates the three sources of variability in a reported gap.  The training
 and evaluation components are errors of the reported number around a fixed target; the
 constraint-set component measures how far the target itself moves when the audit design is redrawn,
-and is therefore a design sensitivity rather than an inferential uncertainty.  Training noise, the
-only component addressed by the baseline, contributes between $0.8\%$ and $8.3\%$ of the total.  The
-design component is particularly severe for COMPAS, where resampling $\Dp$ changes the sign of the
-reported gap, so a single constrained run is not a reliable audit without a design-sensitivity
-statement.
+and is therefore a design sensitivity rather than an inferential uncertainty.  Training noise, the only component the baseline addresses, contributes between $0.8\%$ and $8.3\%$ of
+the total.  The design component is largest for COMPAS, where resampling $\Dp$ can change the sign of
+the reported gap; a single constrained run is therefore not a reliable audit without a
+design-sensitivity statement.
 
 \begin{table}[t]
 \centering
@@ -506,15 +496,14 @@ COMPAS (DM)    & 0.0293 & 0.0621 & 0.0753 & 8.3\% & 37.1\% & 54.6\% \\
 \bmhead{Sample-size planning and the minimum certifiable gap.}
 
 Table~\ref{tab:budget} and the planning formula of Section~\ref{sec:ss} together answer a practical
-question: at a given audit budget, which fairness gaps can be certified at all?  Using the component
+question: at a given audit budget, which fairness gaps can be certified at all?  With the component
 estimates from the protocol-A runs, the best achievable $95\%$ half-width at $T=3\times10^4$ and
 $m=1000$ is $0.053$ for Adult, $0.060$ for ACSIncome and $0.133$ for COMPAS ($m=400$).  The reported
-population gaps are $0.059$, $0.041$ and $0.006$ respectively, so at these budgets the audit can
-exclude a zero gap for Adult only; for ACSIncome and COMPAS the minimum certifiable gap exceeds the
-gap itself, by a factor of $1.5$ and $21$, respectively.  Figure~\ref{fig:samplesize} shows the
-feasible $(T,m)$ region for several target half-widths.  The practical implication is that increasing
-$T$ alone is not enough: because $\sigma_\Delta^2$ and $v^2$ are of the same order, the half-width
-floor $z_{\alpha/2}v/\sqrt m$ sets a hard limit that only more evaluation data can lower.
+population gaps are $0.059$, $0.041$ and $0.006$, so at these budgets a zero gap can be excluded for
+Adult only; for ACSIncome and COMPAS the minimum certifiable gap exceeds the gap itself, by factors of
+$1.5$ and $21$.  Figure~\ref{fig:samplesize} shows the feasible $(T,m)$ region for several target
+half-widths.  Since the evaluation variance is not negligible, more training alone does not reduce the
+width below the floor $z_{\alpha/2}v/\sqrt m$; only more evaluation data can.
 
 \begin{figure}[t]
 \centering
@@ -558,24 +547,26 @@ $1.0$     & 0.32  & 0.02  & 0.60 & 0.0314 & 0.0651 \\
 
 \bmhead{Which source must be resampled?}
 
-Table~\ref{tab:ablation} isolates the two resampling components under protocol (A).  The
-baseline resamples only training trajectories, an ``evaluation-only'' interval resamples the
-held-out predictions of the trained model, and the joint interval resamples both.  On the
-synthetic generators, where the two components are of comparable size, neither single-source
-interval is valid at $m=100$ (demographic parity: $0.56$ and $0.98$; disparate mistreatment:
-$0.57$ and $0.81$), and only the joint interval comes close to nominal ($1.00$ and $0.88$).  At
-$m=1000$ the evaluation noise shrinks and the training-only interval remains short ($0.85$ for
-demographic parity, $0.78$ for disparate mistreatment), whereas the joint interval reaches
-nominal level on both generators ($0.98$ and $0.99$).  On the real audits the evaluation component
-dominates, so the training-only interval collapses to $0.30$ (Adult) and $0.25$ (ACSIncome) ---
-and to $0.62$ on COMPAS, where the training component carries a larger share --- while the
-evaluation-only interval is close to nominal ($0.97$, $1.00$ and $0.97$).  The component that is
-resampled determines coverage and the component that is ignored determines failure.  The
-evaluation-only interval is already almost as wide as the joint one ($0.081$ versus $0.082$ on
-ACSIncome, $0.098$ versus $0.102$ on Adult, $0.154$ versus $0.173$ on COMPAS), so valid inference
-costs little beyond resampling the evaluation set; but only resampling both is at or near nominal
-coverage in every setting.  Figure~\ref{fig:ablation} shows the same comparison graphically: each
-single-source interval fails precisely where the component it ignores is large.  A finite-sample grid over training horizons and evaluation sizes (Table~S9 of the supplement) shows the same ordering away from the asymptotic regime: the baseline interval can fall well below nominal when the evaluation set is small relative to the training run, while the joint interval never falls below nominal in the same grid.
+Table~\ref{tab:ablation} isolates the two resampling components under protocol (A).  The baseline
+resamples only training trajectories, an ``evaluation-only'' interval resamples the held-out
+predictions of the trained model, and the joint interval resamples both.  On the synthetic generators,
+where the two components are of comparable size, neither single-source interval is valid at $m=100$
+(demographic parity: $0.56$ and $0.98$; disparate mistreatment: $0.57$ and $0.81$), and only the joint
+interval stays near nominal ($1.00$ and $0.88$).  At $m=1000$ the evaluation noise shrinks, the
+training-only interval remains short ($0.85$ for demographic parity, $0.78$ for disparate mistreatment),
+and the joint interval reaches nominal level on both generators ($0.98$ and $0.99$).  On the real
+audits the evaluation component dominates, so the training-only interval collapses to $0.30$ (Adult)
+and $0.25$ (ACSIncome); on COMPAS, where the training component carries a larger share, it reaches
+$0.62$.  The evaluation-only interval is close to nominal throughout ($0.97$, $1.00$ and $0.97$).  Which
+component is resampled determines coverage; which component is ignored determines failure.  The
+evaluation-only interval is almost as wide as the joint one ($0.081$ versus $0.082$ on ACSIncome,
+$0.098$ versus $0.102$ on Adult, $0.154$ versus $0.173$ on COMPAS), so valid inference costs little
+beyond resampling the evaluation set.  Only resampling both, however, is at or near nominal coverage in
+every setting.  Figure~\ref{fig:ablation} shows the same comparison graphically: each single-source
+interval fails exactly where the component it ignores is large.  A finite-sample grid over training
+horizons and evaluation sizes (Table~S9 of the supplement) gives the same ordering away from the
+asymptotic regime.  There the baseline interval can fall well below nominal when the evaluation set is
+small relative to the training run, while the joint interval never falls below nominal.
 
 \begin{table}[t]
 \centering
@@ -617,12 +608,12 @@ joint intervals nearly coincide on Adult and ACSIncome.}
 \label{sec:discussion}
 
 Our results do not contradict the training-side theory of \citet{roy2026uq}; they delimit its scope.
-Three practical recommendations follow.  First, auditors should report which estimand an interval
-targets, and should not label an interval for the held-out gap as an interval for the deployed
-classifier's fairness.  Second, evaluation data should be budgeted before training compute: in our
-experiments $m=1000$ labelled observations cannot certify a gap to better than a few percentage
-points regardless of $T$.  Third, because the constraint set is itself a random audit design choice,
-a single constrained run should be accompanied by a constraint-set sensitivity analysis.
+Auditors should say which estimand an interval targets, and should not present an interval for the
+held-out gap as an interval for the fairness of the deployed classifier.  Evaluation data should be
+budgeted before training compute: in our experiments $m=1000$ labelled observations cannot certify a
+gap to better than a few percentage points, whatever $T$ is.  Because the constraint set is itself a
+random choice of audit design, a single constrained run should come with a constraint-set sensitivity
+analysis.
 
 \bmhead{Limitations.}
 
@@ -633,26 +624,22 @@ single-stream bootstrap, and we only report its diagnostic (distance to a direct
 and its effect (Table~\ref{tab:sensitivity}).  The constraint-set component assumes that resampling
 $\Dp$ is meaningful, that is, that the audit tolerances and group definitions are exchangeable across
 audits; when $\Dp$ is a fixed policy object rather than a random audit sample, this component should
-be reported as a sensitivity analysis rather than folded into the interval.  Finally, the synthetic
-generator supplied by the baseline is close to degenerate (the protected attribute is almost a copy
-of the label), so synthetic results should be read as a mechanism check rather than as evidence about
-realistic fairness--accuracy trade-offs.  Extensions to multi-class criteria, intersectional group
+be reported as a sensitivity analysis rather than folded into the interval.  Finally, the synthetic generator supplied by the baseline is close to degenerate: the protected
+attribute is highly correlated with the label (correlation $0.83$).  Synthetic results are therefore a
+mechanism check, not evidence about realistic fairness--accuracy trade-offs.  Extensions to multi-class criteria, intersectional group
 collections and neural classifiers are left for future work.
 
 \section{Conclusion}
 \label{sec:conclusion}
 Reported fairness gaps of online-trained classifiers carry three kinds of noise.  We showed that the
-existing online bootstrap interval quantifies only the training component, derived the exact rate at
-which its coverage degrades as a function of the ratio between training and evaluation effort, and
-proposed a joint bootstrap that restores nominal coverage by resampling the training trajectories
-and the evaluation set, with a constraint-set layer for audits whose design is itself random.  A
-variance budget on three real audits shows that training noise accounts for less than a tenth of
-the variability of a reported gap in typical operating regimes:
-evaluation sampling dominates when the held-out set is small, and constraint-set sampling can be the
-largest component of all.  The practical message is that fairness audits should budget evaluation
-data and audit-design sensitivity before training compute, and should report which estimand their
-interval targets.  Future work includes neural classifiers, intersectional group collections and
-sequential audits.
+existing online bootstrap interval accounts only for training noise, derived how its coverage degrades
+with the ratio of training to evaluation effort, and proposed a joint bootstrap that resamples the
+training trajectories and the evaluation set, with a constraint-set layer for audits whose design is
+random.  On three real audits, a variance budget attributes less than a tenth of the variability of a
+reported gap to training noise; evaluation sampling dominates when the held-out set is small, and
+constraint-set sampling can be the largest component of all.  Fairness audits should therefore budget
+evaluation data and audit-design sensitivity before training compute, and should state which estimand
+their interval targets.  Extending the analysis to neural classifiers and to sequential audit designs is left for future work.
 
 \section*{Declarations}
 
