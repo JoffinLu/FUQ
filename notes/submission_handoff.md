@@ -1,57 +1,54 @@
-# 投稿交接单（JCGS / 中科院 2025 三区版，2026-10-27）
+# 投稿交接单（v2.0，2026-10-27，目标期刊 TEST）
 
-> 用途：把“已完成的内部工作”与“必须由作者本人完成的外部事项”分开，按此单逐项勾选即可投稿。
-> 稿件版本 v1.9；主稿 15 页（7 表 4 图）+ 补充材料 6 页（表 S1–S9）。
+## 一、已就绪（可直接提交）
 
-## 一、目标期刊与作者
-
-- **目标期刊**：*Journal of Computational and Graphical Statistics*（JCGS，T&F/ASA 联合刊）
-  - 中科院 2025 版：**数学 3 区**、小类统计学与概率论 3 区（用户口径：中科院三区即可）
-  - SCIE；JCR Q2；IF 1.6（2025 JCR）——**分区按中科院口径**（JCR 口径为 Q2，见 `target_journals.md`）
-  - 投稿：ASA ScholarOne（`mc.manuscriptcentral.com/amstat`）；single-anonymised
-- **作者/通讯作者**：Cenfa Lu，桂林电子科技大学 数学与计算科学学院，joffin@163.com，ORCID 0009-0003-3481-3624（`main.tex` 作者块已填）
-
-## 二、已就绪（无需再动）
-
-| 交付物 | 路径 | 说明 |
+| 项目 | 位置 | 状态 |
 |---|---|---|
-| 主稿 PDF | `manuscript/main.pdf` | 15 页，7 表 4 图，附录 A（证明）+ 附录 B（复现细节） |
-| 补充材料 PDF | `manuscript/supplement.pdf` | 6 页，表号 S1–S9（S6 为 7 组来源消融、S9 有限样本标定） |
-| 合并阅读版 | `manuscript/fuq-fairness_full.pdf` | 21 页，主稿+补充材料 |
-| 审稿用带行号版 | `manuscript/main_review.pdf` | 15 页，连续行号 |
-| 双盲版（可选） | `manuscript/main_anonymous.pdf` | 作者块=Anonymous Authors |
-| 投稿包 | `manuscript/submission/fuq-fairness_submission_v1.9.zip` | 20 entries，自包含（解压 `tectonic main.tex` 可编译） |
-| 源码发布包 | `release/fuq-fairness-v1.0-source.zip` | 157 files，一键复现（light 约 23 s exit 0） |
-| 复现报告 / 独立核验 / 审稿预案 | `notes/repro_report.md` · `notes/verification.md` · `notes/referee_prep.md` | 5 组实验+偏离清单；7 项检查；C1–C8+minor+审稿人候选 |
-| 数字一致性 | `manuscript/check_numbers.py` | 123 个数字串，missing 0 |
-| 包一致性 | `manuscript/check_package.py` | 12/12 PASS |
-| 快速测试 / 环境 | `code/tests/test_invariants.py` · `requirements.txt` | 16 项不变量检查；依赖已 pin |
+| TEST 版正文（Springer 官方模板） | `manuscript/main_test.pdf`（17 页） | ✅ 编译 exit 0，0 undefined |
+| 通用版正文（内容对照） | `manuscript/main.pdf`（16 页） | ✅ |
+| 补充材料 | `manuscript/supplement.pdf`（6 页，表 S1–S9） | ✅ 自动生成 |
+| 投稿包 | `manuscript/submission/fuq-fairness_submission_v2.0.zip`（24 entries，705 KB） | ✅ 自包含编译校验 |
+| 发布包 | `release/fuq-fairness-v1.0-source.zip`（163 文件，1.54 MB） | ✅ 端到端 light 复现验证 |
+| 本地 git 仓库 | `.`（226 文件已提交，`data/`/`release/`/`paper/` 已排除） | ✅ 就绪待推送 |
+| 投稿文档 | cover letter / title page / checklist / TEST 格式笔记 | ✅ |
+| 数字核验 | 123 个数字串 missing 0 | ✅ |
+| 包自检 | 13/13 PASS | ✅ |
 
-## 三、必须由作者本人完成（按顺序）
-
-1. **仓库 URL / Zenodo DOI**：`main.tex` Statements 与附录 B、cover letter 中 `[repository URL / DOI]` 占位符；建议把 `release/fuq-fairness-v1.0-source.zip` 上传 Zenodo 得 DOI。
-2. **AI 使用声明**：按期刊模板填写（cover letter 中已有占位段）。
-3. **建议审稿人邮箱**：从 `notes/referee_prep.md` §建议审稿人 候选池选 3–5 人补邮箱（避免 Roy/Mohapatra）。
-4. **导师审阅**：逐条过 claims–evidence C1–C6（`manuscript/README.md`）与 `notes/referee_prep.md`。
-5. **官方分区复核**：学校订阅的中科院 2025 分区表确认 JCGS=数学 3 区。
-6. **JCGS 模板套用**：当前通用 article 11pt 单栏；模板与页数要求见 `submission/jcgs_format_notes.md`。
-7. **提交前 48 小时复核**后，在 ScholarOne 上传：`main.pdf`、`supplement.pdf`、cover letter、title page、suggested reviewers；若要求双盲用 `main_anonymous.pdf`。
-
-## 四、一键复现
+## 二、GitHub 推送步骤（需作者账号）
 
 ```powershell
-cd fuq-fairness
-python code/data_prep/00_all.py               # 原始数据 → data/processed（缺什么建什么）
-python code/reproduce_all.py --scale light    # ~23 s：合成 DI/DM 小规模 + 全部数值校验
-python code/reproduce_all.py --scale full     # 全部 29 步（约 2 h，纯 CPU）
+# 1) 在 https://github.com/new 新建仓库：fuq-fairness，Public，不要初始化 README
+# 2) 在本地仓库目录执行（把 <account> 换成 GitHub 用户名）：
+cd D:\Desktop\Data\学习类\硕士研究生\文献阅读\DSH\fuq-fairness
+git remote add origin https://github.com/<account>/fuq-fairness.git
+git branch -M main
+git push -u origin main
+# 3) 首次推送若提示认证：使用 GitHub 用户名 + Personal Access Token（不要用密码）
 ```
 
-环境：CPU-only（Ryzen 7 8845H / 27.8 GB），Python 3.13.15，依赖见 `requirements.txt`。
+推送完成后：
 
-## 五、审稿预案要点
+1. 把仓库 URL 填入 `manuscript/main.tex`（及重新生成的 `main_test.tex`）的 Code availability
+   段落与 cover letter 中 `[repository URL / DOI]` 占位；
+2. 重新编译 `main.pdf` / `main_test.pdf`，重建 `submission/build_submission.py --version v2.0`
+   与 `code/make_release.py`，重跑 `check_package.py`；
+3. 可选：仓库打 tag `v1.0.0` 并在 Zenodo 生成 DOI（填 DOI 到正文与 cover letter）。
 
-- **“论文没写错为何要改”**：不矛盾，是补全；协议 B（固定评估集）下论文结论仍成立（Remark 2）。
-- **“联合 bootstrap 成本”**：重抽评估集便宜、训练轨迹复用；宽度代价见 Table 6 / Fig 4。
-- **“为何不解析 CLT”**：三层独立随机性 + 约束集非光滑；Theorem 1 给解析极限，bootstrap 给有限样本实现（附录 A）。
-- **“线性/NTK 假设”**：与论文一致；扩展见 Discussion（核方法、多分类、公平性约束族）。
-- 详细应答：`notes/referee_prep.md`（C1–C8 + minor + 3 个大改风险点）。
+## 三、外部事项（作者本人/学校资源）
+
+1. **官方分区复核**：中国科学院文献情报中心《期刊分区表》官方平台 / 学校图书馆版本，确认
+   TEST 2025 版为数学三区（本文档依据第三方聚合数据，2026-10-27）。
+2. **Springer 投稿门户**：注册/登录 Editorial Manager，逐项完成 `submission/checklist.md`
+   「提交系统」6 项；上传 main_test.pdf、supplement.pdf、cover letter、title page 与可编辑源文件。
+3. **审稿人姓名/邮箱**：从 `notes/referee_prep.md` 候选池选 3–5 位，验证邮箱后填入系统。
+4. **AI 使用声明**：正文 Declarations 已写明“AI 仅用于英文润色，未生成科学内容/代码/结果”；
+   若 TEST 门户另有勾选/声明字段，按同样口径填写。
+5. **语言润色**：如学校要求润色证明，可使用 Grammarly/Wordvice 等；当前英文经两遍通读 +
+   AI 润色辅助，无中式英语典型问题（`notes/reproducibility_verification.md` 记录）。
+6. 保存投稿确认邮件与稿号，写入本文件第四节。
+
+## 四、投稿后记录
+
+- 投稿日期：待填
+- 稿号：待填
+- 状态：待填
