@@ -1,0 +1,20 @@
+{
+  "n_vectors_per_case": 200,
+  "n_cases": 12,
+  "n_active": 2098,
+  "n_inactive": 302,
+  "max_abs_feasibility_slack": 8.881784197001252e-16,
+  "max_active_boundary_error": 8.881784197001252e-16,
+  "max_inactive_identity_error": 0.0,
+  "max_kkt_orthogonality_residual": 9.155133597044475e-16,
+  "kkt_alpha_sign_ok": true,
+  "max_projection_optimality_gap": 0.0,
+  "max_idempotency_error": 9.104505742017336e-16,
+  "max_batch_vs_single_error": 8.881784197001252e-16,
+  "edge_cases": {
+    "on_boundary_unchanged": 0.0,
+    "tiny_eps_boundary_err": 2.6755441463158398e-17,
+    "huge_eps_identity": 0.0
+  },
+  "overall": "PASS"
+}

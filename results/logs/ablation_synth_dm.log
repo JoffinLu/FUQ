@@ -1,0 +1,29 @@
+[synth_dm] m=100 phi_pop=0.12172
+{
+ "dataset": "synth_dm",
+ "protocol": "A (fresh evaluation set per repetition)",
+ "config": {
+  "T": 20000,
+  "B": 100,
+  "R": 300,
+  "reps": 100,
+  "m": 100,
+  "eta0": 0.03,
+  "n_pool": 20000,
+  "n_dprime": 250,
+  "R2": 500.0,
+  "kappa": 0.0001,
+  "kind": "dm"
+ },
+ "phi_pop": 0.12172,
+ "coverage_paper": 0.57,
+ "coverage_eval_only": 0.81,
+ "coverage_train_eval": 0.88,
+ "width_paper": 0.15128,
+ "width_eval_only": 0.21477,
+ "width_train_eval": 0.23887,
+ "se_train": 0.05916,
+ "se_eval": 0.05779,
+ "elapsed_sec": 129.2
+}
+saved -> D:\Desktop\Data\学习类\硕士研究生\文献阅读\DSH\fuq-fairness\results\tables\ablation_synth_dm_m100.json

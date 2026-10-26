@@ -1,0 +1,32 @@
+# data: public datasets and derived archives are not tracked
+data/raw/
+data/processed/
+
+# build artifacts and local outputs
+release/
+release/stage/
+manuscript/*.aux
+manuscript/*.out
+manuscript/*.log
+manuscript/*.blg
+manuscript/*.bbl
+manuscript/*.toc
+manuscript/_*.tex
+manuscript/_*.py
+manuscript/main_review.tex
+manuscript/main_anonymous.tex
+manuscript/format_check_twocolumn.tex
+manuscript/format_check_twocolumn.pdf
+manuscript/fuq-fairness_full.pdf
+
+# submission zips (rebuilt by manuscript/build_submission.py)
+manuscript/submission/*.zip
+
+# python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+
+# baseline paper PDFs (third-party copyright; not redistributed)
+paper/

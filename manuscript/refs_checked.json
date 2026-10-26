@@ -1,0 +1,200 @@
+[
+ {
+  "key": "roy2026uq",
+  "verdict": "missing",
+  "score": 0.713,
+  "title_ratio": 0.613,
+  "oa_title": "Fairness Uncertainty Quantification: How certain are you that the model is fair?",
+  "oa_year": 2023,
+  "oa_venue": "arXiv (Cornell University)",
+  "doi": "https://doi.org/10.48550/arxiv.2304.13950",
+  "cached": true
+ },
+ {
+  "key": "roy2023uq",
+  "verdict": "exact",
+  "score": 1.2,
+  "title_ratio": 1.0,
+  "oa_title": "Fairness Uncertainty Quantification: How certain are you that the model is fair?",
+  "oa_year": 2023,
+  "oa_venue": "arXiv (Cornell University)",
+  "doi": "https://doi.org/10.48550/arxiv.2304.13950",
+  "cached": true
+ },
+ {
+  "key": "cherian2023",
+  "verdict": "exact",
+  "score": 1.2,
+  "title_ratio": 1.0,
+  "oa_title": "Statistical Inference for Fairness Auditing",
+  "oa_year": 2023,
+  "oa_venue": "arXiv (Cornell University)",
+  "doi": "https://doi.org/10.48550/arxiv.2305.03712",
+  "cached": true
+ },
+ {
+  "key": "maity2021",
+  "verdict": "exact",
+  "score": 1.2,
+  "title_ratio": 1.0,
+  "oa_title": "Statistical inference for individual fairness",
+  "oa_year": 2021,
+  "oa_venue": "arXiv (Cornell University)",
+  "doi": "https://doi.org/10.48550/arxiv.2103.16714",
+  "cached": true
+ },
+ {
+  "key": "fang2018",
+  "verdict": "exact",
+  "score": 1.2,
+  "title_ratio": 1.0,
+  "oa_title": "Online Bootstrap Confidence Intervals for the Stochastic Gradient Descent Estimator",
+  "oa_year": 2018,
+  "oa_venue": "Journal of Machine Learning Research",
+  "doi": null,
+  "cached": true
+ },
+ {
+  "key": "chen2016",
+  "verdict": "exact",
+  "score": 1.2,
+  "title_ratio": 1.0,
+  "oa_title": "Statistical inference for model parameters in stochastic gradient descent",
+  "oa_year": 2020,
+  "oa_venue": "The Annals of Statistics",
+  "doi": "https://doi.org/10.1214/18-aos1801",
+  "cached": true
+ },
+ {
+  "key": "zhu2021",
+  "verdict": "near",
+  "score": 1.1,
+  "title_ratio": 1.0,
+  "oa_title": "Online Covariance Matrix Estimation in Stochastic Gradient Descent",
+  "oa_year": 2021,
+  "oa_venue": "Journal of the American Statistical Association",
+  "doi": "https://doi.org/10.1080/01621459.2021.1933498",
+  "cached": true
+ },
+ {
+  "key": "polyak1992",
+  "verdict": "exact",
+  "score": 1.2,
+  "title_ratio": 1.0,
+  "oa_title": "Acceleration of Stochastic Approximation by Averaging",
+  "oa_year": 1992,
+  "oa_venue": "SIAM Journal on Control and Optimization",
+  "doi": "https://doi.org/10.1137/0330046",
+  "cached": true
+ },
+ {
+  "key": "duchi2016",
+  "verdict": "exact",
+  "score": 1.2,
+  "title_ratio": 1.0,
+  "oa_title": "Asymptotic optimality in stochastic optimization",
+  "oa_year": 2021,
+  "oa_venue": "The Annals of Statistics",
+  "doi": "https://doi.org/10.1214/19-aos1831",
+  "cached": true
+ },
+ {
+  "key": "ramprasad2023",
+  "verdict": "exact",
+  "score": 1.2,
+  "title_ratio": 1.0,
+  "oa_title": "Online Bootstrap Inference For Policy Evaluation In Reinforcement Learning",
+  "oa_year": 2022,
+  "oa_venue": "Journal of the American Statistical Association",
+  "doi": "https://doi.org/10.1080/01621459.2022.2096620",
+  "cached": true
+ },
+ {
+  "key": "hardt2016",
+  "verdict": "exact",
+  "score": 1.2,
+  "title_ratio": 1.0,
+  "oa_title": "Equality of Opportunity in Supervised Learning",
+  "oa_year": 2016,
+  "oa_venue": "arXiv (Cornell University)",
+  "doi": "https://doi.org/10.48550/arxiv.1610.02413",
+  "cached": true
+ },
+ {
+  "key": "zafar2019",
+  "verdict": "exact",
+  "score": 1.2,
+  "title_ratio": 1.0,
+  "oa_title": "Fairness Constraints: A Flexible Approach for Fair Classification",
+  "oa_year": 2019,
+  "oa_venue": "MPG.PuRe (Max Planck Society)",
+  "doi": null,
+  "cached": true
+ },
+ {
+  "key": "diciccio2020",
+  "verdict": "exact",
+  "score": 1.2,
+  "title_ratio": 1.0,
+  "oa_title": "Evaluating Fairness Using Permutation Tests",
+  "oa_year": 2020,
+  "oa_venue": "ACM SIGKDD International Conference on Knowledge Discovery & Data Mining (KDD)",
+  "doi": "https://doi.org/10.1145/3394486.3403199",
+  "cached": true
+ },
+ {
+  "key": "taskesen2021",
+  "verdict": "near",
+  "score": 1.1,
+  "title_ratio": 1.0,
+  "oa_title": "A Statistical Test for Probabilistic Fairness",
+  "oa_year": 2021,
+  "oa_venue": "ACM Conference on Fairness, Accountability, and Transparency (FAccT)",
+  "doi": "https://doi.org/10.1145/3442188.3445927",
+  "cached": true
+ },
+ {
+  "key": "rosenblatt2024",
+  "verdict": "exact",
+  "score": 1.2,
+  "title_ratio": 1.0,
+  "oa_title": "FairlyUncertain: A Comprehensive Benchmark of Uncertainty in Algorithmic Fairness",
+  "oa_year": 2024,
+  "oa_venue": "arXiv (Cornell University)",
+  "doi": "https://doi.org/10.48550/arxiv.2410.02005",
+  "cached": true
+ },
+ {
+  "key": "moreau2024",
+  "verdict": "exact",
+  "score": 1.2,
+  "title_ratio": 1.0,
+  "oa_title": "QUANTIFYING ALGORITHMIC FAIRNESS: A NOVEL PERSPECTIVE THROUGH UNCERTAINTY ESTIMATION",
+  "oa_year": 2024,
+  "oa_venue": "European Journal of Emerging Artificial Intelligence",
+  "doi": null,
+  "cached": true
+ },
+ {
+  "key": "ding2021",
+  "verdict": "exact",
+  "score": 1.2,
+  "title_ratio": 1.0,
+  "oa_title": "Retiring Adult: New Datasets for Fair Machine Learning",
+  "oa_year": 2021,
+  "oa_venue": "arXiv (Cornell University)",
+  "doi": "https://doi.org/10.48550/arxiv.2108.04884",
+  "cached": true
+ },
+ {
+  "key": "corbett2017",
+  "verdict": "near",
+  "score": 1.1,
+  "title_ratio": 1.0,
+  "oa_title": "Algorithmic Decision Making and the Cost of Fairness",
+  "oa_year": 2017,
+  "oa_venue": "ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (KDD)",
+  "doi": "https://doi.org/10.1145/3097983.3098095",
+  "cached": true
+ }
+]

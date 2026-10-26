@@ -1,0 +1,21 @@
+{
+  "dataset": "compas",
+  "kind": "dm",
+  "R": 25,
+  "delta_star_eval": -0.02538,
+  "delta_star_pool": 0.01329,
+  "theta_star_norm": 0.57,
+  "optimizer_success": true,
+  "se_train": 0.02932,
+  "se_eval": 0.06211,
+  "sd_Dprime": 0.0753,
+  "mean_delta_over_Dprime": -0.04347,
+  "var_train": 0.00085992,
+  "var_eval": 0.00385821,
+  "var_Dprime": 0.00566958,
+  "share_train": 0.083,
+  "share_eval": 0.371,
+  "share_Dprime": 0.546,
+  "total_se": 0.10192,
+  "elapsed_sec": 0.6
+}

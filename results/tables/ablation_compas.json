@@ -1,0 +1,27 @@
+{
+  "dataset": "compas",
+  "protocol": "A (fresh evaluation set per repetition)",
+  "config": {
+    "T": 30000,
+    "B": 100,
+    "R": 300,
+    "reps": 60,
+    "m": 400,
+    "eta0": 0.1,
+    "kind": "dm",
+    "R2": 300.0,
+    "n_dprime": 250,
+    "n_reservoir": 1200,
+    "kappa": 0.1
+  },
+  "phi_pop": 0.00629,
+  "coverage_paper": 0.617,
+  "coverage_eval_only": 0.967,
+  "coverage_train_eval": 1.0,
+  "width_paper": 0.09599,
+  "width_eval_only": 0.15365,
+  "width_train_eval": 0.17343,
+  "se_train": 0.03223,
+  "se_eval": 0.05957,
+  "elapsed_sec": 126.7
+}

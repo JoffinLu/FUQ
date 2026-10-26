@@ -1,0 +1,24 @@
+{
+  "n": 1000000,
+  "support": [
+    -0.7320508075688772,
+    2.732050807568877
+  ],
+  "analytic_mean": 1.0,
+  "analytic_variance": 0.9999999999999999,
+  "sample_mean": 0.999383280726901,
+  "sample_variance": 0.999919957209857,
+  "mean_abs_error": 0.0006167192730990312,
+  "variance_abs_error": 8.004279014295346e-05,
+  "min_draw": -0.7320434849050284,
+  "max_draw": 2.7320451312959695,
+  "ks_statistic": 0.0010542079490486467,
+  "ks_pvalue": 0.21620389487829228,
+  "checks": {
+    "support_ok": true,
+    "mean_ok": true,
+    "variance_ok": true,
+    "ks_not_rejected_1pct": true
+  },
+  "overall": "PASS"
+}

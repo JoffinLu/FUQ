@@ -1,0 +1,65 @@
+{
+  "config": {
+    "reps": 100,
+    "T": 20000,
+    "B": 100,
+    "R": 400,
+    "seed": 20261026,
+    "out": "joint_bootstrap_v3_fresh_eval.json"
+  },
+  "protocol": "fresh evaluation set per repetition",
+  "results": [
+    {
+      "m_tilde": 100,
+      "fresh_eval": true,
+      "reps": 100,
+      "T": 20000,
+      "B": 100,
+      "phi_pop": 0.07629,
+      "sigma2_train_across_reps": 159.7697,
+      "cov_paper": 0.4,
+      "cov_jb": 0.96,
+      "cov_ana": 0.97,
+      "width_paper": 0.06404,
+      "width_jb": 0.29158,
+      "width_ana": 0.2977,
+      "se_train": 0.02265,
+      "se_eval": 0.09991
+    },
+    {
+      "m_tilde": 1000,
+      "fresh_eval": true,
+      "reps": 100,
+      "T": 20000,
+      "B": 100,
+      "phi_pop": 0.02471,
+      "sigma2_train_across_reps": 38.1709,
+      "cov_paper": 0.85,
+      "cov_jb": 1.0,
+      "cov_ana": 1.0,
+      "width_paper": 0.07962,
+      "width_jb": 0.11988,
+      "width_ana": 0.12182,
+      "se_train": 0.02843,
+      "se_eval": 0.03182
+    },
+    {
+      "m_tilde": 5000,
+      "fresh_eval": true,
+      "reps": 100,
+      "T": 20000,
+      "B": 100,
+      "phi_pop": 0.10124,
+      "sigma2_train_across_reps": 216.4096,
+      "cov_paper": 0.99,
+      "cov_jb": 0.99,
+      "cov_ana": 0.99,
+      "width_paper": 0.22675,
+      "width_jb": 0.24386,
+      "width_ana": 0.2824,
+      "se_train": 0.09954,
+      "se_eval": 0.01328
+    }
+  ],
+  "elapsed_sec": 233.5
+}

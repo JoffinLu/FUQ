@@ -1,0 +1,29 @@
+{
+  "dataset": "adult",
+  "kind": "di",
+  "protocol": "A (fresh evaluation set per repetition)",
+  "config": {
+    "kind": "di",
+    "eps": 1e-05,
+    "n_dprime": 1000,
+    "m": 1000,
+    "n_reservoir": 8000,
+    "kappa": 0.1,
+    "reps": 60,
+    "T": 30000,
+    "B": 100,
+    "R": 300,
+    "eta0": 0.1
+  },
+  "phi_pop": 0.05934,
+  "delta_pop": -0.05934,
+  "theta_star_norm": 1.094,
+  "coverage_paper": 0.3,
+  "coverage_joint": 0.983,
+  "width_paper": 0.02496,
+  "width_joint": 0.10192,
+  "width_ratio": 4.149,
+  "se_train_mean": 0.00671,
+  "se_eval_mean": 0.02597,
+  "elapsed_sec": 115.9
+}

@@ -1,0 +1,331 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage[strings]{underscore}
+\usepackage{graphicx}
+\usepackage[colorlinks=true,linkcolor=blue]{hyperref}
+\usepackage{natbib}
+\bibliographystyle{plainnat}
+\newcommand{\Dt}{\tilde D}
+\newcommand{\Dp}{D'}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\tbar}{\bar\theta}
+\newcommand{\dhat}{\hat\Delta}
+\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\title{Supplementary Material for\\Separating Training, Evaluation and Constraint-Set Noise\\in Fairness Uncertainty Quantification}
+\author{Cenfa Lu}
+\date{\today}
+\begin{document}
+\maketitle
+\noindent This supplement collects the full reproduction evidence, the independent verification
+of the primitive operations, the sample-size sensitivity, and the source ablation.  It is
+self-contained and refers to the main text for definitions.  All numbers are produced by the
+code in the accompanying repository; the files that generate each table are named in the
+captions.
+
+\section{Experimental setup and deviations from the original protocol}
+
+We reproduce the simulations of Roy and Mohapatra \citep{roy2026uq} and extend them with
+an evaluation-sampling protocol.  Table~\ref{tab:setup} lists the settings actually used.
+Two deviations were unavoidable and are documented here: (i) the original step size
+$\eta_k=0.01\,k^{-0.501}$ is too small to reach $\theta^*$ within the simulated horizons on the
+synthetic DI generator and on Adult, so we used a calibrated step size ($\eta_0=0.1$, and
+$\eta_0=0.03$ for the synthetic DM generator, which has gradient $R^2$-scale);
+(ii) the barrier coefficient is $\kappa=0.1$ rather than $10^{-4}$, which keeps the constrained
+optimum within the evaluated range of trajectories (a $\kappa$-sensitivity analysis is in
+Table~\ref{tab:kappa}).  These changes do not affect the qualitative claims: the intervals are
+valid for the held-out estimand and miss the population estimand exactly as predicted by the
+asymptotic theory.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Settings of the reproduced experiments (results/tables/*_meta_*.json).}
+\label{tab:setup}
+\begin{tabular}{lcccccc}
+\toprule
+Experiment & $T$ & Reps & $B$ & $\eta_0$ & $\kappa$ & Runtime \\
+\midrule
+Synthetic (DI) & 20000 & 100 & 100 & 0.1 & 0.0001 & 1.1 min \\
+Synthetic (DM) & 20000 & 100 & 100 & 0.03 & 0.0001 & 2.1 min \\
+Adult (DI) & 50000 & 100 & 200 & 0.1 & 0.1 & 9.4 min \\
+ACSIncome (DI) & 50000 & 150 & 100 & 0.1 & 0.1 & 4.3 min \\
+COMPAS (DM) & 50000 & 150 & 200 & 0.1 & 0.1 & 13.8 min \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Complete reproduction results}
+
+Table~\ref{tab:repro} lists every reproduced run of the original simulation protocol; the per-iteration trajectories behind the two W_2 panels are the files in results/raw/.
+
+
+\begin{table}[h]
+\centering
+\small
+\caption{Reproduction of the original simulation protocol (fixed held-out set; results/tables/repro_summary.csv). The interval covers the held-out estimand but not the population gap.}
+\label{tab:repro}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccccccc}
+\toprule
+Experiment & $T$ & Reps & $\phi(\theta^*)$ & Cov. (held-out) & Cov. (population) & CI width & MIS & $W_2$ \\
+\midrule
+Synthetic (DI) & 20000 & 100 & 0.0835 & 0.89 & 0.43 & 0.0766 & 0.183 & 0.036 \\
+Synthetic (DM) & 20000 & 100 & 0.1401 & 0.86 & 1.00 & 0.2084 & 0.248 & 0.030 \\
+Adult (DI) & 50000 & 100 & 0.0564 & 1.00 & 0.00 & 0.0219 & 0.028 & 0.027 \\
+ACSIncome (DI) & 50000 & 150 & 0.0442 & 1.00 & 0.00 & 0.0135 & 0.021 & 0.034 \\
+COMPAS (DM) & 50000 & 150 & 0.0133 & 1.00 & 0.62 & 0.1149 & 0.123 & 0.019 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\section{Protocol A: a fresh evaluation set per repetition}
+
+In protocol A the constraint set is held fixed and every repetition draws a fresh
+evaluation set, so that coverage is averaged over the evaluation sampling as well.  The
+baseline interval is the published online multiplier bootstrap; the joint interval resamples
+training trajectories and the evaluation set.  Table~\ref{tab:protocolA} gives the complete
+numbers; the synthetic rows come from joint_bootstrap_v3b_fresh_eval.json and the real rows
+from real_joint_ci_*.json.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Protocol A coverage of the population gap (nominal 0.95) and interval widths. The joint interval is valid in every setting.}
+\label{tab:protocolA}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccccccc}
+\toprule
+Dataset & $m$ & Cov. (baseline) & Cov. (joint) & Width (baseline) & Width (joint) & Ratio & $s_{\rm train}$ & $s_{\rm eval}$ \\
+\midrule
+Synthetic (DI) & 100 & 0.56 & 0.99 & 0.1069 & 0.2826 & 2.64 & 0.0370 & 0.1002 \\
+Synthetic (DI) & 1000 & 0.85 & 0.98 & 0.0773 & 0.1161 & 1.50 & 0.0280 & 0.0318 \\
+Synthetic (DI) & 5000 & 0.99 & 1.00 & 0.0743 & 0.0852 & 1.15 & 0.0276 & 0.0142 \\
+Adult (DI) & 1000 & 0.30 & 0.98 & 0.0250 & 0.1019 & 4.15 & 0.0067 & 0.0260 \\
+ACSIncome (DI) & 1000 & 0.25 & 1.00 & 0.0148 & 0.0821 & 5.72 & 0.0043 & 0.0304 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\section{Variance budget}
+
+\begin{table}[h]
+\centering
+\small
+\caption{Three-way variance budget (results/tables/variance_budget_*.json). The last two columns compare the average gap over re-sampled constraint sets with the actually reported gap, quantifying the $D'$ component.}
+\label{tab:budget}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lccccccccc}
+\toprule
+Dataset & $s_{\rm train}$ & $s_{\rm eval}$ & $s_{D'}$ & Train \% & Eval \% & $D'$ \% & $s_{\rm tot}$ & $\bar\Delta_{D'}$ & $\hat\Delta_{\rm obs}$ \\
+\midrule
+Adult (DI) & 0.0056 & 0.0259 & 0.0124 & 3.6 & 78.3 & 18.1 & 0.0293 & -0.0458 & -0.0564 \\
+ACSIncome (DI) & 0.0034 & 0.0304 & 0.0245 & 0.8 & 60.3 & 39.0 & 0.0392 & -0.0343 & -0.0442 \\
+COMPAS (DM) & 0.0293 & 0.0621 & 0.0753 & 8.3 & 37.1 & 54.6 & 0.1019 & -0.0435 & 0.0133 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\section{Barrier-coefficient sensitivity}
+
+\begin{table}[h]
+\centering
+\small
+\caption{Sensitivity to the barrier coefficient on Adult (protocol B, 20 repetitions; results/tables/sensitivity_adult.csv). Coverage is governed by the functional bias, not monotonically by the parameter distance.}
+\label{tab:kappa}
+\begin{tabular}{cccccc}
+\toprule
+$\kappa$ & $\|\theta^*\|$ & median bias & Cov. (pop.) & CI width & $\phi(\theta^*)$ \\
+\midrule
+0.0001 & 10.895 & 10.503 & 0.00 & 0.0399 & 0.1394 \\
+0.01 & 2.204 & 0.808 & 0.95 & 0.0382 & 0.0884 \\
+0.10 & 1.096 & 0.119 & 0.00 & 0.0289 & 0.0570 \\
+1 & 0.315 & 0.025 & 0.60 & 0.0314 & 0.0651 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Which noise source must be resampled?}
+
+Table~\ref{tab:ablation} isolates the contribution of each resampling component
+(protocol A).  The baseline resamples only training trajectories; `eval only' resamples only
+the evaluation set; `train+eval' resamples both.  On the synthetic generators the two sources are
+comparable in size, so neither single-source interval is valid: with $m=100$ the training-only and
+evaluation-only intervals reach $0.56$ and $0.98$ (DI) and $0.57$ and $0.81$ (DM), while the joint
+interval reaches $1.00$ and $0.88$; at $m=1000$ the evaluation noise shrinks and the training-only
+interval remains short ($0.85$ for DI, $0.78$ for DM), whereas the joint interval is at nominal
+level ($0.98$ and $0.99$).  On the real audits the evaluation component dominates, so the
+training-only interval fails badly while the evaluation-only interval is closer but still short of
+nominal.  Only the combined interval is at or near nominal coverage in every setting.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Source ablation, protocol A, nominal 0.95 (results/tables/ablation_*.json).}
+\label{tab:ablation}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lccccccc}
+\toprule
+Dataset & $m$ & Cov. (train only) & Cov. (eval only) & Cov. (train+eval) & Width (train) & Width (eval) & Width (both) \\
+\midrule
+Synthetic (DI) & 1000 & 0.85 & 0.93 & 0.98 & 0.0773 & 0.0938 & 0.1156 \\
+Synthetic (DI) & 100 & 0.56 & 0.98 & 1.00 & 0.1069 & 0.2698 & 0.2826 \\
+Synthetic (DM) & 1000 & 0.78 & 0.71 & 0.99 & 0.1391 & 0.0734 & 0.1585 \\
+Synthetic (DM) & 100 & 0.57 & 0.81 & 0.88 & 0.1513 & 0.2148 & 0.2389 \\
+Adult (DI) & 1000 & 0.30 & 0.97 & 0.98 & 0.0250 & 0.0980 & 0.1019 \\
+ACSIncome (DI) & 1000 & 0.25 & 1.00 & 1.00 & 0.0148 & 0.0807 & 0.0821 \\
+COMPAS (DM) & 400 & 0.62 & 0.97 & 1.00 & 0.0960 & 0.1537 & 0.1734 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\section{Independent verification of the primitive operations}
+
+A second implementation of every primitive operation (slab projection, multiplier
+distribution, mean interval score, constrained optimum) was written from scratch and compared
+with the production code.  Table~\ref{tab:verify} summarises the checks; the scripts are in
+code/verify/ and the raw JSON files in code/verify/results/.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Independent verification summary (notes/verification.md).  Check V6 documents that the published step size needs about $10^9$ iterations to reach the constrained optimum on the synthetic generator.}
+\label{tab:verify}
+\begin{tabular}{p{0.05\textwidth}p{0.35\textwidth}p{0.11\textwidth}p{0.30\textwidth}}
+\toprule
+Check & Content & Status & Key number \\
+\midrule
+V1 & slab projection and KKT conditions & pass & $\max|\tilde x^\top\Pi-\varepsilon|=8.9\times10^{-16}$ \\
+V2 & multiplier distribution & pass & $|\mathbb E V-1|=6.2\times10^{-4}$ \\
+V3 & mean interval score & pass & max error $1.4\times10^{-14}$ \\
+V4 & constrained optimum (SLSQP agreement) & pass & KKT residual $3.1\times10^{-12}$ \\
+V5 & coverage calibration (Gaussian toy model) & pass & clean coverage $0.967$ (MC s.e. 0.033) \\
+V6 & convergence with the original step size & fail (informative) & $T=10^6$: relative error $0.414$ \\
+V7 & elementwise comparison with production code & delayed & covered by V1--V5 at the formula level \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Empirical convergence rates}
+
+Theorem 1 of the main text predicts a $T^{-1/2}$ rate for the averaged iterate.  We check
+this directly on the synthetic DI generator with the constraint set $D'$ held fixed, a fresh
+evaluation set of size $m=100$ per replication, $B=100$ trajectories, $40$ replications and the
+step size $0.1k^{-0.501}$; the truth $\Delta(\theta^*)$ is evaluated on an independent sample of
+$2\times 10^6$ observations.
+
+
+\begin{table}[h]
+\centering
+\small
+\caption{Empirical convergence of the averaged iterate (synthetic DI, protocol A, fixed $D'$, 40 replications; raw values in rate_check_synth_di.csv and rate_check_synth_di.json).}
+\label{tab:rate}
+\begin{tabular}{lcccc}
+\toprule
+$T$ & $\E\|\tbar_T-\theta^*\|$ & $\E|\Delta(\tbar_T)-\Delta(\theta^*)|$ & $\E[\Delta(\tbar_T)-\Delta(\theta^*)]$ & $\E|\dhat_{100}-\Delta(\theta^*)|$ \\
+\midrule
+1000 & 0.285 & 0.085 & +0.075 & 0.097 \\
+3000 & 0.233 & 0.057 & +0.050 & 0.091 \\
+10000 & 0.167 & 0.047 & +0.038 & 0.082 \\
+30000 & 0.084 & 0.030 & +0.011 & 0.066 \\
+100000 & 0.032 & 0.021 & +0.011 & 0.067 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The average parameter distance decays at the fitted log--log slope $0.47$ and the signed
+gap bias at $0.46$, both consistent with the $T^{-1/2}$ rate (theory $-0.50$); the absolute gap
+deviations are attenuated because the absolute value of a shrinking random quantity does not retain
+the power law, and because the $m=100$ evaluation set contributes a non-vanishing noise floor
+(last column).  For comparison, the Wasserstein distance between the empirical law and the benchmark
+normal decays like $k^{0.69}$.
+
+
+\section{Finite-sample calibration}
+
+The asymptotic statements of Theorems~1 and~2 are complemented here by a small
+finite-sample grid: synthetic DI, protocol~A with a fresh evaluation set in every repetition,
+$B=100$, $R=300$, 100 replications, $T\in\{10^3,\,3\times10^3,\,10^4\}$ and
+$m\in\{100,\,300,\,1000\}$; the population gap is evaluated at the constrained optimum on an
+independent sample of $2\times10^6$ observations.
+
+
+\begin{table}[h]
+\centering
+\small
+\caption{Finite-sample calibration of the three intervals (synthetic DI, protocol A, 100 replications; results/tables/ablation_fs_T*_m*.json).}
+\label{tab:finite}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccccc}
+\toprule
+$T$ & $m$ & Cov.\ base & Cov.\ eval & Cov.\ joint & Width base & Width joint \\
+\midrule
+1000 & 100 & 0.98 & 0.64 & 1.00 & 0.236 & 0.310 \\
+1000 & 300 & 0.96 & 0.37 & 1.00 & 0.208 & 0.245 \\
+1000 & 1000 & 0.99 & 0.30 & 1.00 & 0.192 & 0.211 \\
+3000 & 100 & 0.87 & 0.83 & 1.00 & 0.215 & 0.330 \\
+3000 & 300 & 0.87 & 0.67 & 0.98 & 0.180 & 0.242 \\
+3000 & 1000 & 0.94 & 0.51 & 0.98 & 0.166 & 0.197 \\
+10000 & 100 & 0.71 & 0.95 & 1.00 & 0.149 & 0.299 \\
+10000 & 300 & 0.79 & 0.88 & 0.99 & 0.130 & 0.204 \\
+10000 & 1000 & 0.92 & 0.86 & 0.99 & 0.116 & 0.146 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+Three features are worth noting.  First, the joint interval never falls below the
+nominal level in this grid ($0.98$--$1.00$), while the baseline interval ranges from $0.71$ to
+$0.99$; its shortfall grows with $m$ exactly as the asymptotic analysis predicts.  Second, at
+$T=10^3$ both intervals over-cover: the baseline absorbs the large training noise into a very wide
+quantile band that happens to bracket the population gap, whereas the joint interval is
+conservative---the safe direction for an audit.  Third, the width premium of the joint interval is
+largest exactly where the baseline breaks down (small $m$, large $T$: $0.299$ against $0.149$ at
+$T=10^4$, $m=100$), which is the price of validity in the regime where the evaluation component
+dominates.
+
+
+\section{Reproduction commands}
+
+All experiments run on a single CPU (AMD Ryzen 7 8845H, 16 threads, 27.8 GB RAM,
+no GPU) under Python 3.13.15 with numpy 2.2.4, pandas 3.0.6, scikit-learn 1.9.1 and
+scipy 1.18.1.  The total wall-clock time of the experiments reported here is about two hours;
+the finite-sample grid of Table~\ref{tab:finite} adds about five minutes.
+
+\begin{verbatim}
+python code/data_prep/00_all.py
+python code/reproduce_all.py --scale full      # one-command driver for all runs
+python code/exps/run_synth_di.py
+python code/exps/run_synth_dm.py
+python code/exps/run_real.py --dataset adult
+python code/exps/run_real.py --dataset acsincome
+python code/exps/run_real.py --dataset compas
+python code/exps/combined_ci_v3_fresh_eval.py
+python code/exps/real_joint_ci.py --dataset adult
+python code/exps/real_joint_ci.py --dataset acsincome
+python code/exps/variance_budget.py
+python code/exps/sensitivity_adult.py
+python code/exps/rate_check.py --reps 40
+python code/exps/ablation_sources.py --dataset synth_di --m 1000
+python code/exps/ablation_sources.py --dataset synth_dm --m 1000
+python code/exps/ablation_sources.py --dataset adult
+python code/exps/ablation_sources.py --dataset acsincome
+python code/exps/ablation_sources.py --dataset compas
+python code/exps/ablation_sources.py --dataset synth_di --T 1000 --m 100 \\
+    --tag fs_T1000_m100
+# finite-sample grid: repeat for all T x m combinations
+python code/exps/make_figures.py
+python code/exps/make_extension_figures.py
+python code/exps/make_sample_size_figure.py
+python code/exps/make_ablation_figure.py
+python manuscript/check_numbers.py
+\end{verbatim}
+
+\bibliography{refs}
+\end{document}

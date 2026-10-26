@@ -1,0 +1,21 @@
+{
+  "dataset": "acsincome",
+  "kind": "di",
+  "R": 25,
+  "delta_star_eval": -0.00835,
+  "delta_star_pool": -0.04421,
+  "theta_star_norm": 0.881,
+  "optimizer_success": true,
+  "se_train": 0.00343,
+  "se_eval": 0.03043,
+  "sd_Dprime": 0.02448,
+  "mean_delta_over_Dprime": -0.03425,
+  "var_train": 1.179e-05,
+  "var_eval": 0.00092604,
+  "var_Dprime": 0.00059904,
+  "share_train": 0.008,
+  "share_eval": 0.603,
+  "share_Dprime": 0.39,
+  "total_se": 0.0392,
+  "elapsed_sec": 118.7
+}

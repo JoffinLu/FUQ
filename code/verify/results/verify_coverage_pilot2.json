@@ -1,0 +1,170 @@
+{
+  "config": {
+    "nrep": 30,
+    "T": 5000,
+    "B": 100,
+    "seed": 20261026,
+    "alpha": 0.05,
+    "tau": 4.0,
+    "m_eval": 100,
+    "skip_clean": false,
+    "pilot": true,
+    "json_out": "verify_coverage_pilot2.json"
+  },
+  "analytic": {
+    "theta_u": [
+      0.999996000016,
+      0.499998000008
+    ],
+    "theta_star": [
+      0.19999952000191978,
+      -0.09999936000256004
+    ],
+    "phi_star": 0.1999992000031999,
+    "sigma_Delta": 0.999996000016,
+    "Sigma": [
+      [
+        0.3599971200172798,
+        -0.4799961600230399
+      ],
+      [
+        -0.4799961600230399,
+        0.6399948800307199
+      ]
+    ]
+  },
+  "slsqp_rel_err": 8.52984449383742e-15,
+  "clean": {
+    "tau": 0.0,
+    "m_eval": 100,
+    "nrep": 30,
+    "T": 5000,
+    "B": 100,
+    "seconds": 7.286096811294556,
+    "covered_a": {
+      "value": 0.9666666666666667,
+      "mc_se": 0.0327730693416725,
+      "wilson": [
+        0.8332960900859083,
+        0.9940914096183875
+      ]
+    },
+    "covered_b": {
+      "value": 0.9666666666666667,
+      "mc_se": 0.0327730693416725,
+      "wilson": [
+        0.8332960900859083,
+        0.9940914096183875
+      ]
+    },
+    "oracle_covered_a": {
+      "value": 0.9333333333333333,
+      "mc_se": 0.045542003404264876,
+      "wilson": [
+        0.7867654163738308,
+        0.9815229762087295
+      ]
+    },
+    "oracle_covered_b": {
+      "value": 0.9333333333333333,
+      "mc_se": 0.045542003404264876,
+      "wilson": [
+        0.7867654163738308,
+        0.9815229762087295
+      ]
+    },
+    "coverage_a_sigma_units": 0.5085476277156095,
+    "coverage_b_sigma_units": 0.5085476277156095,
+    "phi_hat_main_mean": 0.2004734788578908,
+    "phi_hat_main_sd": 0.01644845662134308,
+    "eval_bias_mean": 0.0,
+    "eval_bias_sd": 0.0,
+    "eval_bias_sd_over_sigma_T": 0.0,
+    "eval_bias_over_halfwidth": 0.0,
+    "halfwidth_mean": 0.027512408816812776,
+    "oracle_halfwidth": 0.027717965615131096,
+    "width_ratio": 0.9925839868202265,
+    "boot_sd_mean": 0.01449265955436196,
+    "boot_sd_over_sigma_T": 1.0247898839748744,
+    "boot_center_bias": 0.00015836130619857613,
+    "sigma_hat_mean": 0.9999960000160002,
+    "sign_flip_fraction": 0.0,
+    "pred_cov_b": 0.9451703900548339,
+    "pred_cov_a": 0.9451703900548339,
+    "theta_main_bias": [
+      0.0002601634968004696,
+      -0.00039772594576331644
+    ]
+  },
+  "eval_noise": {
+    "tau": 4.0,
+    "m_eval": 100,
+    "nrep": 30,
+    "T": 5000,
+    "B": 100,
+    "seconds": 6.720649242401123,
+    "covered_a": {
+      "value": 0.9,
+      "mc_se": 0.054772255750516606,
+      "wilson": [
+        0.7437891742081592,
+        0.9654001112526657
+      ]
+    },
+    "covered_b": {
+      "value": 0.23333333333333334,
+      "mc_se": 0.07722022379508468,
+      "wilson": [
+        0.11792388144489496,
+        0.40928326158122164
+      ]
+    },
+    "oracle_covered_a": {
+      "value": 0.9666666666666667,
+      "mc_se": 0.0327730693416725,
+      "wilson": [
+        0.8332960900859083,
+        0.9940914096183875
+      ]
+    },
+    "oracle_covered_b": {
+      "value": 0.2,
+      "mc_se": 0.07302967433402216,
+      "wilson": [
+        0.0950510717728987,
+        0.3730569641314825
+      ]
+    },
+    "coverage_a_sigma_units": -0.9128709291752757,
+    "coverage_b_sigma_units": -9.280815716986885,
+    "phi_hat_main_mean": 0.19316756755223655,
+    "phi_hat_main_sd": 0.08380758765373993,
+    "eval_bias_mean": -0.010980932462098147,
+    "eval_bias_sd": 0.08060517792432491,
+    "eval_bias_sd_over_sigma_T": 5.699669589490998,
+    "eval_bias_over_halfwidth": 2.9970220432180623,
+    "halfwidth_mean": 0.026534659094584245,
+    "oracle_halfwidth": 0.027717965615131096,
+    "width_ratio": 0.9573090414723334,
+    "boot_sd_mean": 0.014204273981116835,
+    "boot_sd_over_sigma_T": 1.0043978629633168,
+    "boot_center_bias": -3.5845073709384516e-05,
+    "sigma_hat_mean": 1.0013487808469652,
+    "sign_flip_fraction": 0.0,
+    "pred_cov_b": 0.16611636851526523,
+    "pred_cov_a": 0.8942977010795531,
+    "theta_main_bias": [
+      0.002593998027236949,
+      -0.003505089801807304
+    ]
+  },
+  "checks": {
+    "clean_theta_star_slsqp": true,
+    "clean_coverage_near_95": true,
+    "clean_width_ratio_close_1": true,
+    "clean_boot_sd_close": true,
+    "eval_a_coverage_near_95": true,
+    "eval_b_coverage_below_a": true
+  },
+  "verdict": "PASS"
+}

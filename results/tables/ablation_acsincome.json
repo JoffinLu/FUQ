@@ -1,0 +1,27 @@
+{
+  "dataset": "acsincome",
+  "protocol": "A (fresh evaluation set per repetition)",
+  "config": {
+    "T": 30000,
+    "B": 100,
+    "R": 300,
+    "reps": 60,
+    "m": 1000,
+    "eta0": 0.1,
+    "kind": "di",
+    "eps": 0.01,
+    "n_dprime": 1000,
+    "n_reservoir": 8000,
+    "kappa": 0.1
+  },
+  "phi_pop": 0.04128,
+  "coverage_paper": 0.25,
+  "coverage_eval_only": 1.0,
+  "coverage_train_eval": 1.0,
+  "width_paper": 0.01481,
+  "width_eval_only": 0.08073,
+  "width_train_eval": 0.08208,
+  "se_train": 0.0043,
+  "se_eval": 0.03042,
+  "elapsed_sec": 64.9
+}

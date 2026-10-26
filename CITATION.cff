@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use this code or the results, please cite the manuscript."
+type: software
+title: "fuq-fairness: Separating Training, Evaluation and Constraint-Set Noise in Fairness Uncertainty Quantification"
+abstract: "Reproduction code, experiments, verification scripts and result tables for the paper 'Separating Training, Evaluation and Constraint-Set Noise in Fairness Uncertainty Quantification'."
+authors:
+  - family-names: Lu
+    given-names: Cenfa
+    orcid: "https://orcid.org/0009-0003-3481-3624"
+    affiliation: "School of Mathematics and Computational Science, Guilin University of Electronic Technology"
+    email: joffin@163.com
+license: MIT
+version: "1.0.0"
+date-released: "2026-10-27"

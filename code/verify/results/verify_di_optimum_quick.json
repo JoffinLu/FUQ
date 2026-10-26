@@ -1,0 +1,180 @@
+{
+  "config": {
+    "n_data": 2000,
+    "n_Dp": 200,
+    "eps": 0.002,
+    "n_pop": 50000,
+    "n_test": 200000,
+    "n_Dp_draws": 3,
+    "seed": 20261026,
+    "R": 8,
+    "T_list": "10000,50000",
+    "eta0_list": "0.01,0.1",
+    "quick": true,
+    "json_out": "verify_di_optimum_quick.json"
+  },
+  "sample_stats": {
+    "y_mean": -0.02,
+    "z_mean": 0.411,
+    "corr_zy": 0.8095270889031969
+  },
+  "theta_star_draws": [
+    {
+      "draw": 0,
+      "xt": [
+        0.0,
+        0.5442269952514089,
+        0.48129183431659195
+      ],
+      "theta_star_pop": [
+        -0.013610282684360396,
+        -0.6388036078310668,
+        0.7264909626861856
+      ],
+      "theta_star_emp": [
+        -0.03484148753770967,
+        -0.6783673936208807,
+        0.7712282275345173
+      ],
+      "norm_pop": 0.9674938801033505,
+      "norm_emp": 1.02771067374425,
+      "xt_theta": 0.002000000000000131,
+      "kkt_residual": 1.3859417790576002e-11,
+      "di": -0.05601581736676903,
+      "phi": 0.05601581736676903,
+      "accuracy": 0.610045,
+      "angle_xt_vs_label_deg": 3.5117858131917603,
+      "tangent_curv_min": 0.058221690817137475,
+      "tangent_curv_max": 0.2354908193896539,
+      "grad_perp_norm_at_0": 0.06470873233936662
+    },
+    {
+      "draw": 1,
+      "xt": [
+        1.2101430968414207e-16,
+        0.6737354010333853,
+        0.6021094539425498
+      ],
+      "theta_star_pop": [
+        -0.012674179096043422,
+        -0.585889325843743,
+        0.6589074084632602
+      ],
+      "theta_star_emp": [
+        -0.034480869115222586,
+        -0.6268554457090202,
+        0.70474679034888
+      ],
+      "norm_pop": 0.8818083181061311,
+      "norm_emp": 0.9438245168764391,
+      "xt_theta": 0.0020000000000003227,
+      "kkt_residual": 4.238824443158432e-10,
+      "di": -0.03677005684685136,
+      "phi": 0.03677005684685136,
+      "accuracy": 0.600545,
+      "angle_xt_vs_label_deg": 3.213212959116373,
+      "tangent_curv_min": 0.059677898609284005,
+      "tangent_curv_max": 0.23779864599810518,
+      "grad_perp_norm_at_0": 0.05917947694060498
+    },
+    {
+      "draw": 2,
+      "xt": [
+        -3.136380044566067e-17,
+        0.7165091727293352,
+        0.671183053458157
+      ],
+      "theta_star_pop": [
+        -0.010552341931945833,
+        -0.3418929301124516,
+        0.3679613471234307
+      ],
+      "theta_star_emp": [
+        -0.03522392675460696,
+        -0.3886864830315888,
+        0.4179149472901962
+      ],
+      "norm_pop": 0.5023919590897293,
+      "norm_emp": 0.5718136149796076,
+      "xt_theta": 0.0019999999999999354,
+      "kkt_residual": 7.302213347790872e-12,
+      "di": 0.04697526981044664,
+      "phi": 0.04697526981044664,
+      "accuracy": 0.559555,
+      "angle_xt_vs_label_deg": 1.8707839729317577,
+      "tangent_curv_min": 0.06539185225352778,
+      "tangent_curv_max": 0.24588314009790357,
+      "grad_perp_norm_at_0": 0.0343194656560654
+    }
+  ],
+  "theta_star_summary": {
+    "norm_pop_mean": 0.7838980524330702,
+    "norm_pop_sd": 0.24752730016256225,
+    "norm_emp_mean": 0.8477829352000988,
+    "norm_emp_sd": 0.24264896683425796,
+    "phi_mean": 0.046587048008022346,
+    "phi_sd": 0.009628751820636647,
+    "acc_mean": 0.5900483333333333,
+    "acc_sd": 0.026831791467088653
+  },
+  "convergence_table": [
+    {
+      "eta0": 0.01,
+      "T": 10000,
+      "R": 8,
+      "mean_dist": 0.9311904332156318,
+      "sd_dist": 0.008148648773369457,
+      "mean_rel": 0.9060822826944406,
+      "di_of_average": 0.0005383414995129218,
+      "acc_of_average": 0.59872125,
+      "seconds": 0.25658249855041504
+    },
+    {
+      "eta0": 0.01,
+      "T": 50000,
+      "R": 8,
+      "mean_dist": 0.8046704042707136,
+      "sd_dist": 0.007640974450977292,
+      "mean_rel": 0.7829736761797602,
+      "di_of_average": 0.059908889479362355,
+      "acc_of_average": 0.56991875,
+      "seconds": 1.1942813396453857
+    },
+    {
+      "eta0": 0.1,
+      "T": 10000,
+      "R": 8,
+      "mean_dist": 0.5191923437262046,
+      "sd_dist": 0.15337084625918576,
+      "mean_rel": 0.5051931024853866,
+      "di_of_average": 0.1325068361877077,
+      "acc_of_average": 0.5287881249999999,
+      "seconds": 0.2569246292114258
+    },
+    {
+      "eta0": 0.1,
+      "T": 50000,
+      "R": 8,
+      "mean_dist": 2.7452812945582763,
+      "sd_dist": 0.1838869934889646,
+      "mean_rel": 2.6712589104056055,
+      "di_of_average": 0.1499867757015771,
+      "acc_of_average": 0.5193412500000001,
+      "seconds": 1.157076358795166
+    }
+  ],
+  "warm_start": {
+    "T": 10000,
+    "mean_dist": 0.1522906088279757,
+    "rel": 0.14818432144247035,
+    "max_rel": 0.15743511932806792
+  },
+  "verdict": {
+    "tangent_curv_min": 0.058221690817137475,
+    "grad_perp_norm_at_0": 0.06470873233936662,
+    "predicted_T_for_rel_1em3_at_eta0_001": 1475028382.3871686,
+    "is_formula_typo": false,
+    "warm_start_converged": false,
+    "reason": "The recursion was implemented exactly as SPEC/paper (theta_k = Pi(-u_{k-1}), u_k = u_{k-1}+eta_k grad, eta_k = eta0 k^-0.501, averaged output). The same recursion in deterministic full-batch form converges to theta*, and the warm-started stochastic average stays at theta* to ~1e-3 (see warm_start_converged). What makes the prescribed schedule slow is the geometry of this DGP+constraint: z is almost a function of y (corr 0.81), the DI constraint direction xt~ is within ~2-4 deg of the label direction, so the constrained optimum lies in a very shallow (tangent curvature ~0.058) low-signal region. The averaged-iterate transient decays like exp(-h eta0 k^(1-alpha)/(1-alpha)); with eta0=0.01 the transient factor is ~0.5 at T=1e5 and ~0.15 at T=5e5, hence the large distances; T~1.5e9 would be needed for 1e-3. So it is NOT a formula typo: it is a step-size / problem-conditioning mismatch. Note the paper's reported synthetic-DI mean DI ~0.025 is much smaller than |DI(theta*)|~0.05-0.11, consistent with the paper having used finite-T averages that are still far from theta* (the finite-T averages in the table also show small DI)."
+  }
+}

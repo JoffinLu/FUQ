@@ -1,0 +1,4 @@
+dataset,phi_pop,T,m,sigma_Delta,v,best_half_width,half_width_over_gap
+adult,0.05934,30000,1000,1.1622,0.8212,0.0526,0.89
+acsincome,0.04128,30000,1000,0.7448,0.962,0.0602,1.46
+compas,0.00629,30000,400,5.5824,1.1914,0.1327,21.1

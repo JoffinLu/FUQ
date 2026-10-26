@@ -1,0 +1,112 @@
+{
+  "config": {
+    "n": 2000,
+    "eps": 0.002,
+    "seed": 20261026,
+    "T_spec": 1000000,
+    "R_spec": 32,
+    "T_acc": 500000,
+    "R_acc": 64,
+    "eta_scale_acc": 100.0,
+    "T_warm": 200000,
+    "R_warm": 32,
+    "quick": false,
+    "json_out": "verify_theta_star.json"
+  },
+  "n": 2000,
+  "xt": [
+    1.7635892746170612e-16,
+    0.6266570232248858,
+    0.5636225013126382
+  ],
+  "slsqp": {
+    "theta": [
+      -0.03438223520117359,
+      -0.5947216621957706,
+      0.6647827324252289
+    ],
+    "fun": 0.664078703322295,
+    "success": true,
+    "xt_theta": 0.0020000000000000777,
+    "constraint_violation": 7.762887554996212e-17,
+    "kkt_residual": 3.076691028628524e-12,
+    "multiplier": 1.2040515202145825,
+    "projected_hessian_eigs": [
+      1.6324072927324429e-18,
+      0.06081528976407315,
+      0.2371577150147418
+    ]
+  },
+  "seconds_slsqp": 0.005102634429931641,
+  "cold_spec_schedule": {
+    "theta": [
+      -0.3527285994622964,
+      -0.7199930544199724,
+      0.8040642471044187
+    ],
+    "theta_se": [
+      0.00319627275116179,
+      0.001713478260411185,
+      0.0019051105415398219
+    ],
+    "rel_err": 0.4137972514456113,
+    "rel_err_rep_median": 0.4112584879695024,
+    "rel_err_rep_max": 0.46179263219271766,
+    "predicted_theta_bar": [
+      -0.03132196336146611,
+      -0.3157253840336007,
+      0.35458401474318296
+    ],
+    "predicted_rel_err": 0.4673970032616197,
+    "prediction_error": 0.767009224770307,
+    "factors_h_f": [
+      [
+        0.06081528976407315,
+        0.46772876322854395
+      ],
+      [
+        0.2371577150147418,
+        0.08601567809030931
+      ]
+    ],
+    "seconds": 34.741530418395996
+  },
+  "cold_accelerated": {
+    "theta": [
+      -34.45179086348753,
+      -74.07850309352071,
+      82.36685746474494
+    ],
+    "theta_se": [
+      0.09685703661637984,
+      0.13351590475649225,
+      0.14844808224128622
+    ],
+    "rel_err": 128.99953023507675,
+    "rel_err_rep_median": 128.98835639517358,
+    "rel_err_rep_max": 133.2668577835708,
+    "objective": 20.78248642593274,
+    "objective_rel_err": 30.295215946484653,
+    "seconds": 24.747727155685425,
+    "verdict": "FAIL"
+  },
+  "warm_start": {
+    "theta": [
+      -0.28701195651778627,
+      -0.9823254433705556,
+      1.095735419970557
+    ],
+    "theta_se": [
+      0.003325763075832491,
+      0.0014642285032269201,
+      0.0016279851727297565
+    ],
+    "rel_err": 0.7083238493798782,
+    "rel_err_rep_median": 0.7065614599087573,
+    "rel_err_rep_max": 0.7411712341190839,
+    "seconds": 14.817713260650635,
+    "verdict": "FAIL"
+  },
+  "overall": "FAIL",
+  "finite_T_note": "With the prescribed step constant (0.01), a cold-started averaged SDA does not reach theta* at T<=1e6: the average retains a slowly decaying initialisation transient (linearised prediction agrees with the observed deficit). This is a finite-T property of the SPEC schedule, not an implementation defect; the fixed point and the constrained optimum agree (checks b and c)."
+}

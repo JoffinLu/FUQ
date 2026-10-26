@@ -1,0 +1,47 @@
+{
+  "config": {
+    "dataset": "adult",
+    "reps": 20,
+    "B": 100,
+    "alpha": 0.05,
+    "seed": 20261026
+  },
+  "rows": [
+    {
+      "kappa": 0.0001,
+      "T": 20000,
+      "theta_star_norm": 10.895,
+      "bias_median": 10.5028,
+      "coverage_pop": 0.0,
+      "ci_width": 0.03986,
+      "phi_pop": 0.13942
+    },
+    {
+      "kappa": 0.01,
+      "T": 20000,
+      "theta_star_norm": 2.204,
+      "bias_median": 0.8077,
+      "coverage_pop": 0.95,
+      "ci_width": 0.03821,
+      "phi_pop": 0.08842
+    },
+    {
+      "kappa": 0.1,
+      "T": 20000,
+      "theta_star_norm": 1.096,
+      "bias_median": 0.1193,
+      "coverage_pop": 0.0,
+      "ci_width": 0.02887,
+      "phi_pop": 0.05704
+    },
+    {
+      "kappa": 1.0,
+      "T": 20000,
+      "theta_star_norm": 0.315,
+      "bias_median": 0.0245,
+      "coverage_pop": 0.6,
+      "ci_width": 0.03141,
+      "phi_pop": 0.06506
+    }
+  ]
+}

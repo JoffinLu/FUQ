@@ -1,0 +1,75 @@
+{
+  "reps": 40,
+  "B": 100,
+  "Tgrid": [
+    1000,
+    3000,
+    10000,
+    30000,
+    100000
+  ],
+  "delta_star": 0.03740879827687482,
+  "theta_star_norm": 0.3790206635984541,
+  "slope_abs_bias_m100_vs_T": -0.09,
+  "slope_train_bias_vs_T": -0.302,
+  "slope_signed_train_bias_vs_T": -0.459,
+  "slope_norm_distance_vs_T": -0.469,
+  "slope_w2_vs_k": -0.687,
+  "rows": [
+    {
+      "T": 1000,
+      "mean_abs_bias_m100": 0.09650492883891655,
+      "sd_abs_bias_m100": 0.07907690669618184,
+      "mean_abs_train_bias": 0.08466580656898322,
+      "mean_signed_train_bias": 0.07544917342943566,
+      "sd_abs_train_bias": 0.05071559876234,
+      "mean_dist_to_star": 0.28485832382916704,
+      "sd_dist_to_star": 0.04843393298628053,
+      "elapsed_sec": 2.9
+    },
+    {
+      "T": 3000,
+      "mean_abs_bias_m100": 0.09110522863770003,
+      "sd_abs_bias_m100": 0.07530536352774578,
+      "mean_abs_train_bias": 0.05723984364266825,
+      "mean_signed_train_bias": 0.05012625058978966,
+      "sd_abs_train_bias": 0.041033343867690045,
+      "mean_dist_to_star": 0.23316513222673524,
+      "sd_dist_to_star": 0.05435369652374436,
+      "elapsed_sec": 7.6
+    },
+    {
+      "T": 10000,
+      "mean_abs_bias_m100": 0.08214189205021524,
+      "sd_abs_bias_m100": 0.07022802105106388,
+      "mean_abs_train_bias": 0.046991154900427524,
+      "mean_signed_train_bias": 0.03849278089871316,
+      "sd_abs_train_bias": 0.038968037916483005,
+      "mean_dist_to_star": 0.16681359309279237,
+      "sd_dist_to_star": 0.03732006579197658,
+      "elapsed_sec": 20.3
+    },
+    {
+      "T": 30000,
+      "mean_abs_bias_m100": 0.06627511728548935,
+      "sd_abs_bias_m100": 0.06987566388332708,
+      "mean_abs_train_bias": 0.029989047789987122,
+      "mean_signed_train_bias": 0.011060771784848539,
+      "sd_abs_train_bias": 0.02077581124361807,
+      "mean_dist_to_star": 0.08367928563389189,
+      "sd_dist_to_star": 0.03358491239031883,
+      "elapsed_sec": 56.1
+    },
+    {
+      "T": 100000,
+      "mean_abs_bias_m100": 0.06737536195325781,
+      "sd_abs_bias_m100": 0.055671662185426525,
+      "mean_abs_train_bias": 0.020561233067920785,
+      "mean_signed_train_bias": 0.011327359991549105,
+      "sd_abs_train_bias": 0.016388788793413184,
+      "mean_dist_to_star": 0.03203139482745061,
+      "sd_dist_to_star": 0.018293246904635352,
+      "elapsed_sec": 172.8
+    }
+  ]
+}

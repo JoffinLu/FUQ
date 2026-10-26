@@ -1,0 +1,21 @@
+{
+  "dataset": "adult",
+  "kind": "di",
+  "R": 25,
+  "delta_star_eval": -0.08493,
+  "delta_star_pool": -0.0564,
+  "theta_star_norm": 1.096,
+  "optimizer_success": true,
+  "se_train": 0.00558,
+  "se_eval": 0.02588,
+  "sd_Dprime": 0.01244,
+  "mean_delta_over_Dprime": -0.04579,
+  "var_train": 3.111e-05,
+  "var_eval": 0.00066992,
+  "var_Dprime": 0.00015468,
+  "share_train": 0.036,
+  "share_eval": 0.783,
+  "share_Dprime": 0.181,
+  "total_se": 0.02925,
+  "elapsed_sec": 9.4
+}

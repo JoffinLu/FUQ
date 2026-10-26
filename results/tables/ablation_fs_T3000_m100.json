@@ -1,0 +1,26 @@
+{
+  "dataset": "synth_di",
+  "protocol": "A (fresh evaluation set per repetition)",
+  "config": {
+    "T": 3000,
+    "B": 100,
+    "R": 300,
+    "reps": 100,
+    "m": 100,
+    "eta0": 0.1,
+    "n_pool": 20000,
+    "n_dprime": 200,
+    "eps": 0.002,
+    "kappa": 0.0001
+  },
+  "phi_pop": 0.02119,
+  "coverage_paper": 0.87,
+  "coverage_eval_only": 0.83,
+  "coverage_train_eval": 1.0,
+  "width_paper": 0.21484,
+  "width_eval_only": 0.28052,
+  "width_train_eval": 0.3302,
+  "se_train": 0.09372,
+  "se_eval": 0.09114,
+  "elapsed_sec": 21.0
+}

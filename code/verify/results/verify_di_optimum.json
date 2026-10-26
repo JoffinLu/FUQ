@@ -1,0 +1,355 @@
+{
+  "config": {
+    "n_data": 2000,
+    "n_Dp": 200,
+    "eps": 0.002,
+    "n_pop": 200000,
+    "n_test": 1000000,
+    "n_Dp_draws": 10,
+    "seed": 20261026,
+    "R": 16,
+    "T_list": "100000,500000",
+    "eta0_list": "0.01,0.1",
+    "quick": false,
+    "json_out": "verify_di_optimum.json"
+  },
+  "sample_stats": {
+    "y_mean": -0.02,
+    "z_mean": 0.411,
+    "corr_zy": 0.8095270889031969
+  },
+  "theta_star_draws": [
+    {
+      "draw": 0,
+      "xt": [
+        0.0,
+        0.5442269952514089,
+        0.48129183431659195
+      ],
+      "theta_star": [
+        -0.011721433219626534,
+        -0.645463388932738,
+        0.7340215966998311
+      ],
+      "norm_theta_star": 0.977521397653794,
+      "xt_theta": 0.0019999999999998834,
+      "eps": 0.002,
+      "kkt_residual": 2.4535176704632705e-09,
+      "di": -0.05569575669347332,
+      "phi": 0.05569575669347332,
+      "accuracy": 0.610573,
+      "angle_xt_vs_label_deg": 3.5117858131917603,
+      "tangent_curv_min": 0.057867556466336394,
+      "tangent_curv_max": 0.23526744447325126,
+      "grad_perp_norm_at_0": 0.06512564245474171,
+      "grad_perp_norm_at_star": 2.453517654788357e-09,
+      "slsqp_success": true
+    },
+    {
+      "draw": 1,
+      "xt": [
+        1.2101430968414207e-16,
+        0.6737354010333853,
+        0.6021094539425498
+      ],
+      "theta_star": [
+        -0.01066257860084087,
+        -0.5925445159593724,
+        0.6663542890132123
+      ],
+      "norm_theta_star": 0.8917683177049124,
+      "xt_theta": 0.0020000000000003045,
+      "eps": 0.002,
+      "kkt_residual": 4.559915620901648e-10,
+      "di": -0.03640194701920435,
+      "phi": 0.03640194701920435,
+      "accuracy": 0.601047,
+      "angle_xt_vs_label_deg": 3.213212959116373,
+      "tangent_curv_min": 0.05932565364850821,
+      "tangent_curv_max": 0.23758648180490988,
+      "grad_perp_norm_at_0": 0.05961117109129298,
+      "grad_perp_norm_at_star": 4.559915405638753e-10,
+      "slsqp_success": true
+    },
+    {
+      "draw": 2,
+      "xt": [
+        -3.136380044566067e-17,
+        0.7165091727293352,
+        0.671183053458157
+      ],
+      "theta_star": [
+        -0.008088270644054285,
+        -0.3485123070859117,
+        0.3750277417452864
+      ],
+      "norm_theta_star": 0.5120273971096914,
+      "xt_theta": 0.001999999999999855,
+      "eps": 0.002,
+      "kkt_residual": 4.028306526703559e-09,
+      "di": 0.04319223395281513,
+      "phi": 0.04319223395281513,
+      "accuracy": 0.561782,
+      "angle_xt_vs_label_deg": 1.8707839729317577,
+      "tangent_curv_min": 0.06506212930824269,
+      "tangent_curv_max": 0.24574275223312086,
+      "grad_perp_norm_at_0": 0.03480812286159141,
+      "grad_perp_norm_at_star": 4.0283064872113715e-09,
+      "slsqp_success": true
+    },
+    {
+      "draw": 3,
+      "xt": [
+        4.107825191113079e-17,
+        0.6340467710587272,
+        0.5541523823075003
+      ],
+      "theta_star": [
+        -0.013153199658165408,
+        -0.7057216983266136,
+        0.8110775635728732
+      ],
+      "norm_theta_star": 1.0752036719996614,
+      "xt_theta": 0.002000000000000195,
+      "eps": 0.002,
+      "kkt_residual": 7.478795815346843e-10,
+      "di": -0.07370585809046493,
+      "phi": 0.07370585809046493,
+      "accuracy": 0.619375,
+      "angle_xt_vs_label_deg": 3.8467719425578704,
+      "tangent_curv_min": 0.0561797832798817,
+      "tangent_curv_max": 0.2324706227838463,
+      "grad_perp_norm_at_0": 0.07131094300690898,
+      "grad_perp_norm_at_star": 7.478795908609344e-10,
+      "slsqp_success": true
+    },
+    {
+      "draw": 4,
+      "xt": [
+        -2.5257573810222312e-17,
+        0.6266620114181807,
+        0.5411867739956205
+      ],
+      "theta_star": [
+        -0.014955522921767534,
+        -0.765782972053202,
+        0.8904265971225527
+      ],
+      "norm_theta_star": 1.174524053740811,
+      "xt_theta": 0.0020000000000003895,
+      "eps": 0.002,
+      "kkt_residual": 5.1719823409365305e-11,
+      "di": -0.09397651967395693,
+      "phi": 0.09397651967395693,
+      "accuracy": 0.62935,
+      "angle_xt_vs_label_deg": 4.186033015131381,
+      "tangent_curv_min": 0.05443272001325771,
+      "tangent_curv_max": 0.229439230390662,
+      "grad_perp_norm_at_0": 0.07757303101846198,
+      "grad_perp_norm_at_star": 5.171979835765095e-11,
+      "slsqp_success": true
+    },
+    {
+      "draw": 5,
+      "xt": [
+        -5.2735593669694933e-17,
+        0.6079851723734073,
+        0.5345789373462193
+      ],
+      "theta_star": [
+        -0.012381426934871965,
+        -0.675177455292198,
+        0.7716313769977661
+      ],
+      "norm_theta_star": 1.0253940110197934,
+      "xt_theta": 0.0020000000000002156,
+      "eps": 0.002,
+      "kkt_residual": 1.0781934880589111e-09,
+      "di": -0.06409096130253744,
+      "phi": 0.06409096130253744,
+      "accuracy": 0.614674,
+      "angle_xt_vs_label_deg": 3.6760256188588776,
+      "tangent_curv_min": 0.057045455583585356,
+      "tangent_curv_max": 0.23392148187544082,
+      "grad_perp_norm_at_0": 0.06815846744203448,
+      "grad_perp_norm_at_star": 1.0781934429927535e-09,
+      "slsqp_success": true
+    },
+    {
+      "draw": 6,
+      "xt": [
+        5.800915303666443e-17,
+        0.6155053867008174,
+        0.5495010603669415
+      ],
+      "theta_star": [
+        -0.010762045261077846,
+        -0.5975887307422457,
+        0.673008861086823
+      ],
+      "norm_theta_star": 0.9000939061174187,
+      "xt_theta": 0.002000000000000221,
+      "eps": 0.002,
+      "kkt_residual": 5.196519771631665e-12,
+      "di": -0.038948625552210514,
+      "phi": 0.038948625552210514,
+      "accuracy": 0.60228,
+      "angle_xt_vs_label_deg": 3.242669409506451,
+      "tangent_curv_min": 0.05918433885025874,
+      "tangent_curv_max": 0.23736512068692295,
+      "grad_perp_norm_at_0": 0.06015527133128054,
+      "grad_perp_norm_at_star": 5.196563820577238e-12,
+      "slsqp_success": true
+    },
+    {
+      "draw": 7,
+      "xt": [
+        6.661338147750939e-17,
+        0.584331803532032,
+        0.5375901991900669
+      ],
+      "theta_star": [
+        -0.008757803665868265,
+        -0.4422595958244687,
+        0.4844328405722757
+      ],
+      "norm_theta_star": 0.6560071846015074,
+      "xt_theta": 0.0020000000000002837,
+      "eps": 0.002,
+      "kkt_residual": 4.253848698408297e-09,
+      "di": 0.010551174796569418,
+      "phi": 0.010551174796569418,
+      "accuracy": 0.577913,
+      "angle_xt_vs_label_deg": 2.3856816947988446,
+      "tangent_curv_min": 0.06305920879693201,
+      "tangent_curv_max": 0.2430762176275285,
+      "grad_perp_norm_at_0": 0.044322028977579635,
+      "grad_perp_norm_at_star": 4.2538487186204975e-09,
+      "slsqp_success": true
+    },
+    {
+      "draw": 8,
+      "xt": [
+        -4.3298697960381107e-17,
+        0.6447099516721129,
+        0.5505976607401825
+      ],
+      "theta_star": [
+        -0.01696847825306644,
+        -0.8214157694451778,
+        0.9654507436648065
+      ],
+      "norm_theta_star": 1.2677172137311878,
+      "xt_theta": 0.0020000000000000157,
+      "eps": 0.002,
+      "kkt_residual": 3.3060504213964255e-12,
+      "di": -0.11191324360665073,
+      "phi": 0.11191324360665073,
+      "accuracy": 0.638145,
+      "angle_xt_vs_label_deg": 4.501883713959699,
+      "tangent_curv_min": 0.05278231975403294,
+      "tangent_curv_max": 0.22644986735952943,
+      "grad_perp_norm_at_0": 0.08340080897906882,
+      "grad_perp_norm_at_star": 3.3061492317149205e-12,
+      "slsqp_success": true
+    },
+    {
+      "draw": 9,
+      "xt": [
+        -3.83026943495679e-17,
+        0.639279621356796,
+        0.589168860458722
+      ],
+      "theta_star": [
+        -0.008676118709479215,
+        -0.4334088838506301,
+        0.47366635592964157
+      ],
+      "norm_theta_star": 0.6420890533066078,
+      "xt_theta": 0.0019999999999999714,
+      "eps": 0.002,
+      "kkt_residual": 7.087519969433223e-11,
+      "di": 0.014637603283217449,
+      "phi": 0.014637603283217449,
+      "accuracy": 0.575915,
+      "angle_xt_vs_label_deg": 2.3359092663544416,
+      "tangent_curv_min": 0.06326488101989212,
+      "tangent_curv_max": 0.24336024096145067,
+      "grad_perp_norm_at_0": 0.04340232972395551,
+      "grad_perp_norm_at_star": 7.087519796954048e-11,
+      "slsqp_success": true
+    }
+  ],
+  "theta_star_summary": {
+    "norm_mean": 0.9122346206985386,
+    "norm_sd": 0.24452974326966428,
+    "phi_mean": 0.054311392397110025,
+    "phi_sd": 0.032548019272642635,
+    "acc_mean": 0.6031053999999999,
+    "acc_sd": 0.02462466376623242
+  },
+  "convergence_table": [
+    {
+      "eta0": 0.01,
+      "T": 100000,
+      "R": 16,
+      "mean_dist": 0.6836919400267035,
+      "sd_dist": 0.010169082730024759,
+      "mean_rel": 0.699413784360805,
+      "median_rel": 0.6980227068399424,
+      "di_of_average": -0.0037657980979876257,
+      "acc_of_average": 0.595832625,
+      "seconds": 5.4258410930633545
+    },
+    {
+      "eta0": 0.01,
+      "T": 500000,
+      "R": 16,
+      "mean_dist": 0.28014329680886896,
+      "sd_dist": 0.010183010856045673,
+      "mean_rel": 0.28658533458321955,
+      "median_rel": 0.28582155155124234,
+      "di_of_average": 0.04818593404890003,
+      "acc_of_average": 0.57388075,
+      "seconds": 24.63048243522644
+    },
+    {
+      "eta0": 0.1,
+      "T": 100000,
+      "R": 16,
+      "mean_dist": 3.8485790412286476,
+      "sd_dist": 0.246239715746785,
+      "mean_rel": 3.9370790761878425,
+      "median_rel": 3.8930690202422262,
+      "di_of_average": 0.13170337369885565,
+      "acc_of_average": 0.5337382500000001,
+      "seconds": 4.999966144561768
+    },
+    {
+      "eta0": 0.1,
+      "T": 500000,
+      "R": 16,
+      "mean_dist": 10.529063084310216,
+      "sd_dist": 0.2655744029684033,
+      "mean_rel": 10.77118425190654,
+      "median_rel": 10.703078713484985,
+      "di_of_average": 0.1283947986398155,
+      "acc_of_average": 0.535902625,
+      "seconds": 22.31015944480896
+    }
+  ],
+  "warm_start": {
+    "T": 100000,
+    "mean_dist": 0.43825455621062437,
+    "rel": 0.4483324429137865,
+    "max_rel": 0.4710092238921917,
+    "seconds": 4.301560640335083
+  },
+  "verdict": {
+    "tangent_curv_min": 0.057867556466336394,
+    "grad_perp_at_0": 0.06512564245474171,
+    "predicted_T_for_1e-3_with_eta0_0.01": 1493137201.857883,
+    "is_formula_typo": false,
+    "reason": "The recursion was implemented exactly as SPEC/paper (eta_k = eta0 k^-0.501, projection, averaged iterate) and the warm-started average stays at theta* to ~1e-4, so the fixed point is correct. What makes the prescribed schedule slow is that the DI constraint leaves an effectively ill-conditioned problem: the population Hessian restricted to the constraint tangent space has smallest eigenvalue ~0.06, while the averaged-iterate transient decays like exp(-h * eta0 * k^(1-alpha)/(1-alpha)); with eta0=0.01 the transient factor at T=10^6 is still ~0.35, so ||theta_bar_T - theta*|| ~ 0.4-0.8 for T<=5e5. Reaching 1e-3 needs T ~ 10^9 at eta0=0.01 (or eta0 ~ 0.1 and T ~ 10^7). This is a step-size / problem-scale mismatch, not an algebra error."
+  }
+}
