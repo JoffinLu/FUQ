@@ -183,18 +183,6 @@
   "bib_title": "FairlyUncertain: A Comprehensive Benchmark of Uncertainty in Algorithmic Fairness"
  },
  {
-  "key": "moreau2024",
-  "verdict": "exact",
-  "score": 1.2,
-  "title_ratio": 1.0,
-  "oa_title": "QUANTIFYING ALGORITHMIC FAIRNESS: A NOVEL PERSPECTIVE THROUGH UNCERTAINTY ESTIMATION",
-  "oa_year": 2024,
-  "oa_venue": "European Journal of Emerging Artificial Intelligence",
-  "doi": null,
-  "cached": true,
-  "bib_title": "Quantifying Algorithmic Fairness: A Novel Perspective Through Uncertainty Estimation"
- },
- {
   "key": "ding2021",
   "verdict": "exact",
   "score": 1.2,

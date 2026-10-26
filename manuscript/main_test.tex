@@ -125,7 +125,7 @@ Section~\ref{sec:related} reviews related work.  Sections~\ref{sec:setup} and~\r
 
 Asymptotic normality of averaged stochastic approximation goes back to
 \citet{polyak1992}; constrained variants are analysed by \citet{duchi2016}.  Online bootstrap and
-batch-means procedures for unconstrained SGD are developed by \citet{fang2018,chen2016,zhu2021} and
+online covariance procedures for unconstrained SGD are developed by \citet{fang2018,chen2016,zhu2021} and
 extended to policy evaluation \citep{ramprasad2023}.  These methods target the model parameter, whereas a fairness gap is a non-smooth functional of it, so
 \citet{roy2026uq} combine a functional delta-method argument with the multiplier bootstrap.  We leave
 the training-side theory in place and add the evaluation component; the constraint-set (design)
@@ -143,8 +143,7 @@ evaluation uncertainty and makes the two components separately reportable.
 \bmhead{Uncertainty in fairness more broadly.}
 
 \citet{rosenblatt2024} benchmark uncertainty estimates used \emph{inside} fair predictors, a different
-object from uncertainty about the fairness of a trained predictor.  \citet{moreau2024} argue
-conceptually for uncertainty-aware fairness reporting.  Subgroup-level fairness estimates also carry
+object from uncertainty about the fairness of a trained predictor.  Subgroup-level fairness estimates also carry
 estimation variance that grows as the subgroup shrinks (Lemma~\ref{lem:eval}); our evaluation
 component formalises this in the DI/DM setting and is combined with the training component rather
 than studied in isolation.

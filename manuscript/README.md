@@ -10,7 +10,7 @@
 - `supplement.tex` / `supplement.pdf`：补充材料（6 页，表 S1–S9；由 `make_supplement.py` 从
   `results/tables` 自动生成，不手填数字）。
 - `sn-jnl.cls`、`sn-basic.bst`：官方模板文件（v2.1，2022/2023 官方发行版）。
-- `refs.bib`：19 条参考文献（全部被引用；OpenAlex 逐条核对，`refs_checked.json`）。
+- `refs.bib`：18 条参考文献（全部被引用；存在性逐条核对，`refs_checked.json`，复核脚本 `code/verify/verify_citations.py`）。
 - `main_review.pdf`：审稿用带行号版（17 页）；`main_anonymous.pdf`：双盲版（16 页，作者块
   “Anonymous Authors”）；`fuq-fairness_full.pdf`：正文+补充材料合并版（23 页）。
 - `submission/`：目标期刊匹配（`target_journals.md`，TEST 首选/COAP/DMKD 备选）、cover letter、
@@ -40,25 +40,25 @@ python code/make_release.py                              # 发布包（GitHub/Ze
 python manuscript/check_numbers.py    # 123 个数字串，missing 0
 python manuscript/check_package.py    # 13 项包一致性（页数/表数/数字/refs/zip/发布包）
 # 新增/修改参考文献后：
-python manuscript/check_refs.py       # OpenAlex 核对（19 条）
+python manuscript/check_refs.py       # 引文核对（18 条）
 ```
 
 ## 数字与格式
 
 - `check_numbers.py`：**123** 个关键数字串与 `results/tables/*` 自动比对，missing 0。
-- 参考文献 19 条，DOI 全部核对（16 exact；2 near：zhu2021 标题 100% 匹配但作者字段跨行、vdvwellner1996 为专著且 Crossref 记录省略副标题，两者 DOI/作者/年份均核实；roy2026uq 未被 OpenAlex 收录，按出版 PDF 与 arXiv 2023 版核对并在 `refs_checked.json` 中带 note）。
+- 参考文献 18 条，存在性与元数据逐条核对（15 exact；2 near：zhu2021 作者字段跨行、vdvwellner1996 为专著且 Crossref 记录省略副标题，两者 DOI/作者/年份均核实；roy2026uq 未被 OpenAlex 收录，按 PMLR 出版页与 arXiv 2023 版核对并在 `refs_checked.json` 中带 note；1 条不可核实文献已删除，见 `notes/reference_audit.md`）。
 - 补充材料表号独立 S1–S9（`make_supplement.py` 中 `\thetable` 重定义；正文与补充材料可共存）。
 
 ## 投稿包（v2.0）
 
 `submission/fuq-fairness_submission_v2.0.zip`：**约 1.04 MB，24 entries**，含 TEST 版与通用版正文、
-两版 PDF、补充材料与 PDF、官方模板类文件、4 张矢量图、19 条 refs、全部投稿文档；
+两版 PDF、补充材料与 PDF、官方模板类文件、4 张矢量图、18 条 refs、全部投稿文档；
 解压后 `cd manuscript && tectonic main.tex` / `main_test.tex` / `supplement.tex` 均编译通过
 （`build_submission.py` 自动做自包含编译校验）。
 
 ## 发布包（GitHub / Zenodo）
 
-`release/fuq-fairness-v1.0-source.zip`：**167 文件 / 2.00 MB**，含 code、notes、results、
+`release/fuq-fairness-v1.0-source.zip`：**169 文件 / 2.00 MB**，含 code、notes、results、
 manuscript、submission、PROJECT_OVERVIEW、README/LICENSE/CITATION；端到端 light 复现已验证。
 
 ## 本地 git 仓库

@@ -119,3 +119,31 @@ Rebuild and verification: `main.pdf` 17 pages, `main_test.pdf` 18 pages (2 appen
 unchanged), `supplement.pdf` 6 pages, reviewer copy 17 pages, anonymous 16 pages, combined PDF 23
 pages; `check_numbers.py` 123/0; `check_package.py` 13/13 PASS; submission zip 1.04 MB / 24 entries
 with self-contained compiles of all three sources; release package 166 files / 1.99 MB.
+
+## Round 22: reference existence audit
+
+Scope: all 19 entries of `refs.bib` at the start of the audit, verified against
+Crossref, DataCite, the arXiv API, the JMLR/PMLR volume listings and publisher
+pages. Full evidence table: `notes/reference_audit.md`.
+
+- REMOVED: `moreau2024` (Moreau & Weber, *European Journal of Emerging
+  Artificial Intelligence* 1(1):96-112, ISSN 3087-4602). No Crossref work, no
+  journal record for the ISSN, no arXiv or DataCite record; the ISSN portal page
+  could not be read. Per the grey-zone rule the entry and the sentence it
+  supported in Section 2 were deleted. The entry had been in the bibliography
+  since the first v1.0 commit without independent verification; this is
+  disclosed in the audit note.
+- CORRECTED: `chen2016` number/pages 48(5):2513-2540 -> 48(1):251-273
+  (Crossref); `fang2018` pages 1-30 -> 1-21 (JMLR v19 listing); `cherian2023`
+  article number/pages added, 25(149):1-49 (JMLR v25 listing).
+- VERIFIED with no change: the remaining 15 entries (PMLR page for `roy2026uq`,
+  arXiv/DataCite for the preprints, Crossref DOIs elsewhere).
+- QUOTE-LEVEL: Section 2 no longer calls `chen2016`/`zhu2021` "batch-means"
+  procedures; the sentence now says "online bootstrap and online covariance
+  procedures". All other citation-to-claim mappings were checked sentence by
+  sentence and kept.
+- Rebuild after the audit: main PDF 17 pages, TEST version 18 pages, reviewer
+  copy 17 pages, anonymous 16 pages, combined 23 pages, supplement 6 pages,
+  submission zip 24 entries, release package 168 files; `check_refs.py` 15
+  exact / 2 near / 1 manual missing (`roy2026uq`), `check_numbers.py` 123/0,
+  `check_package.py` 13/13 PASS.

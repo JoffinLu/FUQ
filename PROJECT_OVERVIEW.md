@@ -39,7 +39,7 @@
   `fuq-fairness_full.pdf`（合并 23 页）
 - `manuscript/submission/fuq-fairness_submission_v2.0.zip`：投稿包（24 entries，约 1.04 MB，
   含 TEST 版/通用版/补充材料/官方模板类文件/4 张矢量图/投稿文档，自包含编译校验通过）
-- `release/fuq-fairness-v1.0-source.zip`：发布包（167 文件，2.00 MB，含 code/notes/results/manuscript）
+- `release/fuq-fairness-v1.0-source.zip`：发布包（169 文件，2.00 MB，含 code/notes/results/manuscript）
 - `code/`：复现代码（fairuq.py、dgp.py、optimum.py；exps/*；verify/*；tests/*；reproduce_all.py；
   build_test_tex.py；make_release.py）
 - `notes/`：复现报告、独立核验、理论草稿、扩展结果、审稿预案、可复现性验证、投稿交接单
@@ -60,7 +60,7 @@ python manuscript/check_package.py              # 13/13 包一致性
 
 - 5 组论文实验：全量重跑与 canonical 结果**逐值一致**（仅 elapsed_sec 不同；48 张表 0 新增/0 删除）；
 - 独立实现核验：投影/KKT、乘子分布、MIS、约束最优解 4 项 PASS；步长收敛性 FAIL（作为复现发现记录）；
-- 稿件数字一致：123 个数字串 missing 0；参考文献 19 条全核对；
+- 稿件数字一致：123 个数字串 missing 0；参考文献 18 条全核对；
 - 包一致性 13/13 PASS（页数/表数/图数/数字/参考文献/zip/发布包/审稿版/合并版）；
 - 环境：Python 3.13.15、numpy 2.2.4、scipy 1.18.1、scikit-learn 1.9.1、pandas 3.0.6；
   单 CPU（AMD Ryzen 7 8845H，27.8 GB RAM，无 GPU）。

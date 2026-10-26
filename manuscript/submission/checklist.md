@@ -12,7 +12,7 @@
 - [x] 补充材料 `supplement.pdf`（6 页，表 S1–S9，独立编号）
 - [x] 所有图以矢量 PDF 提交（`results/figures/`：repro_synth_di、repro_compas、sample_size、ablation_coverage），正文按 Fig. 1–4 引用
 - [x] 数字一致性：`python manuscript/check_numbers.py` → 123 个数字串 missing 0
-- [x] 参考文献：19 条全部被引用、DOI 核对（`refs_checked.json`）；作者-年份格式（sn-basic）
+- [x] 参考文献：18 条全部被引用、存在性与 DOI 核对（`refs_checked.json`、`notes/reference_audit.md`）；作者-年份格式（sn-basic）
 - [x] 包一致性：`python manuscript/check_package.py` → **13/13 PASS**
 - [x] 三版 PDF 自包含编译验证（submission zip 解压后 main/main_test/supplement 均 exit 0）
 - [x] 摘要约 223 词；关键词 5 个；短标题 ≤40 字符
