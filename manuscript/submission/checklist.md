@@ -7,7 +7,7 @@
 
 - [x] 目标期刊分区核实（2026-10-27）：TEST = 中科院 2025 基础版 3 区（来源 `target_journals.md`；官方分区表提交前复核）
 - [x] 官方模板套用：Springer Nature LaTeX Template v2.1（`sn-jnl.cls`，选项 `pdflatex,sn-basic`）
-- [x] TEST 版正文 `manuscript/main_test.pdf`（**17 页**，7 表 4 图，附录 A 证明 + 附录 B 复现细节，0 undefined reference）
+- [x] TEST 版正文 `manuscript/main_test.pdf`（**18 页**，7 表 4 图，附录 A 证明 + 附录 B 复现细节，0 undefined reference）
 - [x] 通用版 `main.pdf`（16 页，内容对照版，随包提交便于审阅）
 - [x] 补充材料 `supplement.pdf`（6 页，表 S1–S9，独立编号）
 - [x] 所有图以矢量 PDF 提交（`results/figures/`：repro_synth_di、repro_compas、sample_size、ablation_coverage），正文按 Fig. 1–4 引用
@@ -46,7 +46,7 @@
 
 ## 提交系统
 
-- [x] 投稿包 zip v2.0 构建完成（`submission/fuq-fairness_submission_v2.0.zip`，24 entries，705 KB）
+- [x] 投稿包 zip v2.0 构建完成（`submission/fuq-fairness_submission_v2.0.zip`，24 entries，710 KB）
 - [ ] Springer 投稿门户注册/登录并逐项确认（Editorial Manager / Springer Nature 投稿系统）
 - [ ] 上传：main_test.pdf（正文）、supplement.pdf（补充材料）、cover letter、title page
 - [ ] 可编辑源文件上传（main_test.tex + refs.bib + sn-jnl.cls + sn-basic.bst + figures/）

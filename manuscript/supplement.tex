@@ -113,6 +113,8 @@ ACSIncome (DI) & 1000 & 0.25 & 1.00 & 0.0148 & 0.0821 & 5.72 & 0.0043 & 0.0304 \
 
 \section{Variance budget}
 
+Table~\ref{tab:budget} separates three sources of variability in a reported gap. The training and evaluation components, estimated from the reproduction interval widths and from the binomial sampling law of the held-out gap, are errors of the reported number around a fixed target.  The constraint-set component $s_{D'}$ is the standard deviation of $\Delta(\theta^*(D'))$ over fresh audit designs evaluated on the same pool, so it measures how much the target itself moves; it is a design sensitivity rather than an inferential uncertainty and is not part of the two-source interval used in the coverage experiments.  The last two columns compare the average gap over re-drawn designs with the actually reported gap: on Adult and ACSIncome the re-drawn design averages are closer to zero, and on COMPAS the reported gap is more favourable than the design average, changing its sign.$\,$\par
+
 \begin{table}[h]
 \centering
 \small
@@ -301,6 +303,7 @@ the finite-sample grid of Table~\ref{tab:finite} adds about five minutes.
 \begin{verbatim}
 python code/data_prep/00_all.py
 python code/reproduce_all.py --scale full      # one-command driver for all runs
+python code/build_test_tex.py                     # TEST (Springer) LaTeX version
 python code/exps/run_synth_di.py
 python code/exps/run_synth_dm.py
 python code/exps/run_real.py --dataset adult

@@ -4,11 +4,12 @@
 
 | 项目 | 位置 | 状态 |
 |---|---|---|
-| TEST 版正文（Springer 官方模板） | `manuscript/main_test.pdf`（17 页） | ✅ 编译 exit 0，0 undefined |
+| TEST 版正文（Springer 官方模板） | `manuscript/main_test.pdf`（18 页） | ✅ 编译 exit 0，0 undefined |
 | 通用版正文（内容对照） | `manuscript/main.pdf`（16 页） | ✅ |
 | 补充材料 | `manuscript/supplement.pdf`（6 页，表 S1–S9） | ✅ 自动生成 |
-| 投稿包 | `manuscript/submission/fuq-fairness_submission_v2.0.zip`（24 entries，705 KB） | ✅ 自包含编译校验 |
-| 发布包 | `release/fuq-fairness-v1.0-source.zip`（163 文件，1.54 MB） | ✅ 端到端 light 复现验证 |
+| 投稿包 | `manuscript/submission/fuq-fairness_submission_v2.0.zip`（24 entries，710 KB） | ✅ 自包含编译校验 |
+| 发布包 | `release/fuq-fairness-v1.0-source.zip`（164 文件，1.55 MB） | ✅ 端到端 light 复现验证 |
+| 自审记录 | `notes/review_changes.md`（C1–C6 修订已入稿） | ✅ 13/13 包自检 |
 | 本地 git 仓库 | `.`（226 文件已提交，`data/`/`release/`/`paper/` 已排除） | ✅ 就绪待推送 |
 | 投稿文档 | cover letter / title page / checklist / TEST 格式笔记 | ✅ |
 | 数字核验 | 123 个数字串 missing 0 | ✅ |

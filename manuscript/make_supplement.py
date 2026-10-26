@@ -164,6 +164,18 @@ from real_joint_ci_*.json.""" + "\n")
 
     # ---------------- S4 variance budget ----------------
     A(r"\section{Variance budget}" + "\n")
+    A("Table~\\ref{tab:budget} separates three sources of variability in a reported gap. "
+      "The training and evaluation components, estimated from the reproduction interval "
+      "widths and from the binomial sampling law of the held-out gap, are errors of the "
+      "reported number around a fixed target.  The constraint-set component $s_{D'}$ is the "
+      "standard deviation of $\\Delta(\\theta^*(D'))$ over fresh audit designs evaluated on "
+      "the same pool, so it measures how much the target itself moves; it is a design "
+      "sensitivity rather than an inferential uncertainty and is not part of the two-source "
+      "interval used in the coverage experiments.  The last two columns compare the average "
+      "gap over re-drawn designs with the actually reported gap: on Adult and ACSIncome the "
+      "re-drawn design averages are closer to zero, and on COMPAS the reported gap is more "
+      "favourable than the design average, changing its sign.$\\,$"
+      "\\par\n")
     rows = []
     for ds, name in [("adult", "Adult (DI)"), ("acsincome", "ACSIncome (DI)"),
                      ("compas", "COMPAS (DM)")]:

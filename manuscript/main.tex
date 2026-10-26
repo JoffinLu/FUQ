@@ -43,17 +43,18 @@ Fairness-aware classifiers trained by stochastic gradient methods are random obj
 demographic-parity or equalised-odds gap is random as well.  Recent work constructs confidence
 intervals for such gaps with an online multiplier bootstrap, but those intervals quantify only the
 randomness of the optimisation trajectory.  With the held-out sets used in practice, a second and
-often larger component---the sampling noise of the evaluation set---is ignored, and a third arises
-from the random constraint set that defines the fairness-aware estimator.  We decompose the error of
-the reported gap into these asymptotically independent parts, derive the limiting distribution and
+often larger component---the sampling noise of the evaluation set---is ignored, and a third source of variability enters
+through the constraint set that defines the target of the estimate.  We decompose the error of
+the reported gap into its training and evaluation parts, derive the limiting distribution and
 the exact coverage loss of the existing interval as a function of the ratio between training
 iterations and evaluation size, and prove that it is valid only when the evaluation set is large
-relative to the training run.  We then propose a joint bootstrap that resamples all three sources,
-prove its asymptotic validity and give a sample-size allocation rule.  In a reproduction on synthetic
+relative to the training run.  We then propose a joint bootstrap that resamples the training trajectories and the evaluation
+set---and, when the audit design itself is random, adds a constraint-set layer---prove its
+asymptotic validity for a fixed audit design, and give a sample-size allocation rule.  In a reproduction on synthetic
 data, Adult, ACSIncome and COMPAS, the existing interval covers the population fairness gap with
 probability between $0.00$ and $0.62$, whereas the joint interval attains nominal coverage (on Adult,
 $0.98$ versus $0.30$).  A variance budget shows that training noise accounts for only
-$0.8\%$--$8.3\%$ of the total uncertainty, with evaluation and constraint-set sampling dominating.
+$0.8\%$--$8.3\%$ of the variability of a reported gap, with evaluation and constraint-set sampling dominating.
 
 \par\medskip\noindent\textbf{Keywords:} fairness auditing; uncertainty quantification; constrained stochastic optimization; online bootstrap; distribution-free inference.
 \end{abstract}
@@ -95,19 +96,20 @@ repetitions instead of the nominal $95\%$.
 
 \paragraph{Contributions.}
 \begin{enumerate}
-  \item \emph{Decomposition and a diagnostic.}  We show that the error of the reported gap decomposes
-        into three asymptotically independent components---training, evaluation, and constraint-set
-        sampling---and derive the limiting distribution (Theorem~\ref{thm:limit}) together with the
+  \item \emph{Decomposition and a diagnostic.}  We show that the error of the reported gap relative to a fixed audit design decomposes
+        into two asymptotically independent components---training and evaluation sampling---and that
+        a third, design component arises when the constraint set itself is a random draw; we derive
+        the limiting distribution (Theorem~\ref{thm:limit}) together with the
         exact coverage of the existing interval (Corollary~\ref{cor:coverage}).  The interval is
         asymptotically valid only when $m \gg T\,v^2/\sigma^2_\Delta$, a condition violated by orders
         of magnitude in published experimental setups.
-  \item \emph{A joint bootstrap.}  We propose to combine the multiplier bootstrap over training
-        trajectories with a resampling of the evaluation set, and in addition an outer bootstrap over
-        the constraint set that defines $\theta^*$; the construction is asymptotically valid
-        (Theorem~\ref{thm:joint}) and costs one extra pass over the evaluation set, plus a small
-        number of direct constrained solves for the constraint-set component.
+  \item \emph{A joint bootstrap.}  We propose to combine the multiplier bootstrap over training trajectories with a resampling
+        of the evaluation set, and to add an outer bootstrap over the constraint set when the design
+        itself is random; the two-source construction is asymptotically valid for a fixed audit
+        design (Theorem~\ref{thm:joint}), costs one extra pass over the evaluation set, and the
+        design layer adds only a small number of direct constrained solves.
   \item \emph{A variance budget and design guidance.}  On Adult, ACSIncome and COMPAS the training
-        component accounts for only $0.8$--$8.3\%$ of the total variance of a reported gap; the
+        component accounts for only $0.8$--$8.3\%$ of the variability of a reported gap; the
         dominant components are evaluation sampling ($37$--$78\%$) and constraint-set sampling
         ($18$--$55\%$).  We translate this into a rule for allocating audit effort between training
         iterations, labelled evaluation data and the choice of constraint set.
@@ -132,8 +134,9 @@ Asymptotic normality of averaged stochastic approximation goes back to
 batch-means procedures for unconstrained SGD are developed by \citet{fang2018,chen2016,zhu2021} and
 extended to policy evaluation \citep{ramprasad2023}.  These methods target the model parameter; for
 fairness we need the law of a non-smooth functional of it, which is why \citet{roy2026uq} combine a
-functional delta-method argument with the multiplier bootstrap.  Our work does not modify the
-training-side theory; it adds the two missing sources of randomness on top of it.
+functional delta-method argument with the multiplier bootstrap.  Our work does not modify the training-side theory; it adds the evaluation component on top of it
+and treats the constraint-set (design) component separately, as variability of the target rather
+than of the estimate.
 
 \paragraph{Statistical inference for fairness.}
 A parallel literature tests whether a \emph{fixed} classifier is fair: permutation tests
@@ -222,7 +225,7 @@ $\eta_k$, $\kappa$, $R$ & step size, $L_2$ regularisation, mistreatment penalty 
 \end{tabular}
 \end{table}
 
-\section{Three-source decomposition}
+\section{Decomposition: two error sources and a design component}
 \label{sec:decomp}
 
 \begin{assumption}[inherited from \citealp{roy2026uq}]
@@ -232,6 +235,10 @@ the decision boundary is linear in $\theta$; the conditional feature distributio
 densities at the boundary.  The evaluation set $\Dt$ is drawn i.i.d.\ from $P$ independently of the
 training stream and of $\Dp$.
 \end{assumption}
+
+All statements in this section condition on the realised constraint set $\Dp$.  Randomness in $\Dp$
+enters through the target $\theta^*$ rather than through the estimator, and is analysed separately
+in the variance budget of Section~\ref{sec:exp}.
 
 \begin{lemma}[training noise; \citealp{roy2026uq}]
 \label{lem:train}
@@ -259,7 +266,8 @@ Suppose $\Delta(\theta^*)\neq0$ and $T/m\to\lambda\in[0,\infty)$.  Then under
 Assumption~\ref{ass:base},
 \[
 \sqrt T\big(\dhat_m(\tbar_T)-\Delta(\theta^*)\big)\Rightarrow
-\mathcal N\big(0,\ \sigma^2_\Delta+\lambda v^2\big).
+\mathcal N\big(0,\ \sigma^2_\Delta+\lambda v^2\big),
+\qquad\text{conditionally on }\Dp.
 \]
 \end{theorem}
 
@@ -301,14 +309,19 @@ $\big[\dhat_m(\tbar_T)+\hat q_{\alpha/2},\ \dhat_m(\tbar_T)+\hat q_{1-\alpha/2}\
 for the quantiles of $D^*$, mapped to $|\Delta|$ by folding: if the resulting interval for the signed
 gap excludes zero we report the absolute values of its endpoints, otherwise we report
 $[0,\max(|l|,|u|)]$.  When the constraint set is regarded as fixed by design, the third term is
-omitted and the interval targets $\Delta(\theta^*)$ for the realised $\Dp$.
+omitted and the interval targets $\Delta(\theta^*)$ for the realised $\Dp$.  All experiments below
+use this fixed-design version, so the coverage validated there refers to the two inference-error
+components; the design layer is quantified separately in the variance budget.
 
 \begin{theorem}[asymptotic validity]
 \label{thm:joint}
-Under Assumption~\ref{ass:base}, if $S\to\infty$ and $\tbar_T\to\theta^*$, then conditionally on the
-data the law of $D^*$ converges in probability to the law of
-$\dhat_m(\tbar_T)-\Delta(\theta^*)$; consequently the percentile interval has asymptotic coverage at
-least $1-\alpha$ for $\phi(\theta^*)$.
+Under Assumption~\ref{ass:base}, if $\tbar_T\to\theta^*$ and the constraint set is fixed by
+design (third term omitted), then conditionally on the data the law of $D^*$ converges in
+probability to the law of $\dhat_m(\tbar_T)-\Delta(\theta^*)$; consequently the percentile interval
+has asymptotic coverage $1-\alpha$ for $\phi(\theta^*)$.  If the design is random and the third
+term is included, the conclusion holds for the design-conditional target and the interval is
+conservative for a realised design, because the added term has mean zero and is asymptotically
+independent of the first two.
 \end{theorem}
 
 \paragraph{Cost.} The evaluation resampling is a vectorised operation on the $m$ held-out
@@ -341,7 +354,10 @@ from a disjoint reservoir, so that coverage is evaluated over the evaluation sam
 \emph{(B) Budget}: a single run with the reported audit budget ($T=3\times10^4$, $m=1000$ for
 Adult/ACSIncome and $m=400$ for COMPAS), used for the sample-size analysis.  Unless stated otherwise
 $B=100$ multiplier trajectories and $\alpha=0.05$; step size and regularisation are calibrated as
-described above ($\eta_0=0.1$ for DI, $0.03$ for the synthetic DM generator, $\kappa=0.1$).
+described above ($\eta_0=0.1$ for DI, $0.03$ for the synthetic DM generator, $\kappa=0.1$).  The
+constraint set is held fixed at the sampled audit design in all three protocols, so the joint
+interval used below is the two-source version; the constraint-set layer is quantified separately
+in the variance budget.
 
 \paragraph{Reproduction of the baseline.}
 Table~\ref{tab:repro} summarises the reproduced behaviour in the original fixed-held-out protocol.
@@ -410,7 +426,7 @@ $0.98$--$1.00$.
 \small
 \setlength{\tabcolsep}{4pt}
 \caption{Protocol-A coverage of the population gap (nominal $0.95$) with a fresh evaluation set in
-every repetition.  Synthetic DI: $T=2\times10^4$, $B=100$, 100 repetitions,
+every repetition and a fixed constraint set (two-source joint interval).  Synthetic DI: $T=2\times10^4$, $B=100$, 100 repetitions,
 $\phi(\theta^*)=0.0212$.  Real data: $T=3\times10^4$, $B=100$, 60 repetitions.}
 \label{tab:protocolA}
 \begin{tabular}{lcccccc}
@@ -428,17 +444,22 @@ COMPAS (DM)    & 400  & 0.62 & 1.00 & 0.096 & 0.173 & 2.08 \\
 \end{table}
 
 \paragraph{Variance budget.}
-Table~\ref{tab:budget} decomposes the variance of the reported gap.  Training noise, the only
-component addressed by the baseline, contributes between $0.8\%$ and $8.3\%$ of the total.  The
-constraint-set component is particularly severe for COMPAS, where resampling $\Dp$ changes the sign
-of the reported gap.
+Table~\ref{tab:budget} separates the three sources of variability in a reported gap.  The training
+and evaluation components are errors of the reported number around a fixed target; the
+constraint-set component measures how far the target itself moves when the audit design is redrawn,
+and is therefore a design sensitivity rather than an inferential uncertainty.  Training noise, the
+only component addressed by the baseline, contributes between $0.8\%$ and $8.3\%$ of the total.  The
+design component is particularly severe for COMPAS, where resampling $\Dp$ changes the sign of the
+reported gap, so a single constrained run is not a reliable audit without a design-sensitivity
+statement.
 
 \begin{table}[t]
 \centering
 \small
 \setlength{\tabcolsep}{4pt}
-\caption{Variance budget for the reported population gap: standard errors of the three components and
-their shares of the total variance.}
+\caption{Variance budget: standard errors of the two error components (training, evaluation) and of
+the constraint-set (design) component that shifts the target, with shares of the total variability;
+the design column is a sensitivity of the audit, not an inferential uncertainty.}
 \label{tab:budget}
 \begin{tabular}{lcccccc}
 \toprule
@@ -588,9 +609,10 @@ collections and neural classifiers are left for future work.
 Reported fairness gaps of online-trained classifiers carry three kinds of noise.  We showed that the
 existing online bootstrap interval quantifies only the training component, derived the exact rate at
 which its coverage degrades as a function of the ratio between training and evaluation effort, and
-proposed a joint bootstrap that restores nominal coverage by resampling the training trajectories,
-the evaluation set and the constraint set.  A variance budget on three real audits shows that
-training noise accounts for less than a tenth of the total uncertainty in typical operating regimes:
+proposed a joint bootstrap that restores nominal coverage by resampling the training trajectories
+and the evaluation set, with a constraint-set layer for audits whose design is itself random.  A
+variance budget on three real audits shows that training noise accounts for less than a tenth of
+the variability of a reported gap in typical operating regimes:
 evaluation sampling dominates when the held-out set is small, and constraint-set sampling can be the
 largest component of all.  The practical message is that fairness audits should budget evaluation
 data and audit-design sensitivity before training compute, and should report which estimand their
