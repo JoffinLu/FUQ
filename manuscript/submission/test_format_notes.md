@@ -59,3 +59,18 @@ checklist,target_journals,test_format_notes}.md`。审稿系统要求上传 PDF 
 - [ ] 是否允许单栏 article 版式（sn-jnl 默认单栏，符合）
 - [ ] 电子补充材料上传方式（PDF 与源文件）
 - [ ] ORCID 与通讯作者邮箱在系统中填写（当前作者块已含）
+
+## 刊名与费用（2026-10-27 核实）
+
+- **刊名**：*TEST*（正式题名即 “TEST”；出版方副标题写作 “An Official Journal of the Spanish
+  Society of Statistics and Operations Research”，即西班牙统计与运筹学会 SEIO 官方期刊）。
+  ISSN 1133-0686（print）/ 1863-8260（eISSN）；Springer 出版，1992 年创刊。
+- **版面费**：订阅制（hybrid）期刊，走订阅模式发表**不收取版面费/投稿费**；LetPub 的
+  Open Access Info 栏 APC、APC Waiver、Other Charges 均为 N/A。可选 Open Choice 开放获取，
+  APC 约 US$3,190（OpenAlex 记录的出版方目录价），不选 OA 则免费。
+- **彩图**：电子版彩色始终免费；如选择在**印刷版**使用彩图，Springer 可能在接收后单独收取
+  colour charge（以接收时的选项为准，本文 4 张图建议只要求电子版彩色）。
+- 来源：<https://portal.issn.org/resource/ISSN/1133-0686>、
+  <https://support.springernature.com/en/support/solutions/articles/6000084580-costs-of-publishing-in-springer-nature-journal>、
+  <https://support.springernature.com/en/support/solutions/articles/6000137677-are-there-fees-for-publishing-in-an-open-choice-journal->、
+  <https://www.letpub.com/journal-selector/journal/7778>。
