@@ -58,7 +58,7 @@ python manuscript/check_refs.py       # 引文核对（18 条）
 
 ## 发布包（GitHub / Zenodo）
 
-`release/fuq-fairness-v1.0-source.zip`：**169 文件 / 2.00 MB**，含 code、notes、results、
+`release/fuq-fairness-v1.0-source.zip`：**172 文件 / 2.02 MB**，含 code、notes、results、
 manuscript、submission、PROJECT_OVERVIEW、README/LICENSE/CITATION；端到端 light 复现已验证。
 
 ## 本地 git 仓库

@@ -90,3 +90,39 @@ bibliographic details; only metadata and the cited-paper abstracts were used.
 The three "reviewer perspectives" of the deep-research skill were not run as
 isolated sub-agents because the sub-agent product failed in this session
 (recorded earlier in this project); the audit is a single-context fact-check.
+
+
+## Round 23: quote-level re-check (existence plus claim accuracy)
+
+The user asked for a second pass that checks not only whether every entry
+exists but whether each citation supports what the sentence says.  Existence
+was re-confirmed programmatically with `code/verify/verify_citations.py`
+(18 of 18 entries VERIFIED); usage was checked sentence by sentence for the
+28 citation instances in the manuscript with `code/verify/check_claim_usage.py`,
+which pulls the abstract of each cited work (Crossref, Semantic Scholar, arXiv)
+and stores the result in `notes/claim_check_r23.json`.  Full texts or landing
+pages were consulted for the eight works whose abstract was not decisive.
+
+Verdicts: 20 supports, 2 minor wording refinements, 2 misattributions.  All
+four issues were corrected in `main.tex`.
+
+| Issue | Location | Verdict | Correction |
+|---|---|---|---|
+| `roy2026uq` "combine a functional delta-method argument with the multiplier bootstrap" | Section 2 | MISATTRIBUTED | The published paper does not invoke a delta method: Theorem 5.2 derives the asymptotic distribution of the non-smooth fairness functional directly, and Algorithm 2 is the online multiplier bootstrap. The sentence now says "derive the limiting distribution of that functional under constrained stochastic approximation and estimate it with an online multiplier bootstrap". |
+| `vdvwellner1996`, "Ch. 2.5" for the symmetrisation argument | Appendix A.2 | MISATTRIBUTED | Chapter 2.5 is "Donsker Theorems"; symmetrisation is Section 2.3, "Symmetrization and Measurability" (table of contents of the 1996 Springer volume). The pointer now reads Ch. 2.3. |
+| `rosenblatt2024` "benchmark uncertainty estimates used \emph{inside} fair predictors" | Section 2 | MINOR | The cited paper benchmarks uncertainty estimates that arise in fair predictive pipelines; the sentence now says "in fair predictive pipelines" and "sampling uncertainty about the fairness of a trained predictor". |
+| Assumption 1 label "inherited from `roy2026uq`" | Section 4 | MINOR | The assumption adds the independence of the evaluation set, which is ours, so the label now reads "adapted from". |
+
+Everything else was confirmed against the source.  In particular, the
+characterisation of the published training procedures as stochastic dual
+averaging for disparate impact and penalised SGD for disparate mistreatment
+matches the original text (`paper/main_text.txt` uses "dual averaging" and
+"penalized SGD"; it does not mention "slab projection", which describes the
+reproduced implementation, not the published algorithm), the assumption list
+matches Assumptions 4.1-4.4, the interval in Section 4 is their multiplier
+bootstrap interval, and the attribution of the training-side asymptotic law to
+`roy2026uq` is correct.  Background and dataset citations
+(`hardt2016`, `zafar2019`, `corbett2017`, `ding2021`) and the statistical
+literature citations (`polyak1992`, `duchi2016`, `fang2018`, `chen2016`,
+`zhu2021`, `ramprasad2023`, `diciccio2020`, `taskesen2021`, `maity2021`,
+`cherian2023`) were checked against their abstracts and are used as stated.

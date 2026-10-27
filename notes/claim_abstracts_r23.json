@@ -1,0 +1,31 @@
+{
+  "hardt2016": {
+    "error": "HTTPError: HTTP Error 502: Bad Gateway"
+  },
+  "maity2021": {
+    "error": "URLError: <urlopen error _ssl.c:1015: The handshake operation timed out>"
+  },
+  "rosenblatt2024": {
+    "title": "arXiv Query: search_query=&amp;id_list=2410.02005&amp;start=0&amp;max_results=10",
+    "abstract": "Fair predictive algorithms hinge on both equality and trust, yet inherent uncertainty in real-world data challenges our ability to make consistent, fair, and calibrated decisions. While fairly managing predictive error has been extensively explored, some recent work has begun to address the challenge of fairly accounting for irreducible prediction uncertainty. However, a clear taxonomy and well-specified objectives for integrating uncertainty into fairness remains undefined. We address this gap by introducing FairlyUncertain, an axiomatic benchmark for evaluating uncertainty estimates in fairness. Our benchmark posits that fair predictive uncertainty estimates should be consistent across learning pipelines and calibrated to observed randomness. Through extensive experiments on ten popular fairness datasets, our evaluation reveals: (1) A theoretically justified and simple method for estimating uncertainty in binary settings is more consistent and calibrated than prior work; (2) Abstaining from binary predictions, even with improved uncertainty estimates, reduces error but does not alleviate outcome imbalances between demographic groups; (3) Incorporating consistent and calibrated uncertainty estimates in regression tasks improves fairness without any explicit fairness interventions. Additionally, our benchmark package is designed to be extensible and open-source, to grow with the field. By providing a standardized framework for assessing the interplay between uncertainty and fairness, FairlyUncertain paves the way for more equitable and trustworthy machine learning practices.",
+    "url": "https://arxiv.org/abs/2410.02005"
+  },
+  "ding2021": {
+    "error": "HTTPError: HTTP Error 502: Bad Gateway"
+  },
+  "cherian2023": {
+    "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  "chen2016": {
+    "error": "URLError: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)>"
+  },
+  "roy2026uq": {
+    "error": "URLError: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)>"
+  },
+  "fang2018": {
+    "error": "URLError: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)>"
+  },
+  "zafar2019": {
+    "error": "URLError: <urlopen error _ssl.c:1015: The handshake operation timed out>"
+  }
+}

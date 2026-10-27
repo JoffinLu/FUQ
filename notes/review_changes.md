@@ -147,3 +147,27 @@ pages. Full evidence table: `notes/reference_audit.md`.
   submission zip 24 entries, release package 168 files; `check_refs.py` 15
   exact / 2 near / 1 manual missing (`roy2026uq`), `check_numbers.py` 123/0,
   `check_package.py` 13/13 PASS.
+
+
+## Round 23: quote-level citation audit (requested re-check)
+
+After the existence audit, the references were re-checked for claim accuracy
+(28 citation instances).  Two misattributions and two wording imprecisions
+were found and fixed in `manuscript/main.tex`:
+
+- Section 2 no longer says that `roy2026uq` "combine a functional
+  delta-method argument with the multiplier bootstrap"; the published paper
+  derives the limiting distribution of the non-smooth functional directly and
+  uses the online multiplier bootstrap.  The sentence now reports that.
+- Appendix A.2 cites "Ch. 2.3" of van der Vaart and Wellner (1996) for
+  symmetrisation; Ch. 2.5 is the Donsker chapter.
+- The `rosenblatt2024` sentence now says "in fair predictive pipelines" and
+  "sampling uncertainty".
+- Assumption 1 is labelled "adapted from" rather than "inherited from",
+  because the independent evaluation sample is our addition.
+
+Verification: `code/verify/verify_citations.py` 18/18 VERIFIED;
+`code/verify/check_claim_usage.py` 28 instances, of which 20 supports,
+2 minor refinements and 2 corrections, all applied.  The full record, with
+the source used for each verdict, is in `notes/reference_audit.md` and
+`notes/claim_check_r23.json`.

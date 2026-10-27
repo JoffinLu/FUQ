@@ -123,8 +123,9 @@ Section~\ref{sec:related} reviews related work.  Sections~\ref{sec:setup} and~\r
 Asymptotic normality of averaged stochastic approximation goes back to
 \citet{polyak1992}; constrained variants are analysed by \citet{duchi2016}.  Online bootstrap and
 online covariance procedures for unconstrained SGD are developed by \citet{fang2018,chen2016,zhu2021} and
-extended to policy evaluation \citep{ramprasad2023}.  These methods target the model parameter, whereas a fairness gap is a non-smooth functional of it, so
-\citet{roy2026uq} combine a functional delta-method argument with the multiplier bootstrap.  We leave
+extended to policy evaluation \citep{ramprasad2023}.  These methods target the model parameter, whereas a fairness gap is a non-smooth functional of it;
+\citet{roy2026uq} derive the limiting distribution of that functional under constrained stochastic
+approximation and estimate it with an online multiplier bootstrap.  We leave
 the training-side theory in place and add the evaluation component; the constraint-set (design)
 component is treated separately, as variability of the target rather than of the estimate.
 
@@ -137,8 +138,8 @@ complementary half of our decomposition.  Our method targets the composition of 
 evaluation uncertainty and makes the two components separately reportable.
 
 \paragraph{Uncertainty in fairness more broadly.}
-\citet{rosenblatt2024} benchmark uncertainty estimates used \emph{inside} fair predictors, a different
-object from uncertainty about the fairness of a trained predictor.  Subgroup-level fairness estimates also carry
+\citet{rosenblatt2024} benchmark uncertainty estimates in fair predictive pipelines, a different
+object from sampling uncertainty about the fairness of a trained predictor.  Subgroup-level fairness estimates also carry
 estimation variance that grows as the subgroup shrinks (Lemma~\ref{lem:eval}); our evaluation
 component formalises this in the DI/DM setting and is combined with the training component rather
 than studied in isolation.
@@ -218,7 +219,7 @@ $\eta_k$, $\kappa$, $R$ & step size, $L_2$ regularisation, mistreatment penalty 
 \section{Decomposition: two error sources and a design component}
 \label{sec:decomp}
 
-\begin{assumption}[inherited from \citealp{roy2026uq}]
+\begin{assumption}[adapted from \citealp{roy2026uq}]
 \label{ass:base}
 The loss is strongly convex and smooth on a neighbourhood of $\theta^*$; the data stream is i.i.d.;
 the decision boundary is linear in $\theta$; the conditional feature distributions admit continuous
@@ -655,7 +656,7 @@ For uniformity, the class of half-space indicators is a bounded VC class; on a f
 of $\theta^*$ it is Donsker, so the empirical process is $O_p(m^{-1/2})$ uniformly in $\theta$.  On
 shrinking neighbourhoods, $P(h_\theta(x)\neq h_{\theta^*}(x))\le L\|\theta-\theta^*\|$ for some
 $L<\infty$ by the continuity of the feature densities at the boundary, and the same symmetrisation
-argument (see \citealp{vdvwellner1996}, Ch.~2.5) gives a local oscillation of order
+argument (see \citealp{vdvwellner1996}, Ch.~2.3) gives a local oscillation of order
 $o_p(m^{-1/2})+\|\theta-\theta^*\|$ uniformly over $\|\theta-\theta^*\|\le\delta_m$ for any
 $\delta_m\to0$; this is what the linearisation step below uses.  The DM case only replaces the
 indicator $h=1$ by $h=-1$ and yields a finite sum over the two label strata.
