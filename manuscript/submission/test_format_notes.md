@@ -36,7 +36,7 @@ cd manuscript
 
 - `manuscript/main_test.pdf`：**18 页**，7 表 4 图，0 undefined reference，2 处 overfull hbox
   （附录 A 证明中的长公式，16.9pt / 34.2pt；可接受，排版时由编辑部微调）。
-- `manuscript/main.pdf`（通用版）：17 页，作为内容对照版保留。
+- `manuscript/main.pdf`（通用版）：16 页，作为内容对照版保留。
 - 补充材料：`manuscript/supplement.pdf`（独立 `article` 版，6 页，表 S1–S9）；Springer 接受
   electronic supplementary material，投稿时单独上传（PDF + 源文件）。
 

@@ -33,10 +33,10 @@
 ## 文件地图
 
 - `manuscript/main_test.tex/.pdf`：**TEST 投稿版**（官方 Springer Nature 模板，18 页，7 表 4 图）
-- `manuscript/main.tex/.pdf`：通用版内容对照（17 页）
+- `manuscript/main.tex/.pdf`：通用版内容对照（16 页）
 - `manuscript/supplement.tex/.pdf`：补充材料（6 页，表 S1–S9，自动生成）
-- `manuscript/main_review.pdf`（行号版 17 页）、`main_anonymous.pdf`（双盲 16 页）、
-  `fuq-fairness_full.pdf`（合并 23 页）
+- `manuscript/main_review.pdf`（行号版 16 页）、`main_anonymous.pdf`（双盲 16 页）、
+  `fuq-fairness_full.pdf`（合并 22 页）
 - `manuscript/submission/fuq-fairness_submission_v2.0.zip`：投稿包（25 entries，约 1.11 MB，
   含 TEST 版/通用版/补充材料/官方模板类文件/4 张矢量图/投稿文档，自包含编译校验通过）
 - `release/fuq-fairness-v1.0-source.zip`：发布包（173 文件，2.05 MB，含 code/notes/results/manuscript）
