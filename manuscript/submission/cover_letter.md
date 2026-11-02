@@ -48,7 +48,8 @@ verification of every primitive operation.
   another journal.
 - All authors have read and approved the submitted version and agree to its submission.
 - The authors declare no competing interests.
-- Data are public benchmarks; code and all result files are available at [repository URL / DOI].
+- Data are public benchmarks; code and all result files are available at
+  <https://github.com/JoffinLu/FUQ> (MIT licence; a Zenodo DOI will be added when issued).
 - A 6-page supplement documents the full simulation protocol, per-dataset tables, the independent
   verification of the primitive operations and the reproduction commands.
 - **Use of AI tools:** an AI-based assistant was used during the preparation of this work: it
