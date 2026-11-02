@@ -1,4 +1,4 @@
-"""Lead follow-up items 1 & 2 (+ A2 continuation) on the synthetic-DI problem.
+"""Follow-up checks 1 and 2 (+ A2 continuation) on the synthetic-DI problem.
 
 Item 1 -- confirm the constrained optimum theta* under the SPEC protocol
 -----------------------------------------------------------------------
@@ -215,7 +215,7 @@ def main(argv=None):
           f"  ||th*_emp||={norms_e.mean():.4f}+/-{norms_e.std(ddof=1):.4f}"
           f"  |DI|={phis.mean():.4f}+/-{phis.std(ddof=1):.4f}"
           f"  acc={accs.mean():.4f}+/-{accs.std(ddof=1):.4f}")
-    print("  (Lead's claim: ||theta*||~1.0, |DI|~0.072, acc~0.62; "
+    print("  (reference values: ||theta*||~1.0, |DI|~0.072, acc~0.62; "
           "values vary across D' draws at this magnitude)")
 
     # use draw 0 for the convergence experiments (SPEC protocol: finite pool)
@@ -301,7 +301,7 @@ def main(argv=None):
             "(the finite-T averages in the table also show small DI)."))
     print("\n  ---- verdict ----")
     print(f"    tangent curvature min = {h:.4f}, ||g_perp|| at theta=0 = "
-          f"{draws[0]['grad_perp_norm_at_0']:.4f} (Lead: ~0.07)")
+          f"{draws[0]['grad_perp_norm_at_0']:.4f} (reference: ~0.07)")
     print(f"    warm start at theta* stays put: rel {warm['rel']:.2e}")
     print(f"    predicted T for 1e-3 relative transient at eta0=0.01: "
           f"{T_needed:.2e}")

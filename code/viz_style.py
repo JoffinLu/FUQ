@@ -3,19 +3,18 @@
 One palette and one geometry for every figure so that the four figures in the
 paper read as a set:
 
-* Palette: the canonical nature-figure palette (see the nature-figure skill,
-  ``references/api.md``), restricted to six colours.  Series are additionally
-  separated by line style and marker shape, so the figures stay readable in
-  greyscale and for colour-blind readers; red/orange pairs are avoided.
+* Palette: six colours chosen to stay distinguishable in greyscale and for
+  colour-blind readers; series are additionally separated by line style and
+  marker shape, and red/orange pairs are avoided.
 * Geometry: canvas width equals the printed text width (6.5 in for the TEST
   single-column layout), fonts are 7--8 pt *at print size* (not scaled down
   from a larger canvas), spines are cleaned, and panel descriptors live in the
   caption, not in axes titles.
 * Export: vector PDF with embedded TrueType fonts, plus a 300 dpi PNG preview.
 
-The multi-panel alignment gate of the nature-figure skill is called from
-``finish`` when the skill scripts are available on this machine; otherwise the
-call is skipped with a warning so that the released code stays portable.
+An optional multi-panel alignment gate can be enabled by pointing
+``FUQ_FIG_QA_SCRIPTS`` at a directory that contains ``audit_panel_alignment.py``;
+when the variable is unset the gate is skipped, so the released code is portable.
 """
 from __future__ import annotations
 
@@ -30,7 +29,7 @@ import matplotlib.pyplot as plt  # noqa: E402
 from matplotlib.lines import Line2D  # noqa: E402
 from matplotlib.ticker import LogFormatterSciNotation, LogLocator, NullFormatter  # noqa: E402
 
-# --- palette (nature-figure canonical) -------------------------------------
+# --- palette (six colours, colour-blind safe) ------------------------------
 OURS = "#0F4D92"        # blue_main      joint / proposed interval
 HELD = "#3775BA"        # blue_secondary held-out estimand
 BASE = "#767676"        # neutral_mid    training-only (baseline)
@@ -41,12 +40,7 @@ GRID = "#E8E8E8"        # hairline grid
 
 TEXT_WIDTH_IN = 6.5     # \textwidth of the TEST manuscript (1 in margins)
 
-SKILL_SCRIPTS = Path(
-    os.environ.get(
-        "NATURE_FIGURE_SCRIPTS",
-        r"C:\Users\29582\.dsh\skills\nature-figure\scripts",
-    )
-)
+QA_SCRIPTS = os.environ.get("FUQ_FIG_QA_SCRIPTS")
 
 
 def apply_style() -> None:
@@ -127,10 +121,10 @@ def log_axis(ax, which: str = "y") -> None:
 
 def finish(fig, pdf_path: Path, png_path: Path, *, align: bool, align_json: Path | None = None) -> None:
     """Save vector PDF + PNG preview, running the panel-alignment gate if asked."""
-    if align:
+    if align and QA_SCRIPTS:
         try:
-            if str(SKILL_SCRIPTS) not in sys.path:
-                sys.path.insert(0, str(SKILL_SCRIPTS))
+            if QA_SCRIPTS not in sys.path:
+                sys.path.insert(0, QA_SCRIPTS)
             from audit_panel_alignment import require_matplotlib_panel_alignment
 
             require_matplotlib_panel_alignment(
@@ -139,7 +133,7 @@ def finish(fig, pdf_path: Path, png_path: Path, *, align: bool, align_json: Path
                 require_panel_labels=False,
             )
         except ImportError:
-            print("[style] nature-figure skill scripts not found; alignment gate skipped")
+            print("[style] alignment checker not importable; gate skipped")
         except Exception as exc:  # gate failure must be visible, not swallowed
             raise RuntimeError(f"panel alignment gate failed: {exc}") from exc
     fig.savefig(pdf_path)

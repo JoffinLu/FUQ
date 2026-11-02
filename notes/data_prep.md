@@ -13,7 +13,7 @@
 | ACSIncome | DI | `03_acsincome.py` | 1,664,500 | 10 | 0.368920 | SEX：Female（2）=0，Male（1）=1 | 797,765 / 866,735 | **n/p 精确一致**（逐行核验） |
 
 `.npz` keys 恒为 `X`（float64, n×p）、`y`（int8, ±1）、`z`（int8, 0/1）；JSON 有 `feature_names/sensitive_name/n/p/positive_rate/group_sizes/source`
-及 `feature_mean/feature_std`（便于下游 z-score）。所有数据**未做实验划分、未标准化**；$D',\tilde D,W_k$ 由 Lead 的 `code/core/` 按 SPEC §6 抽取。
+及 `feature_mean/feature_std`（便于下游 z-score）。所有数据**未做实验划分、未标准化**；$D',\tilde D,W_k$ 由 `code/core/` 按 SPEC §6 抽取。
 
 ## 1. Adult（DI）
 - **来源**：本地只读 `fairness_unawareness\data\raw\adult.data`（UCI Adult 官方训练集，32,561 行；
@@ -25,7 +25,7 @@
 - **标签**：`income == '>50K'` → y=+1，否则 −1。**敏感属性**：`sex=='Male'` → z=1，Female → z=0（`sex_Male` 哑变量与 z 相同）。
 - **与论文不一致处**：① 论文只说"13 features、sex 敏感"，未给 n/编码/标准化；本数据 n=30,162 = UCI 训练集删缺失（Zafar 等常用口径），
   未用完整 48,842（train+test）版本（本地 test 截断）。② p=95 是 one-hot 后维度，论文的"13"是原始属性数；
-  上游 Lead 消息里的 "108" 有误，**真实 p=95（X.shape=(30162,95)，d=p+1=96）**。③ 无标准化（按任务要求保留原值）。
+  上游任务说明里的 “108” 有误，**真实 p=95（X.shape=(30162,95)，d=p+1=96）**。③ 无标准化（按任务要求保留原值）。
 - **建议下游用法**：D' 的约束直接吃全部 95 列；因 `capital-gain/loss` 量级 $10^4$–$10^5$ 会主导 $\tilde x$，**先按列 z-score**
   （JSON 有 mean/std），否则 $\epsilon=10^{-5}$ 与论文不可比。若不想让 sex 进特征，core 可删 `sex_Male` 一列（p=94），但论文口径默认保留。
 
@@ -64,4 +64,4 @@ python code/data_prep/99_qa.py          # 三数据集全部 PASS
 ```
 - 三脚本无随机操作（`seed=20261026` 仅记录），重跑数组逐位相同；原始数据目录未改。
 - 数据划分/标准化不在本阶段做，见 `MANIFEST.md` §5"下游实验建议"。
-- **blocker**：无。已知风险点：Adult 未合并完整 test 集（本地副本截断）；三个数据集均未标准化，$\epsilon$/R² 尺度需 Lead 在 core 决定是否 z-score。
+- **blocker**：无。已知风险点：Adult 未合并完整 test 集（本地副本截断）；三个数据集均未标准化，$\epsilon$/R² 尺度需在 core 中决定是否 z-score。

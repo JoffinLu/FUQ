@@ -1,7 +1,7 @@
 # 复现与论文项目规范（SPEC）
 
 最后更新：2026-10-26
-项目根目录：`D:\Desktop\Data\学习类\硕士研究生\文献阅读\DSH\fuq-fairness`
+项目根目录：本仓库根目录（即本文件所在目录）
 
 ## 0. 项目目标
 
@@ -132,27 +132,27 @@ $\Sigma_1=\begin{pmatrix}3&1\\1&3\end{pmatrix}$；$y$ 等概率，$z$ 由上述�
 
 ```
 fuq-fairness/
-  SPEC.md                  # 本文档（Lead 维护）
+  SPEC.md                  # 本文档（项目文档）
   paper/                   # 论文 PDF 与抽取文本
   notes/
-    paper_analysis.md      # 论文正式版精读记录（Lead）
+    paper_analysis.md      # 论文正式版精读记录（不随仓库发布）
     data_prep.md           # 数据准备说明（data-prep）
-    verification.md        # 独立核验记录（theory-check）
-    repro_report.md        # 复现报告（Lead）
+    verification.md        # 独立核验记录（独立参考实现）
+    repro_report.md        # 复现报告
   code/
-    core/                  # 算法与实验驱动（Lead）
+    core/                  # 算法与实验驱动
     data_prep/             # 数据准备脚本（data-prep）
-    verify/                # 独立核验脚本（theory-check）
+    verify/                # 独立核验脚本
   data/
     raw/  processed/       # 原始与处理后数据（data-prep）
   results/
-    figures/  tables/  raw/# 图、表、原始结果（Lead）
-  manuscript/              # 稿件（Lead，后续）
+    figures/  tables/  raw/# 图、表、原始结果
+  manuscript/              # 稿件
 ```
 
-**所有权**：Lead 只写 `code/core/`、`code/exps/`、`results/`、`notes/paper_analysis.md`、
+**维护范围**：主线实现维护 `code/core/`、`code/exps/`、`results/`、
 `notes/repro_report.md`、`manuscript/`。data-prep 只写 `code/data_prep/`、`data/processed/`、
-`notes/data_prep.md`。theory-check 只写 `code/verify/`、`notes/verification.md`。冲突时以 SPEC 为准。
+`notes/data_prep.md`；独立核验实现维护 `code/verify/` 与 `notes/verification.md`。冲突时以 SPEC 为准。
 
 ## 10. 通用约定
 

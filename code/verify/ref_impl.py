@@ -3,9 +3,8 @@
 Project: fuq-fairness (Roy & Mohapatra, "Fairness Uncertainty Quantification:
 A Constrained Stochastic Optimization Perspective", UAI 2026).
 
-Author: theory-check (independent verifier).  This module deliberately does NOT
-import anything from ``code/core/`` -- it is the independent oracle used to
-check the Lead's implementation.
+This module deliberately does not import anything from ``code/core/``: it is an
+independent oracle for the core implementation.
 
 Implemented (SPEC section in parentheses)
 -----------------------------------------

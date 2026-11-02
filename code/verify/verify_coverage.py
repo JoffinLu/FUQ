@@ -20,7 +20,7 @@ S = P Cov(xi(theta*)) P = s^4 P   (xi = (aa^T-A)(theta-theta_0)), hence
     Sigma = B^{-1} S B^{-1} = (s^2/h)^2 P,       (covariance of sqrt(T)(thbar-th*))
     Var(phi(thbar_T)) ~ sigma^2 / T  for a unit linear functional phi.
 
-Fairness functional (two targets, as requested by the Lead)
+Fairness functional (two estimand targets, as in the reproduction plan)
 ------------------------------------------------------------
 (a) held-out estimator target: the fairnes functional is estimated on an
     evaluation set D~ of size m:  Delta_hat(theta) = dhat^T theta, where

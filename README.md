@@ -70,6 +70,23 @@ python manuscript/make_supplement.py && cd manuscript && tectonic supplement.tex
   `manuscript/check_package.py` verifies the artifact/PDF consistency of the submission package.
 - A full rerun on 2026-10-26 reproduced all tables value-for-value (only wall-clock fields differ).
 
+## Use of AI tools
+
+The associated manuscript openly discloses that an AI-based assistant was used to help
+implement and run the numerical experiments and to draft and revise the text. Every reported
+number was recomputed from the released code and raw output files, and the author takes
+responsibility for the full content. No third-party code was copied: the estimators, data
+preparation, and verification modules were written from the published equations and the worked
+specification in `SPEC.md`; the only redistributed third-party files are the two Springer
+Nature template files listed below.
+
+## Third-party files
+
+- `manuscript/sn-jnl.cls` and `manuscript/sn-basic.bst` are the official Springer Nature
+  LaTeX template files (LaTeX Project Public License), included unmodified so that the
+  submission version compiles without external downloads. They are not part of the
+  reproduction code.
+
 ## License
 
 MIT (see `LICENSE`). Public datasets (Adult, COMPAS, ACSIncome) retain their original licenses and are

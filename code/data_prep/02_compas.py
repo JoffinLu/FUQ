@@ -39,13 +39,9 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-# ----------------------------------------------------------------------------- absolute paths
-PROJECT_ROOT = Path(r"D:\Desktop\Data\学习类\硕士研究生\文献阅读\DSH\fuq-fairness")
+# ----------------------------------------------------------------------------- project paths
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 RAW_DIR = Path(os.environ.get("FUQ_RAW_DIR") or (PROJECT_ROOT / "data" / "raw"))
-if not (RAW_DIR / "compas.csv").exists():
-    _LEGACY = Path(r"D:\Desktop\Data\学习类\硕士研究生\文献阅读\机器学习公平性\fairness_unawareness\data\raw")
-    if (_LEGACY / "compas.csv").exists():
-        RAW_DIR = _LEGACY
 RAW_COMPAS = RAW_DIR / "compas.csv"
 OUT_DIR = PROJECT_ROOT / "data" / "processed"
 OUT_NPZ = OUT_DIR / "compas.npz"

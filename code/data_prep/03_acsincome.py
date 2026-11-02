@@ -33,6 +33,7 @@ Output:
   data/processed/acsincome.json  metadata
 """
 import json
+import os
 import time
 import zipfile
 from pathlib import Path
@@ -41,17 +42,17 @@ import numpy as np
 import pandas as pd
 import requests
 
-# ----------------------------------------------------------------------------- absolute paths
-PROJECT_ROOT = Path(r"D:\Desktop\Data\学习类\硕士研究生\文献阅读\DSH\fuq-fairness")
-RAW_CACHE = PROJECT_ROOT / "data" / "raw" / "acs_pums" / "2018" / "1-Year"
+# ----------------------------------------------------------------------------- project paths
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+RAW_ROOT = Path(os.environ.get("FUQ_RAW_DIR") or (PROJECT_ROOT / "data" / "raw"))
+RAW_CACHE = RAW_ROOT / "acs_pums" / "2018" / "1-Year"
 ZIP_PATH = RAW_CACHE / "csv_pus.zip"
 PR_ZIP_PATH = RAW_CACHE / "csv_ppr.zip"
 OPENML_PATH = RAW_CACHE / "openml_acsincome_2026_43141.pq"
-FOLKTABLES_CACHE = PROJECT_ROOT / "data" / "raw" / "acs_pums" / "folktables"
+FOLKTABLES_CACHE = RAW_ROOT / "acs_pums" / "folktables"
 OUT_DIR = PROJECT_ROOT / "data" / "processed"
 OUT_NPZ = OUT_DIR / "acsincome.npz"
 OUT_JSON = OUT_DIR / "acsincome.json"
-
 SEED = 20261026  # fixed for project-wide reproducibility; this script has no random operation
 
 NATIONAL_URL = (

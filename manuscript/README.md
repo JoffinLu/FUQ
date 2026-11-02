@@ -30,7 +30,7 @@ python manuscript/make_supplement.py                     # 补充材料 tex
 python manuscript/make_review_copy.py                    # 行号版
 python manuscript/make_anonymous.py                      # 双盲版
 python manuscript/make_combined.py                       # 合并版 22 页
-python manuscript/build_submission.py --version v2.0     # 投稿包（约 1.11 MB / 25 entries，自包含编译校验）
+python manuscript/build_submission.py --version v2.0     # 投稿包（约 1.06 MB / 25 entries，自包含编译校验）
 python code/make_release.py                              # 发布包（GitHub/Zenodo）
 ```
 
@@ -46,12 +46,12 @@ python manuscript/check_refs.py       # 引文核对（18 条）
 ## 数字与格式
 
 - `check_numbers.py`：**123** 个关键数字串与 `results/tables/*` 自动比对，missing 0。
-- 参考文献 18 条，存在性与元数据逐条核对（15 exact；2 near：zhu2021 作者字段跨行、vdvwellner1996 为专著且 Crossref 记录省略副标题，两者 DOI/作者/年份均核实；roy2026uq 未被 OpenAlex 收录，按 PMLR 出版页与 arXiv 2023 版核对并在 `refs_checked.json` 中带 note；1 条不可核实文献已删除，见 `notes/reference_audit.md`）。
+- 参考文献 18 条，存在性与元数据逐条核对（15 exact；2 near：zhu2021 作者字段跨行、vdvwellner1996 为专著且 Crossref 记录省略副标题，两者 DOI/作者/年份均核实；roy2026uq 未被 OpenAlex 收录，按 PMLR 出版页与 arXiv 2023 版核对并在 `refs_checked.json` 中带 note；1 条不可核实文献已删除）。
 - 补充材料表号独立 S1–S9（`make_supplement.py` 中 `\thetable` 重定义；正文与补充材料可共存）。
 
 ## 投稿包（v2.0）
 
-`submission/fuq-fairness_submission_v2.0.zip`：**约 1.11 MB，25 entries**，含 TEST 版与通用版正文、
+`submission/fuq-fairness_submission_v2.0.zip`：**约 1.06 MB，25 entries**，含 TEST 版与通用版正文、
 两版 PDF、补充材料与 PDF、官方模板类文件、4 张矢量图、18 条 refs、全部投稿文档；
 解压后 `cd manuscript && tectonic main.tex` / `main_test.tex` / `supplement.tex` 均编译通过
 （`build_submission.py` 自动做自包含编译校验）。
