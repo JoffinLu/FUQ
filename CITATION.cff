@@ -7,8 +7,19 @@ authors:
   - family-names: Lu
     given-names: Cenfa
     orcid: "https://orcid.org/0009-0003-3481-3624"
-    affiliation: "School of Mathematics and Computational Science, Guilin University of Electronic Technology"
+    affiliation: "School of Mathematics and Computing Science, Guilin University of Electronic Technology"
     email: joffin@163.com
+  - family-names: Wu
+    given-names: Shuda
+    orcid: "https://orcid.org/0009-0003-2590-9608"
+    affiliation: "School of Mathematics and Computing Science, Guilin University of Electronic Technology"
+    email: shudawu777@163.com
+  - family-names: Liu
+    given-names: Xun
+    orcid: "https://orcid.org/0009-0005-4230-3047"
+    affiliation: "School of Mathematics and Computing Science, Guilin University of Electronic Technology"
+    email: liuxun0817@163.com
 license: MIT
 version: "1.0.0"
-date-released: "2026-10-27"
+date-released: "2026-11-02"
+repository-code: "https://github.com/JoffinLu/FUQ"

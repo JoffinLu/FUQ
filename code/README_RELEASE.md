@@ -4,7 +4,9 @@ This archive contains everything needed to reproduce the numbers reported in the
 supplementary material, except the two public datasets, which are downloaded from their original
 sources (see `DATA_NOTES.md`).
 
-> Working title; authors and the final title are to be confirmed.
+> Authors: Cenfa Lu, Shuda Wu, Xun Liu. Corresponding author: Shuda Wu
+> (shudawu777@163.com), School of Mathematics and Computing Science, Guilin
+> University of Electronic Technology.
 
 ## Contents
 
@@ -60,5 +62,6 @@ width cost of a factor 1.15–5.72, and a variance budget shows that training no
 
 ## License
 
-Code: MIT (see `LICENSE`); manuscript text: not yet released under a license (to be confirmed);
-datasets: governed by their original licenses (`DATA_NOTES.md`).
+Code: MIT (see `LICENSE`). Manuscript text: (c) 2026 the authors; contact the
+corresponding author for reuse. Datasets: governed by their original licenses
+(`DATA_NOTES.md`).
