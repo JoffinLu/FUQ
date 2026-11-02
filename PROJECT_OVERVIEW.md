@@ -37,9 +37,9 @@
 - `manuscript/supplement.tex/.pdf`：补充材料（6 页，表 S1–S9，自动生成）
 - `manuscript/main_review.pdf`（行号版 17 页）、`main_anonymous.pdf`（双盲 16 页）、
   `fuq-fairness_full.pdf`（合并 23 页）
-- `manuscript/submission/fuq-fairness_submission_v2.0.zip`：投稿包（24 entries，约 1.09 MB，
+- `manuscript/submission/fuq-fairness_submission_v2.0.zip`：投稿包（24 entries，约 1.11 MB，
   含 TEST 版/通用版/补充材料/官方模板类文件/4 张矢量图/投稿文档，自包含编译校验通过）
-- `release/fuq-fairness-v1.0-source.zip`：发布包（172 文件，2.02 MB，含 code/notes/results/manuscript）
+- `release/fuq-fairness-v1.0-source.zip`：发布包（172 文件，2.04 MB，含 code/notes/results/manuscript）
 - `code/`：复现代码（fairuq.py、dgp.py、optimum.py；exps/*；verify/*；tests/*；reproduce_all.py；
   build_test_tex.py；make_release.py）
 - `notes/`：复现报告、独立核验、理论草稿、扩展结果、审稿预案、可复现性验证、投稿交接单
@@ -67,7 +67,8 @@ python manuscript/check_package.py              # 13/13 包一致性
 
 ## 投稿状态与下一步
 
-**已完成**：作者信息（Cenfa Lu，桂林电子科技大学，通讯作者，ORCID 0009-0003-3481-3624）、
+**已完成**：作者信息（Cenfa Lu（第一作者）、Shuda Wu（通讯作者）、Xun Liu，桂林电子科技大学花江校区数学与计算科学学院；
+ORCID 0009-0003-3481-3624 / 0009-0003-2590-9608 / 0009-0005-4230-3047）、
 目标期刊 TEST、官方模板套用、AI 使用声明、GitHub 仓库本地提交（226 文件，待推送）。
 
 **待作者本人完成（外部输入）**：

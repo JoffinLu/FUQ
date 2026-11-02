@@ -46,14 +46,15 @@ verification of every primitive operation.
 **Statements.**
 - The manuscript is original, has not been published elsewhere, and is not under consideration by
   another journal.
-- The author has read and approved the submitted version and agrees to its submission.
-- The author declares no competing interests.
+- All authors have read and approved the submitted version and agree to its submission.
+- The authors declare no competing interests.
 - Data are public benchmarks; code and all result files are available at [repository URL / DOI].
 - A 6-page supplement documents the full simulation protocol, per-dataset tables, the independent
   verification of the primitive operations and the reproduction commands.
-- **Use of AI tools:** an AI-based language tool was used only to polish the English expression of
-  the manuscript; it was not used to generate scientific content, code, or results, and the author
-  verified every statement and number in the paper.
+- **Use of AI tools:** an AI-based assistant was used during the preparation of this work: it
+  helped implement and run the numerical experiments and draft and revise the text. All results
+  reported here were re-checked against the released code and raw output files, and the authors
+  reviewed the manuscript in full and take responsibility for its content.
 - The manuscript was prepared with the official Springer Nature LaTeX template (`sn-jnl`, class
   option `sn-basic`).
 
@@ -61,14 +62,17 @@ We suggest the following potential reviewers, whose expertise covers statistical
 fairness, evaluation-only inference and auditing methodology: Jad Salem (Ecole Polytechnique), Linjun
 Zhang (Rutgers University), Nathan Kallus (Cornell University), Krishnaram Kenthapadi (Amazon) and
 Harvineet Singh (Amazon); contact details are available on request and can be added in the submission
-system. None of the suggested reviewers is a collaborator of the author.
+system. None of the suggested reviewers is a collaborator of the authors.
 
 Thank you for your consideration.
 
 Sincerely,
 
-Cenfa Lu
-joffin@163.com
-ORCID: 0009-0003-3481-3624
-School of Mathematics and Computational Science, Guilin University of Electronic Technology, Guilin 541004, China
-(corresponding author)
+Shuda Wu (corresponding author)
+shudawu777@163.com
+ORCID: 0009-0003-2590-9608
+School of Mathematics and Computing Science, Guilin University of Electronic Technology, Guilin 541004, China
+
+On behalf of all authors:
+Cenfa Lu (joffin@163.com, ORCID 0009-0003-3481-3624)
+Xun Liu (liuxun0817@163.com, ORCID 0009-0005-4230-3047)

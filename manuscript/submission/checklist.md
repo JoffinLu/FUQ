@@ -22,10 +22,10 @@
 
 ## 作者信息
 
-- [x] `main.tex` / `main_test.tex` 作者块：**Cenfa Lu**（唯一作者，通讯作者）
-      School of Mathematics and Computational Science,
+- [x] `main.tex` / `main_test.tex` 作者块：**Cenfa Lu**（第一作者）、**Shuda Wu**（通讯作者）、**Xun Liu**
+      School of Mathematics and Computing Science,
       Guilin University of Electronic Technology, Guilin 541004, China
-- [x] 邮箱 joffin@163.com；ORCID <https://orcid.org/0009-0003-3481-3624>（`main_test.tex` 中 `\author*[1]{...}` + `\email{}`）
+- [x] 邮箱 joffin@163.com / shudawu777@163.com / liuxun0817@163.com；ORCID 0009-0003-3481-3624 / 0009-0003-2590-9608 / 0009-0005-4230-3047（`main_test.tex` 中 `\author*[1]{...}` 标记通讯作者 Shuda Wu + 三个 `\email{}`）
 - [x] Title page（`submission/title_page.md`）：标题、短标题、作者、单位、ORCID、通讯作者
 - [ ] 投稿系统内 ORCID 关联与邮箱确认（作者本人操作）
 
@@ -46,7 +46,7 @@
 
 ## 提交系统
 
-- [x] 投稿包 zip v2.0 构建完成（`submission/fuq-fairness_submission_v2.0.zip`，24 entries，约 1.09 MB）
+- [x] 投稿包 zip v2.0 构建完成（`submission/fuq-fairness_submission_v2.0.zip`，24 entries，约 1.11 MB）
 - [ ] Springer 投稿门户注册/登录并逐项确认（Editorial Manager / Springer Nature 投稿系统）
 - [ ] 上传：main_test.pdf（正文）、supplement.pdf（补充材料）、cover letter、title page
 - [ ] 可编辑源文件上传（main_test.tex + refs.bib + sn-jnl.cls + sn-basic.bst + figures/）

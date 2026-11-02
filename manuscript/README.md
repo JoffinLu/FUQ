@@ -30,7 +30,7 @@ python manuscript/make_supplement.py                     # 补充材料 tex
 python manuscript/make_review_copy.py                    # 行号版
 python manuscript/make_anonymous.py                      # 双盲版
 python manuscript/make_combined.py                       # 合并版 23 页
-python manuscript/build_submission.py --version v2.0     # 投稿包（约 1.09 MB / 24 entries，自包含编译校验）
+python manuscript/build_submission.py --version v2.0     # 投稿包（约 1.11 MB / 24 entries，自包含编译校验）
 python code/make_release.py                              # 发布包（GitHub/Zenodo）
 ```
 
@@ -51,14 +51,14 @@ python manuscript/check_refs.py       # 引文核对（18 条）
 
 ## 投稿包（v2.0）
 
-`submission/fuq-fairness_submission_v2.0.zip`：**约 1.09 MB，24 entries**，含 TEST 版与通用版正文、
+`submission/fuq-fairness_submission_v2.0.zip`：**约 1.11 MB，24 entries**，含 TEST 版与通用版正文、
 两版 PDF、补充材料与 PDF、官方模板类文件、4 张矢量图、18 条 refs、全部投稿文档；
 解压后 `cd manuscript && tectonic main.tex` / `main_test.tex` / `supplement.tex` 均编译通过
 （`build_submission.py` 自动做自包含编译校验）。
 
 ## 发布包（GitHub / Zenodo）
 
-`release/fuq-fairness-v1.0-source.zip`：**172 文件 / 2.02 MB**，含 code、notes、results、
+`release/fuq-fairness-v1.0-source.zip`：**172 文件 / 2.04 MB**，含 code、notes、results、
 manuscript、submission、PROJECT_OVERVIEW、README/LICENSE/CITATION；端到端 light 复现已验证。
 
 ## 本地 git 仓库

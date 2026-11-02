@@ -7,8 +7,8 @@
 | TEST 版正文（Springer 官方模板） | `manuscript/main_test.pdf`（18 页） | ✅ 编译 exit 0，0 undefined |
 | 通用版正文（内容对照） | `manuscript/main.pdf`（17 页） | ✅ |
 | 补充材料 | `manuscript/supplement.pdf`（6 页，表 S1–S9） | ✅ 自动生成 |
-| 投稿包 | `manuscript/submission/fuq-fairness_submission_v2.0.zip`（24 entries，约 1.09 MB） | ✅ 自包含编译校验 |
-| 发布包 | `release/fuq-fairness-v1.0-source.zip`（172 文件，2.02 MB） | ✅ 端到端 light 复现验证 |
+| 投稿包 | `manuscript/submission/fuq-fairness_submission_v2.0.zip`（24 entries，约 1.11 MB） | ✅ 自包含编译校验 |
+| 发布包 | `release/fuq-fairness-v1.0-source.zip`（172 文件，2.04 MB） | ✅ 端到端 light 复现验证 |
 | 自审记录 | `notes/review_changes.md`（C1–C6 修订已入稿） | ✅ 13/13 包自检 |
 | 本地 git 仓库 | `.`（226 文件已提交，`data/`/`release/`/`paper/` 已排除） | ✅ 就绪待推送 |
 | 投稿文档 | cover letter / title page / checklist / TEST 格式笔记 | ✅ |

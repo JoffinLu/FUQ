@@ -17,15 +17,19 @@ Three Noise Sources in Fairness Audits (≤ 40 characters)
 
 | # | Name | Affiliation | ORCID |
 |---|------|-------------|-------|
-| 1 | Cenfa Lu (corresponding author) | School of Mathematics and Computational Science, Guilin University of Electronic Technology | 0009-0003-3481-3624 |
+| 1 | Cenfa Lu | School of Mathematics and Computing Science, Guilin University of Electronic Technology | 0009-0003-3481-3624 |
+| 2 | Shuda Wu (corresponding author) | School of Mathematics and Computing Science, Guilin University of Electronic Technology | 0009-0003-2590-9608 |
+| 3 | Xun Liu | School of Mathematics and Computing Science, Guilin University of Electronic Technology | 0009-0005-4230-3047 |
 
-**Affiliation.** School of Mathematics and Computational Science, Guilin University of Electronic
+**Affiliation.** School of Mathematics and Computing Science, Guilin University of Electronic
 Technology, Guilin 541004, China.
 
 ## Corresponding author
 
-Cenfa Lu, School of Mathematics and Computational Science, Guilin University of Electronic Technology,
-Guilin 541004, China. E-mail: joffin@163.com. ORCID: <https://orcid.org/0009-0003-3481-3624>.
+Shuda Wu, School of Mathematics and Computing Science, Guilin University of Electronic Technology,
+Guilin 541004, China. E-mail: shudawu777@163.com. ORCID: <https://orcid.org/0009-0003-2590-9608>.
+Cenfa Lu: joffin@163.com, ORCID <https://orcid.org/0009-0003-3481-3624>;
+Xun Liu: liuxun0817@163.com, ORCID <https://orcid.org/0009-0005-4230-3047>.
 
 ## Abstract
 
