@@ -7,8 +7,7 @@ Layout inside the archive mirrors the repository so that relative figure paths
                 sn-basic.bst,supplement.tex,supplement.pdf,refs.bib,
                 refs_checked.json,make_supplement.py,check_numbers.py,
                 check_refs.py,README.md,supplementary_repro_report.md,
-                submission/{checklist,cover_letter,target_journals,
-                            test_format_notes,title_page}.md}
+                submission/{checklist,cover_letter,target_journals, test_format_notes,title_page,submission_workflow}.md}
     results/figures/{repro_synth_di,repro_compas,sample_size,
                      ablation_coverage}.pdf
 
@@ -33,7 +32,8 @@ FILES = [
     "supplement.tex", "supplement.pdf", "refs.bib",
     "refs_checked.json", "make_supplement.py", "check_numbers.py", "check_refs.py", "README.md",
 ]
-SUBMISSION = ["checklist.md", "cover_letter.md", "target_journals.md", "test_format_notes.md", "title_page.md"]
+SUBMISSION = ["checklist.md", "cover_letter.md", "target_journals.md", "test_format_notes.md",
+              "title_page.md", "submission_workflow.md"]
 FIGURES = [
     "results/figures/repro_synth_di.pdf",
     "results/figures/repro_compas.pdf",

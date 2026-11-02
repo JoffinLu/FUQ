@@ -5,8 +5,8 @@ Checks (all must pass):
   * main.tex contains 7 tables and 4 figures;
   * check_numbers.py verifies 123 numbers with none missing;
   * refs_checked.json covers 18 bibliography entries with no missing DOI;
-  * submission zip v2.0 exists with 24 entries and contains the three PDFs;
-  * release zip exists and contains MANIFEST.tsv with 172 files;
+  * submission zip v2.0 exists with 25 entries and contains the three PDFs;
+  * release zip exists and contains MANIFEST.tsv with 173 files;
   * reviewer copy (17 pages) and combined PDF (23 pages) exist.
 
 Usage: python manuscript/check_package.py
@@ -60,7 +60,7 @@ def main() -> int:
     else:
         names = zipfile.ZipFile(sub).namelist()
         ok = (
-            len(names) == 24
+            len(names) == 25
             and "manuscript/main.pdf" in names
             and "manuscript/main_test.pdf" in names
             and "manuscript/supplement.pdf" in names
@@ -75,7 +75,7 @@ def main() -> int:
         names = zipfile.ZipFile(release).namelist()
         manifest = [n for n in names if n == "MANIFEST.tsv"]
         n_files = len([n for n in names if not n.endswith("/")]) - 1
-        checks.append(("release zip", bool(manifest) and n_files == 172, f"{n_files} files"))
+        checks.append(("release zip", bool(manifest) and n_files == 173, f"{n_files} files"))
 
     review = HERE / "main_review.pdf"
     if not review.exists():

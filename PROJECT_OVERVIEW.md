@@ -37,9 +37,9 @@
 - `manuscript/supplement.tex/.pdf`：补充材料（6 页，表 S1–S9，自动生成）
 - `manuscript/main_review.pdf`（行号版 17 页）、`main_anonymous.pdf`（双盲 16 页）、
   `fuq-fairness_full.pdf`（合并 23 页）
-- `manuscript/submission/fuq-fairness_submission_v2.0.zip`：投稿包（24 entries，约 1.11 MB，
+- `manuscript/submission/fuq-fairness_submission_v2.0.zip`：投稿包（25 entries，约 1.11 MB，
   含 TEST 版/通用版/补充材料/官方模板类文件/4 张矢量图/投稿文档，自包含编译校验通过）
-- `release/fuq-fairness-v1.0-source.zip`：发布包（172 文件，2.04 MB，含 code/notes/results/manuscript）
+- `release/fuq-fairness-v1.0-source.zip`：发布包（173 文件，2.05 MB，含 code/notes/results/manuscript）
 - `code/`：复现代码（fairuq.py、dgp.py、optimum.py；exps/*；verify/*；tests/*；reproduce_all.py；
   build_test_tex.py；make_release.py）
 - `notes/`：复现报告、独立核验、理论草稿、扩展结果、审稿预案、可复现性验证、投稿交接单

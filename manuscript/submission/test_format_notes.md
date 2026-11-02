@@ -26,9 +26,7 @@ cd manuscript
   在 pdfLaTeX 下提交时该选项同样安全。
 - 前置宏包：`graphicx, multirow, amsmath/amssymb/amsthm/mathtools, booktabs, xcolor,
   textcomp, manyfoot`（`manyfoot` 是模板自身 `\AtBeginDocument` 中 `\SetFootnoteHook` 所需）。
-- 作者块用模板命令：`\author*[1]{\fnm{Cenfa} \sur{Lu}}\email{...}`、
-  `\affil*[1]{\orgdiv{...},\orgname{...},\orgaddress{...}}`；`\abstract{...}`、`\keywords{...}`、
-  `\maketitle`。
+- 作者块用模板命令：`\author[1]{\fnm{Cenfa} \sur{Lu}}\email{...}`（另两位 `\author[1]`、 `\author*[1]` 通讯作者）、`\affil*[1]{\orgdiv{...},\orgname{...},\orgaddress{...}}`；\n  三位作者的 ORCID 排在单位块后的斜体行（模板的 `\orcid` 宏需要模板包未附带的 `Orcidlogo.eps`）。\n  `\abstract{...}`、`\keywords{...}`、`\maketitle`。
 - 后置部分：正文 `\section*{Declarations}`（Springer 标准声明区），条目用 `\bmhead{...}`：
   Data availability、Code availability、Funding、Competing interests、Ethics approval、
   Consent to participate、Consent for publication、Authors' contributions、Acknowledgements、
@@ -38,7 +36,7 @@ cd manuscript
 
 - `manuscript/main_test.pdf`：**18 页**，7 表 4 图，0 undefined reference，2 处 overfull hbox
   （附录 A 证明中的长公式，16.9pt / 34.2pt；可接受，排版时由编辑部微调）。
-- `manuscript/main.pdf`（通用版）：16 页，作为内容对照版保留。
+- `manuscript/main.pdf`（通用版）：17 页，作为内容对照版保留。
 - 补充材料：`manuscript/supplement.pdf`（独立 `article` 版，6 页，表 S1–S9）；Springer 接受
   electronic supplementary material，投稿时单独上传（PDF + 源文件）。
 
@@ -52,7 +50,7 @@ checklist,target_journals,test_format_notes}.md`。审稿系统要求上传 PDF 
 ## 5. 门户核对项（官方 INSTRUCTIONS FOR AUTHORS 页面被 Cloudflare/登录墙拦截，
 > 提交前必须在 Springer 投稿门户中逐项确认；以下为 Springer 期刊通用要求）
 
-- [ ] 摘要词数上限（Springer 常见 150–250 词；当前摘要 223 词）
+- [ ] 摘要词数上限（Springer 常见 150–250 词；当前摘要 235 词）
 - [ ] 关键词数量（当前 5 个）
 - [ ] Declarations 各项是否齐全（已按模板列表写全）
 - [ ] 是否要求 Highlights / graphical abstract（TEST 通常不需要）

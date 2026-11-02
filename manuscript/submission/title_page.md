@@ -33,7 +33,7 @@ Xun Liu: liuxun0817@163.com, ORCID <https://orcid.org/0009-0005-4230-3047>.
 
 ## Abstract
 
-As in `main_test.tex` — 223 words. It states: (i) the training-noise-only interval of Roy and
+As in `main_test.tex` — 235 words. It states: (i) the training-noise-only interval of Roy and
 Mohapatra (2026); (ii) the exact rate at which its coverage degrades in the ratio of training to
 evaluation error; (iii) the decomposition of the reported gap into training and evaluation sampling components, with a
 design-sensitivity layer for a random constraint set;
@@ -47,8 +47,7 @@ distribution-free inference
 
 ## Word count
 
-Approximate main text: **4,700 words** (abstract through conclusion, excluding references, appendix,
-tables and figure captions; measured from the 17-page TEST-format PDF).
+Approximate main text: **4,900 words** (abstract through conclusion, excluding references, appendix, tables and figure captions; measured from the 18-page TEST-format PDF).
 
 ## Suggested reviewers (optional)
 

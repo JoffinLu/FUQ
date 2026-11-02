@@ -45,16 +45,13 @@
 demographic-parity or equalised-odds gap computed from them.  Recent work builds confidence intervals
 for such gaps with an online multiplier bootstrap, but those intervals track only the random variation
 of the optimisation trajectory.  With a finite held-out set, a second component, the sampling noise of
-the evaluation sample, is ignored, and it is often the larger of the two; a third source enters when
-the constraint set that defines the target is itself drawn at random.  We decompose the error of a
-reported gap into a training part and an evaluation part, derive the limiting distribution of the sum,
-and give the closed-form asymptotic coverage of the existing interval as a function of the ratio of
+the evaluation sample, is ignored, often the larger of the two; a third source enters when
+the constraint set that defines the target is itself drawn at random.  We decompose this error into training and evaluation parts, derive the limiting distribution of the sum, and give the closed-form asymptotic coverage of the existing interval as a function of the ratio of
 training iterations to evaluation size; the interval is valid only when the evaluation set is large
 relative to the training run.  We then propose a joint bootstrap that resamples both the training
 trajectories and the evaluation set, adding a constraint-set layer when the audit design is random,
 prove its asymptotic validity for a fixed design, and give a sample-size allocation rule.  In a
-reproduction on synthetic data, Adult, ACSIncome and COMPAS, the existing interval covers the population fairness gap in $0$--$62\%$ of repetitions on the three real audits, whereas the joint interval is close to nominal on Adult ($0.98$ versus $0.30$).  A variance budget attributes only
-$0.8\%$--$8.3\%$ of the variability of a reported gap to training noise.
+reproduction on synthetic data, Adult, ACSIncome and COMPAS, the existing interval covers the population fairness gap in $0$--$62\%$ of repetitions on the three real audits, whereas the joint interval is close to nominal on Adult ($0.98$ versus $0.30$).  A variance budget attributes only $0.8\%$--$8.3\%$ of the variability to training noise.
 
 \par\medskip\noindent\textbf{Keywords:} fairness auditing; uncertainty quantification; constrained stochastic optimization; online bootstrap; distribution-free inference.}
 

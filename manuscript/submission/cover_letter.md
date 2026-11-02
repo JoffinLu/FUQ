@@ -1,10 +1,8 @@
 # Cover letter
 
-> 占位符用 `[ ]` 标出，提交前替换（日期、仓库 URL/DOI）。
-
 ---
 
-[Date]
+2 November 2026
 
 The Editor-in-Chief
 *TEST*

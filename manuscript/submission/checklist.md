@@ -15,7 +15,7 @@
 - [x] 参考文献：18 条全部被引用、存在性与 DOI 核对（`refs_checked.json`、`notes/reference_audit.md`）；作者-年份格式（sn-basic）
 - [x] 包一致性：`python manuscript/check_package.py` → **13/13 PASS**
 - [x] 三版 PDF 自包含编译验证（submission zip 解压后 main/main_test/supplement 均 exit 0）
-- [x] 摘要约 223 词；关键词 5 个；短标题 ≤40 字符
+- [x] 摘要约 235 词；关键词 5 个；短标题 ≤40 字符
 - [x] Statements → Springer Declarations 全项：Data availability、Code availability、Funding、
       Competing interests、Ethics approval、Consent to participate、Consent for publication、
       Authors' contributions、Acknowledgements、Use of AI tools
@@ -41,12 +41,12 @@
 
 - [x] Data availability 声明（公开基准数据 Adult/COMPAS/ACSIncome，来源与预处理见补充材料 S1 与 `notes/data_prep.md`）
 - [x] Code availability 声明（开源仓库，接收后公开并补 DOI；本地 git 仓库已就绪）
-- [ ] GitHub 仓库创建 + 推送 + 公开 URL 填入正文与 cover letter（需作者账号操作，步骤见 `notes/submission_handoff.md`）
+- [x] GitHub 仓库 <https://github.com/JoffinLu/FUQ> 已推送（master），正文 Data/Code availability 与 cover letter 已含链接
 - [ ] Zenodo DOI（可选，仓库公开后生成）
 
 ## 提交系统
 
-- [x] 投稿包 zip v2.0 构建完成（`submission/fuq-fairness_submission_v2.0.zip`，24 entries，约 1.11 MB）
+- [x] 投稿包 zip v2.0 构建完成（`submission/fuq-fairness_submission_v2.0.zip`，25 entries，约 1.11 MB）
 - [ ] Springer 投稿门户注册/登录并逐项确认（Editorial Manager / Springer Nature 投稿系统）
 - [ ] 上传：main_test.pdf（正文）、supplement.pdf（补充材料）、cover letter、title page
 - [ ] 可编辑源文件上传（main_test.tex + refs.bib + sn-jnl.cls + sn-basic.bst + figures/）
