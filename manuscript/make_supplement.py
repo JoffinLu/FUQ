@@ -61,6 +61,9 @@ def build():
 \usepackage[strings]{underscore}
 \usepackage{graphicx}
 \usepackage[colorlinks=true,linkcolor=blue]{hyperref}
+\hypersetup{pdftitle={Supplementary Material for Separating Training, Evaluation and Constraint-Set Noise in Fairness Uncertainty Quantification},pdfauthor={Cenfa Lu, Shuda Wu and Xun Liu},
+  pdfkeywords={fairness auditing, uncertainty quantification, constrained stochastic optimization, online bootstrap, distribution-free inference},
+  pdfsubject={Fairness uncertainty quantification: training, evaluation and constraint-set noise}}
 \usepackage{natbib}
 \bibliographystyle{plainnat}
 \newcommand{\Dt}{\tilde D}

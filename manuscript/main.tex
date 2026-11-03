@@ -5,6 +5,9 @@
 \usepackage{amsmath,amssymb,amsthm,mathtools}
 \usepackage{graphicx,booktabs,multirow}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+\hypersetup{pdftitle={Separating Training, Evaluation and Constraint-Set Noise in Fairness Uncertainty Quantification},pdfauthor={Cenfa Lu, Shuda Wu and Xun Liu},
+  pdfkeywords={fairness auditing, uncertainty quantification, constrained stochastic optimization, online bootstrap, distribution-free inference},
+  pdfsubject={Fairness uncertainty quantification: training, evaluation and constraint-set noise}}
 \usepackage{natbib}
 \bibliographystyle{plainnat}
 
@@ -519,8 +522,7 @@ Which component is resampled determines coverage; which component is ignored det
 evaluation-only interval is almost as wide as the joint one ($0.081$ versus $0.082$ on ACSIncome,
 $0.098$ versus $0.102$ on Adult, $0.154$ versus $0.173$ on COMPAS), so valid inference costs little
 beyond resampling the evaluation set.  Only resampling both, however, is at or near nominal coverage in
-every setting.  Figure~
-ef{fig:ablation} shows the same comparison graphically: the training-only interval falls short in every setting, and the evaluation-only interval falls short on the synthetic DM generator, where the evaluation component dominates.  A finite-sample grid over training
+every setting.  Figure~\ref{fig:ablation} shows the same comparison graphically: the training-only interval falls short in every setting, and the evaluation-only interval falls short on the synthetic DM generator, where the evaluation component dominates.  A finite-sample grid over training
 horizons and evaluation sizes (Table~S9 of the supplement) gives the same ordering away from the
 asymptotic regime.  There the baseline interval can fall well below nominal when the evaluation set is
 small relative to the training run, while the joint interval never falls below nominal.

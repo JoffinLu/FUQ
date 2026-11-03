@@ -27,36 +27,38 @@
       Guilin University of Electronic Technology, Guilin 541004, China
 - [x] 邮箱 joffin@163.com / shudawu777@163.com / liuxun0817@163.com；ORCID 0009-0003-3481-3624 / 0009-0003-2590-9608 / 0009-0005-4230-3047（`main_test.tex` 中 `\author*[1]{...}` 标记通讯作者 Shuda Wu + 三个 `\email{}`）
 - [x] Title page（`submission/title_page.md`）：标题、短标题、作者、单位、ORCID、通讯作者
-- [ ] 投稿系统内 ORCID 关联与邮箱确认（作者本人操作）
 
 ## 稿件文档
 
 - [x] Cover letter（`submission/cover_letter.md`，含 TEST 定位、三源贡献、AI 使用声明、5 位建议审稿人）
 - [x] 目标期刊匹配与备选（`submission/target_journals.md`：TEST → COAP → DMKD；Statistics and Computing 进阶）
 - [x] TEST 格式笔记与门户核对项（`submission/test_format_notes.md`）
-- [ ] 建议审稿人邮箱补填（候选池见 `notes/referee_prep.md`；提交系统内填 3–5 人）
-- [x] AI 使用声明（正文 Declarations 已写：仅用于英文润色，未生成科学内容/代码/结果）
+- [x] AI 使用声明（正文 Declarations：AI 协助实现与运行数值实验、起草与润色文字；所有结果均对照代码与输出复核，作者对内容负责）
 
 ## 数据与代码
 
 - [x] Data availability 声明（公开基准数据 Adult/COMPAS/ACSIncome，来源与预处理见补充材料 S1 与 `notes/data_prep.md`）
-- [x] Code availability 声明（开源仓库，接收后公开并补 DOI；本地 git 仓库已就绪）
+- [x] Code availability 声明（开源仓库 GitHub，接收后补 Zenodo DOI）
 - [x] GitHub 仓库 <https://github.com/JoffinLu/FUQ> 已推送（master），正文 Data/Code availability 与 cover letter 已含链接
-- [ ] Zenodo DOI（可选，仓库公开后生成）
 
 ## 提交系统
 
-- [x] 投稿包 zip v2.0 构建完成（`submission/fuq-fairness_submission_v2.0.zip`，25 entries，约 1.06 MB）
-- [ ] Springer 投稿门户注册/登录并逐项确认（Editorial Manager / Springer Nature 投稿系统）
-- [ ] 上传：main_test.pdf（正文）、supplement.pdf（补充材料）、cover letter、title page
-- [ ] 可编辑源文件上传（main_test.tex + refs.bib + sn-jnl.cls + sn-basic.bst + figures/）
-- [ ] 填写作者/ORCID/通讯信息、建议审稿人、声明勾选
-- [ ] 文本查重（相似度 <15%；单源 <5%）
-- [ ] 保存投稿确认邮件与稿号（写入 `notes/submission_handoff.md`）
+- [x] 投稿包 zip v2.0 构建完成（`submission/fuq-fairness_submission_v2.0.zip`，25 entries，约 1.11 MB）
 
 ## 内部复核
 
 - [x] 包一致性 `check_package.py` 13/13 PASS
 - [x] 复现结果与稿件数字逐值核对（`check_numbers.py`）
-- [ ] 通读 TEST 版 PDF 一遍（版式/图表位置/引用编号）
+- [x] 通读 TEST 版 PDF 并逐项核对（页数、标题/作者/ORCID/通讯作者、图 4 张、表 7 张、引用编号无 ??、声明与 AI 披露）
 - [x] 投稿交接单（`notes/submission_handoff.md`）更新到 v2.0
+
+## 投稿前作者操作（门户内完成，不计入上述完成度）
+
+- 注册/登录 TEST 的 Springer Nature 投稿系统（Editorial Manager / ScholarOne 入口见 `test_format_notes.md`）
+- 上传：`main_test.pdf`（正文）、`supplement.pdf`（补充材料）、cover letter、title page
+- 上传可编辑源文件：`main_test.tex`、`refs.bib`、`sn-jnl.cls`、`sn-basic.bst`、`results/figures/*.pdf`
+- 在系统内关联 ORCID、确认邮箱、填写作者与通讯信息、勾选声明
+- 建议审稿人：可不填（已决定不填）；如系统强制必填，再补 3–5 人（候选见 `notes/referee_prep.md`）
+- 提交前完成文本查重（全文相似度 <15%，单源 <5%）
+- 保存投稿确认邮件与稿号，并写入 `notes/submission_handoff.md`
+- Zenodo DOI 为可选项，仓库公开后可生成，接收后回填正文 Code availability
