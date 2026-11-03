@@ -22,10 +22,10 @@
 
 ## 作者信息
 
-- [x] `main.tex` / `main_test.tex` 作者块：**Cenfa Lu**（第一作者）、**Shuda Wu**（通讯作者）、**Xun Liu**
+- [x] `main.tex` / `main_test.tex` 作者块：**Cenfa Lu**（第一作者、通讯作者）、**Shuda Wu**、**Xun Liu**
       School of Mathematics and Computing Science,
       Guilin University of Electronic Technology, Guilin 541004, China
-- [x] 邮箱 joffin@163.com / shudawu777@163.com / liuxun0817@163.com；ORCID 0009-0003-3481-3624 / 0009-0003-2590-9608 / 0009-0005-4230-3047（`main_test.tex` 中 `\author*[1]{...}` 标记通讯作者 Shuda Wu + 三个 `\email{}`）
+- [x] 邮箱 joffin@163.com / shudawu777@163.com / liuxun0817@163.com；ORCID 0009-0003-3481-3624 / 0009-0003-2590-9608 / 0009-0005-4230-3047（`main_test.tex` 中 `\author*[1]{...}` 标记通讯作者 Cenfa Lu + 三个 `\email{}`）
 - [x] Title page（`submission/title_page.md`）：标题、短标题、作者、单位、ORCID、通讯作者
 
 ## 稿件文档

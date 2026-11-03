@@ -25,10 +25,10 @@
 | 短标题 | Three Noise Sources in Fairness Audits | `title_page.md` |
 | 摘要 | 235 词 | `main_test.tex` |
 | 关键词 | fairness auditing; uncertainty quantification; constrained stochastic optimization; online bootstrap; distribution-free inference | `main_test.tex` |
-| 作者顺序 | Cenfa Lu¹、Shuda Wu¹（通讯）、Xun Liu¹ | `main_test.tex` |
+| 作者顺序 | Cenfa Lu¹（通讯）、Shuda Wu¹、Xun Liu¹ | `main_test.tex` |
 | 单位 | School of Mathematics and Computing Science, Guilin University of Electronic Technology, Guilin 541004, China | `main_test.tex` |
 | ORCID | 0009-0003-3481-3624 / 0009-0003-2590-9608 / 0009-0005-4230-3047 | `title_page.md` |
-| 通讯邮箱 | shudawu777@163.com | `main_test.tex` |
+| 通讯邮箱 | joffin@163.com | `main_test.tex` |
 | 正文 PDF | `main_test.pdf`，18 页，7 表 4 图 | 投稿包 |
 | 补充材料 | `supplement.pdf`，6 页，表 S1–S9 | 投稿包 |
 | 数据/代码 | <https://github.com/JoffinLu/FUQ>（MIT） | 正文 Data/Code availability |
@@ -36,7 +36,7 @@
 ## 3. 系统操作步骤
 
 1. **打开门户**：期刊主页（<https://link.springer.com/journal/11749>）→ “Submit your manuscript”。
-   首次使用先注册；用通讯作者账号（Shuda Wu / shudawu777@163.com）提交。
+   首次使用先注册；用通讯作者账号（Cenfa Lu / joffin@163.com）提交。
 2. **选择 Article type**：Original Research（若系统写作 “Research article”，选它）。
 3. **填写元数据**：标题、摘要（粘贴纯文本）、关键词（逐条输入）、作者（顺序、单位、ORCID）、
    通讯作者、资助信息（选 “no specific funding”）。

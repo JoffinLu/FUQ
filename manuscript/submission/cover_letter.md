@@ -67,11 +67,11 @@ Thank you for your consideration.
 
 Sincerely,
 
-Shuda Wu (corresponding author)
-shudawu777@163.com
-ORCID: 0009-0003-2590-9608
+Cenfa Lu (corresponding author)
+joffin@163.com
+ORCID: 0009-0003-3481-3624
 School of Mathematics and Computing Science, Guilin University of Electronic Technology, Guilin 541004, China
 
 On behalf of all authors:
-Cenfa Lu (joffin@163.com, ORCID 0009-0003-3481-3624)
+Shuda Wu (shudawu777@163.com, ORCID 0009-0003-2590-9608)
 Xun Liu (liuxun0817@163.com, ORCID 0009-0005-4230-3047)

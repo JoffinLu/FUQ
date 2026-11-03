@@ -26,7 +26,7 @@ cd manuscript
   在 pdfLaTeX 下提交时该选项同样安全。
 - 前置宏包：`graphicx, multirow, amsmath/amssymb/amsthm/mathtools, booktabs, xcolor,
   textcomp, manyfoot`（`manyfoot` 是模板自身 `\AtBeginDocument` 中 `\SetFootnoteHook` 所需）。
-- 作者块用模板命令：`\author[1]{\fnm{Cenfa} \sur{Lu}}\email{...}`（另两位 `\author[1]`、 `\author*[1]` 通讯作者）、`\affil*[1]{\orgdiv{...},\orgname{...},\orgaddress{...}}`；\n  三位作者的 ORCID 排在单位块后的斜体行（模板的 `\orcid` 宏需要模板包未附带的 `Orcidlogo.eps`）。\n  `\abstract{...}`、`\keywords{...}`、`\maketitle`。
+- 作者块用模板命令：`\author[1]{\fnm{Cenfa} \sur{Lu}}\email{...}`（Cenfa Lu 用 `\author*[1]` 标记通讯作者，另两位用 `\author[1]`）、`\affil*[1]{\orgdiv{...},\orgname{...},\orgaddress{...}}`；\n  三位作者的 ORCID 排在单位块后的斜体行（模板的 `\orcid` 宏需要模板包未附带的 `Orcidlogo.eps`）。\n  `\abstract{...}`、`\keywords{...}`、`\maketitle`。
 - 后置部分：正文 `\section*{Declarations}`（Springer 标准声明区），条目用 `\bmhead{...}`：
   Data availability、Code availability、Funding、Competing interests、Ethics approval、
   Consent to participate、Consent for publication、Authors' contributions、Acknowledgements、
@@ -56,7 +56,7 @@ checklist,target_journals,test_format_notes}.md`。审稿系统要求上传 PDF 
 - [ ] 是否要求 Highlights / graphical abstract（TEST 通常不需要）
 - [ ] 是否允许单栏 article 版式（sn-jnl 默认单栏，符合）
 - [ ] 电子补充材料上传方式（PDF 与源文件）
-- [ ] ORCID 与通讯作者邮箱在系统中填写（当前作者块已含）
+- ORCID 与通讯作者邮箱在系统中填写（当前作者块已含）
 
 ## 刊名与费用（2026-10-27 核实）
 
